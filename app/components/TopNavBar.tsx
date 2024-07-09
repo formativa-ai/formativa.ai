@@ -17,8 +17,8 @@ export default function TopNavBar() {
                     <div className="flex-shrink-0">
                       <a href="/">
                           <img
-                          className="h-8 w-auto"
-                          src="/White.svg"
+                          className="h-20 w-auto"
+                          src="/formativa-logo.svg"
                           alt="Your Company"
                           />
                       </a>
@@ -35,17 +35,17 @@ export default function TopNavBar() {
                         >
                           About
                         </a>
-                        <a
-                            href="/assistant"
-                            className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                          Guia de Careera
-                        </a>
+                        {/*<a*/}
+                        {/*    href="/assistant"*/}
+                        {/*    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"*/}
+                        {/*>*/}
+                        {/*  Guia de Careera*/}
+                        {/*</a>*/}
                         <a
                             href="#"
                             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                         >
-                          Calendar
+                          Trabajos
                         </a>
                       </div>
                     </div>
