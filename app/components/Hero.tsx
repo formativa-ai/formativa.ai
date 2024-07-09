@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {TypeAnimation} from "react-type-animation";
 
 const navigation = {
     main: [
@@ -58,7 +59,7 @@ export default function Hero() {
                     <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
                         <div className="flex items-center justify-between">
                             <a href="#" className="-m-1.5 p-1.5">
-                                <span className="sr-only">Your Company</span>
+                                <span className="sr-only">Formativa AI</span>
                                 <img
                                     alt=""
                                     src="/logo-white.svg"
@@ -123,17 +124,30 @@ export default function Hero() {
                 <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                     <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                         <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                            Announcing our next round of funding.{' '}
-                            <a href="#" className="font-semibold text-white">
+                            Estamos creciendo. {' '}
+                            <a href="#trabajos" className="font-semibold text-white">
                                 <span aria-hidden="true" className="absolute inset-0" />
-                                Read more <span aria-hidden="true">&rarr;</span>
+                                Únete a nosotros <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
                     </div>
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                            Data to enrich your online business
-                        </h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-white sm:text-6xl">
+                            <TypeAnimation
+                                sequence={[
+                                    'Educacion ...',
+                                    2000,
+                                    'Educacion Formativa',
+                                    2000, // wait 1s before replacing "Mice" with "Hamsters"
+                                    'Formativa AI',
+                                    2000,
+                                ]}
+                                wrapper="span"
+                                speed={20}
+                                deletionSpeed={30}
+                                style={{ fontSize: '2em', display: 'inline-block' }}
+                                repeat={0}
+                            />                        </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-300">
                             Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
                             fugiat veniam occaecat fugiat aliqua.
