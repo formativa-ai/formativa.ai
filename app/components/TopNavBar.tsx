@@ -6,7 +6,18 @@ function classNames(...classes: (string | boolean | null | undefined)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+import { usePathname } from 'next/navigation'
+
+
+const navigation = {
+    main: [
+        { name: 'Inicio', href: '/' },
+        { name: 'Nosotros', href: '/about' },
+        { name: 'Oportunidades', href: '/oportunidades' }
+    ]}
+
 export default function TopNavBar() {
+    const pathname = usePathname()
   return (
       <Disclosure as="nav" className="bg-gray-800 fixed top-0 w-full z-50">
         {({ open }) => (
@@ -26,27 +37,11 @@ export default function TopNavBar() {
                     <div className="hidden lg:ml-6 lg:block">
                       <div className="flex space-x-4">
                         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                        <a href="#" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">
-                          Inicio
-                        </a>
-                        <a
-                            href="/about"
-                            className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                          Nosotros
-                        </a>
-                        {/*<a*/}
-                        {/*    href="/_assistant"*/}
-                        {/*    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"*/}
-                        {/*>*/}
-                        {/*  Guia de Careera*/}
-                        {/*</a>*/}
-                        <a
-                            href="/oportunidades"
-                            className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                          Oportunidades
-                        </a>
+                          {navigation.main.map((item, index) => (
+                              <a key={index} href={item.href} className={classNames("rounded-md px-3 py-2 font-medium text-sm", pathname === item.href? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white")}>
+                                  {item.name}
+                              </a>
+                          ))}
                       </div>
                     </div>
                   </div>
@@ -149,27 +144,21 @@ export default function TopNavBar() {
               <DisclosurePanel className="lg:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2">
                   {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                  <DisclosureButton
-                      as="a"
-                      href="/"
-                      className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-                  >
-                    Inicio
-                  </DisclosureButton>
-                  <DisclosureButton
-                      as="a"
-                      href="/about"
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Nosotros
-                  </DisclosureButton>
-                  <DisclosureButton
-                      as="a"
-                      href="/oportunidades"
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Oportunidades
-                  </DisclosureButton>
+
+                    {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                    {navigation.main.map((item, index) => (
+                        <DisclosureButton
+                            key={index}
+                            href={item.href}
+                            as="a"
+                            className={
+                                classNames("block rounded-md px-3 py-2 text-base font-medium",
+                                    pathname === item.href? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                                )}
+                        >
+                            {item.name}
+                        </DisclosureButton>
+                    ))}
                 </div>
                 {/*<div className="border-t border-gray-700 pb-3 pt-4">*/}
                 {/*  <div className="flex items-center px-5">*/}
