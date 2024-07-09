@@ -17,8 +17,8 @@ export default function TopNavBar() {
                     <div className="flex-shrink-0">
                       <a href="/">
                           <img
-                          className="h-20 w-auto"
-                          src="/formativa-logo.svg"
+                          className="h-14 w-auto"
+                          src="/logo-white.svg"
                           alt="Your Company"
                           />
                       </a>
