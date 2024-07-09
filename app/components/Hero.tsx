@@ -135,9 +135,9 @@ export default function Hero() {
                         <h1 className="text-2xl font-bold tracking-tight text-white sm:text-6xl">
                             <TypeAnimation
                                 sequence={[
-                                    'Educacion ...',
+                                    'Educación ...',
                                     2000,
-                                    'Educacion Formativa',
+                                    'Educación Formativa',
                                     2000, // wait 1s before replacing "Mice" with "Hamsters"
                                     'Formativa AI',
                                     2000,
