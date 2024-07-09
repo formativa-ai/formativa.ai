@@ -36,7 +36,7 @@ export default function TopNavBar() {
                           Nosotros
                         </a>
                         {/*<a*/}
-                        {/*    href="/(assistant)"*/}
+                        {/*    href="/_assistant"*/}
                         {/*    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"*/}
                         {/*>*/}
                         {/*  Guia de Careera*/}
@@ -112,7 +112,7 @@ export default function TopNavBar() {
                         {/*  <MenuItem>*/}
                         {/*    {({ focus }) => (*/}
                         {/*        <a*/}
-                        {/*            href="/(profile)"*/}
+                        {/*            href="/_profile"*/}
                         {/*            className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}*/}
                         {/*        >*/}
                         {/*          Your Profile*/}
@@ -122,7 +122,7 @@ export default function TopNavBar() {
                         {/*  <MenuItem>*/}
                         {/*    {({ focus }) => (*/}
                         {/*        <a*/}
-                        {/*            href="/(profile)/settings"*/}
+                        {/*            href="/_profile/settings"*/}
                         {/*            className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}*/}
                         {/*        >*/}
                         {/*          Settings*/}

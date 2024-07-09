@@ -2,10 +2,10 @@ import { openai } from "@/app/openai";
 
 export const runtime = "nodejs";
 
-// Create a new (assistant)
+// Create a new _assistant
 export async function POST() {
   const assistant = await openai.beta.assistants.create({
-    instructions: "You are a helpful (assistant).",
+    instructions: "You are a helpful _assistant.",
     name: "Quickstart Assistant",
     model: "gpt-4o",
     tools: [
