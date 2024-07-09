@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="h-full bg-gray-900" lang="es-ES">
+    <html className="scroll-smooth h-full bg-gray-900" lang="es-ES">
     <head>
       <link
           rel="icon"
