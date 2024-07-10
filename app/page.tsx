@@ -14,8 +14,8 @@ export default function Home() {
   return (
     <main>
         <Hero/>
-        <Mission />
-        <JoinOurTeam />
+        {/*<Mission />*/}
+        {/*<JoinOurTeam />*/}
         <ListaOportunidades/>
         <JobApplicationForm/>
         <Footer/>

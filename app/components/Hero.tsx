@@ -8,9 +8,10 @@ import {TypeAnimation} from "react-type-animation";
 const navigation = {
     main: [
         { name: 'Inicio', href: '/#' },
-        { name: 'Nosotros', href: '/#nosotros' },
+        // { name: 'Nosotros', href: '/#nosotros' },
         { name: 'Oportunidades', href: '/#oportunidades' },
-        { name: 'Únete', href: '/#unete' }
+        // { name: 'Únete', href: '/#unete' }
+        { name: 'Contacto', href: '/#contacto' },
     ]
 }
 
@@ -125,44 +126,44 @@ export default function Hero() {
                     <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                         <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
                             Estamos creciendo. {' '}
-                            <a href="#trabajos" className="font-semibold text-white">
+                            <a href="#oportunidades" className="font-semibold text-white">
                                 <span aria-hidden="true" className="absolute inset-0" />
-                                Únete a nosotros <span aria-hidden="true">&rarr;</span>
+                                Únete al quipo <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
                     </div>
                     <div className="text-center">
-                        <h1 className="text-2xl font-bold tracking-tight text-white sm:text-6xl">
+                        <h1 className="text-xl font-bold tracking-tight text-white sm:text-6xl">
                             <TypeAnimation
                                 sequence={[
-                                    'Educación ...',
-                                    2000,
+                                    'Educación para todos',
+                                    1000,
                                     'Educación Formativa',
-                                    2000, // wait 1s before replacing "Mice" with "Hamsters"
-                                    'Formativa AI',
+                                    2000,
+                                    'Formativa.AI',
                                     2000,
                                 ]}
                                 wrapper="span"
-                                speed={20}
-                                deletionSpeed={30}
-                                style={{ fontSize: '2em', display: 'inline-block' }}
+                                speed={10}
+                                deletionSpeed={60}
+                                style={{ fontSize: '1em', display: 'inline-block' }}
                                 repeat={0}
                             />                        </h1>
-                        <p className="mt-6 text-lg leading-8 text-gray-300">
-                            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                            fugiat veniam occaecat fugiat aliqua.
-                        </p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <a
-                                href="#"
-                                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-                            >
-                                Get started
-                            </a>
-                            <a href="#" className="text-sm font-semibold leading-6 text-white">
-                                Learn more <span aria-hidden="true">→</span>
-                            </a>
-                        </div>
+                        {/*<p className="mt-6 text-lg leading-8 text-gray-300">*/}
+                        {/*    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet*/}
+                        {/*    fugiat veniam occaecat fugiat aliqua.*/}
+                        {/*</p>*/}
+                        {/*<div className="mt-10 flex items-center justify-center gap-x-6">*/}
+                        {/*    <a*/}
+                        {/*        href="#"*/}
+                        {/*        className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"*/}
+                        {/*    >*/}
+                        {/*        Get started*/}
+                        {/*    </a>*/}
+                        {/*    <a href="#" className="text-sm font-semibold leading-6 text-white">*/}
+                        {/*        Learn more <span aria-hidden="true">→</span>*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 <div

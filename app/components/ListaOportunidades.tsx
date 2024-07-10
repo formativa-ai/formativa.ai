@@ -1,22 +1,24 @@
+import {TiPlus} from "react-icons/ti";
+
 const jobOpenings = [
     {
         id: 1,
-        role: 'Gestor de Redes Sociales ()',
+        role: 'Gestor de Redes Sociales',
         href: '#',
         description: [
-            '+ Creación y curación de contenido para plataformas de redes sociales.\n',
-            '+ Desarrollo de un calendario de contenido.\n',
-            '+ Interacción con la comunidad y respuesta a comentarios/mensajes.\n',
-            '+ Monitoreo de análisis para optimizar estrategias.'
+            'Creación y curación de contenido para plataformas de redes sociales.',
+            'Desarrollo de un calendario de contenido.',
+            'Interacción con la comunidad y respuesta a comentarios/mensajes.',
+            'Monitoreo de análisis para optimizar estrategias.'
         ],
         salary: '$2.000.000-$2.500.000 / mes',
-        location: 'Manizales, Caldas, Colombia',
+        location: 'Zona El Cable, Manizales (Presencial)',
     }
 ]
 
 export default function ListaOportunidades() {
     return (
-        <div id="trabajos" className="bg-white py-32">
+        <div id="oportunidades" className="bg-white py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
                     <div className="w-full lg:max-w-lg lg:flex-auto">
@@ -24,8 +26,8 @@ export default function ListaOportunidades() {
                             Estamos creciendo y buscamos personas talentosas
                         </h2>
                         <p className="mt-6 text-xl leading-8 text-gray-600">
-                            Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu.
-                            Cras purus nibh cursus sit eu in id.
+                            {/*Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu.*/}
+                            {/*Cras purus nibh cursus sit eu in id.*/}
                         </p>
                         <img
                             alt=""
@@ -47,9 +49,17 @@ export default function ListaOportunidades() {
                                             </a>
                                         </dd>
                                         <dt className="sr-only">Description</dt>
-                                        <dd className="mt-2 w-full flex-none text-base leading-7 text-gray-600">
-                                            {opening.description}
-                                        </dd>
+                                        {opening.description.map((line, lineIdx) => {
+                                            return (
+                                                <dd className="mt-1 w-full flex-none text-base leading-7 text-gray-600"
+                                                    key={lineIdx}>
+                                                    <div className="inline-flex items-center">
+                                                        <TiPlus className="mr-2"/>{line}
+                                                    </div>
+                                                </dd>
+                                            )
+                                        })
+                                        }
                                         <dt className="sr-only">Salary</dt>
                                         <dd className="mt-4 text-base font-semibold leading-7 text-gray-900">{opening.salary}</dd>
                                         <dt className="sr-only">Location</dt>
@@ -63,11 +73,11 @@ export default function ListaOportunidades() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-8 flex border-t border-gray-100 pt-8">
-                            <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                                View all openings <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
+                        {/*<div className="mt-8 flex border-t border-gray-100 pt-8">*/}
+                        {/*    <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">*/}
+                        {/*        View all openings <span aria-hidden="true">&rarr;</span>*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

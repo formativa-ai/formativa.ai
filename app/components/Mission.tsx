@@ -45,8 +45,8 @@ export default function Mission() {
                                     />
                                     <use href="#0ef284b8-28c2-426e-9442-8655d393522e" x={86} />
                                 </svg>
-                                <img src="https://tailwindui.com/img/logos/workcation-logo-white.svg" alt="" className="h-12 w-auto" />
-                                <blockquote className="mt-6 text-xl font-semibold leading-8 text-white">
+                                <img src="/formativa-logo.svg" alt="" className="h-20 w-auto" />
+                                <blockquote className=" text-xl font-semibold leading-8 text-white">
                                     <p>
                                         “Amet amet eget scelerisque tellus sit neque faucibus non eleifend. Integer eu praesent at a. Ornare
                                         arcu gravida natoque erat et cursus tortor.”
