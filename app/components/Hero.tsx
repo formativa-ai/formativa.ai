@@ -123,22 +123,13 @@ export default function Hero() {
                     />
                 </div>
                 <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                    <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                            Estamos creciendo. {' '}
-                            <a href="#oportunidades" className="font-semibold text-white">
-                                <span aria-hidden="true" className="absolute inset-0" />
-                                Únete al quipo <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
                     <div className="text-center">
                         <h1 className="text-xl font-bold tracking-tight text-white sm:text-6xl">
                             <TypeAnimation
                                 sequence={[
                                     'Acceso a la Educación',
                                     1000,
-                                    'Educación para todos',
+                                    'Educación para todos...',
                                     2000,
                                     'Educación Formativa',
                                     2000,
@@ -148,9 +139,10 @@ export default function Hero() {
                                 wrapper="span"
                                 speed={10}
                                 deletionSpeed={60}
-                                style={{ fontSize: '1em', display: 'inline-block' }}
+                                style={{fontSize: '1em', display: 'inline-block'}}
                                 repeat={0}
-                            />                        </h1>
+                            />
+                        </h1>
                         {/*<p className="mt-6 text-lg leading-8 text-gray-300">*/}
                         {/*    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet*/}
                         {/*    fugiat veniam occaecat fugiat aliqua.*/}
@@ -166,6 +158,16 @@ export default function Hero() {
                         {/*        Learn more <span aria-hidden="true">→</span>*/}
                         {/*    </a>*/}
                         {/*</div>*/}
+                    </div>
+                </div>
+                <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <div
+                        className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
+                        Estamos creciendo. {' '}
+                        <a href="#oportunidades" className="font-semibold text-white">
+                            <span aria-hidden="true" className="absolute inset-0"/>
+                            Únete al quipo <span aria-hidden="true">&rarr;</span>
+                        </a>
                     </div>
                 </div>
                 <div
