@@ -136,11 +136,13 @@ export default function Hero() {
                         <h1 className="text-xl font-bold tracking-tight text-white sm:text-6xl">
                             <TypeAnimation
                                 sequence={[
-                                    'Educación para todos',
+                                    'Acceso a la Educación',
                                     1000,
+                                    'Educación para todos',
+                                    2000,
                                     'Educación Formativa',
                                     2000,
-                                    'Formativa.AI',
+                                    'Formativa AI',
                                     2000,
                                 ]}
                                 wrapper="span"
