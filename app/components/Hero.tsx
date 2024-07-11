@@ -129,8 +129,10 @@ export default function Hero() {
                                 sequence={[
                                     'Acceso a la Educación',
                                     1000,
-                                    'Educación para todos...',
+                                    'Educación para todos',
                                     2000,
+                                    'Educación...',
+                                    1000,
                                     'Educación Formativa',
                                     2000,
                                     'Formativa AI',
@@ -139,7 +141,7 @@ export default function Hero() {
                                 wrapper="span"
                                 speed={10}
                                 deletionSpeed={60}
-                                style={{fontSize: '1em', display: 'inline-block'}}
+                                style={{fontSize: '1.5em', display: 'block', whiteSpace: 'nowrap'}}
                                 repeat={0}
                             />
                         </h1>
