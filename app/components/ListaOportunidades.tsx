@@ -6,8 +6,8 @@ const jobOpenings = [
         role: 'Gestor de Redes Sociales (y todero)',
         href: '#',
         description:
-            '- Creación y curación de contenido para plataformas de redes sociales. - Desarrollo de un calendario de contenido. - Interacción con la comunidad y respuesta a comentarios/mensajes. - Monitoreo de análisis para optimizar estrategias. - Post-producción de contenido audiovisual. (Adobe Creative Suite)',
-        salary: '$2.000.000-$2.500.000 / mes',
+            'Buscamos un Gerente de Redes Sociales y Tareas Ad-hoc para unirse a nuestro equipo en Formativa AI, una startup ubicada en Manizales, Colombia. Este rol es crucial para el crecimiento de nuestra presencia en redes sociales y la ejecución de diversas tareas adicionales. El candidato ideal debe tener habilidades en gestión de redes sociales, diseño gráfico, entrada y análisis de datos, así como la capacidad de crear documentación útil.',
+        salary: '$1.500.000-$2.500.000 / mes (con todos los beneficios)',
         location: 'Zona El Cable, Manizales (Presencial)',
     }
 ]
@@ -64,11 +64,11 @@ export default function ListaOportunidades() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-8 flex border-t border-gray-100 pt-8">
-                            <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                                View all openings <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
+                        {/*<div className="mt-8 flex border-t border-gray-100 pt-8">*/}
+                        {/*    <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">*/}
+                        {/*        View all openings <span aria-hidden="true">&rarr;</span>*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

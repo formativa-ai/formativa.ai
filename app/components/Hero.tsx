@@ -1,21 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {useState} from 'react'
+import {Dialog, DialogPanel} from '@headlessui/react'
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {TypeAnimation} from "react-type-animation";
-import { useScroll, useTransform } from "framer-motion";
+import {useScroll, useTransform} from "framer-motion";
 import React from "react";
-import { GoogleGeminiEffect } from "./ui/google-gemini-effect";
+import {GoogleGeminiEffect} from "./ui/google-gemini-effect";
 import {SparklesCore} from "@/app/components/ui/sparkles";
+import { useRouter } from 'next/router';
+import {router} from "next/client";
+
 
 
 export default function Hero() {
     const ref = React.useRef(null);
-    const { scrollYProgress } = useScroll({
+    const {scrollYProgress} = useScroll({
         target: ref,
         offset: ["start start", "end start"],
     });
+
+
 
     const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
     const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
@@ -81,8 +86,20 @@ export default function Hero() {
 
                 {/* Radial Gradient to prevent sharp edges */}
                 <div
-                    className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+                    className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]">
+
+                </div>
             </div>
+            <a
+                href='/maco'
+                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                <span
+                    className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"/>
+                <span
+                    className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                    &gt; Consejero
+                </span>
+            </a>
         </div>
     )
 }
