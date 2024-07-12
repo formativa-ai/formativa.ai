@@ -5,42 +5,7 @@
   width: 100%;
 }
 
-.inputForm {
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  padding-bottom: 40px;
-  order: 1;
-}
 
-.input {
-  flex-grow: 1;
-  padding: 16px 24px;
-  margin-right: 10px;
-  border-radius: 60px;
-  border: 2px solid transparent;
-  font-size: 1em;
-  background-color: #efefef;
-}
-
-.input:focus {
-  outline: none !important;
-  border-color: #000;
-  background-color: white;
-}
-
-.button {
-  padding: 8px 24px;
-  background-color: #000;
-  color: white;
-  border: none;
-  font-size: 1em;
-  border-radius: 60px; /* Removed duplicate border-radius property */
-}
-
-.button:disabled {
-  background-color: lightgrey;
-}
 
 .messages {
   flex-grow: 1;

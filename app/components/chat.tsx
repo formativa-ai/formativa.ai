@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 // @ts-expect-error - no types for this yet
 import { AssistantStreamEvent } from "openai/resources/beta/assistants/assistants";
 import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
+import {PlaceholdersAndVanishInput} from "@/app/components/ui/placeholders-and-vanish-input";
 
 type MessageProps = {
   role: "user" | "assistant" | "code";
@@ -23,6 +24,10 @@ const AssistantMessage = ({ text }: { text: string }) => {
       <Markdown>{text}</Markdown>
     </div>
   );
+};
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(e.target.value);
 };
 
 const CodeMessage = ({ text }: { text: string }) => {
@@ -248,6 +253,14 @@ const Chat = ({
     
   }
 
+  const placeholders = [
+    "¿Cuáles son las mejores universidades para estudiar informática?",
+    "¿Cómo puedo solicitar una beca en un programa de tecnología?",
+    "¿Qué bootcamps de programación ofrecen ayuda financiera?",
+    "¿Cómo escribo una declaración personal para una beca tecnológica?",
+    "¿Cuáles son los mejores cursos en línea para aprender programación?",
+  ];
+
   return (
     <div className={styles.chatContainer}>
       <div className={styles.messages}>
@@ -256,25 +269,11 @@ const Chat = ({
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className={`${styles.inputForm} ${styles.clearfix}`}
-      >
-        <input
-          type="text"
-          className={styles.input}
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your question"
+        <PlaceholdersAndVanishInput
+            placeholders={placeholders}
+            onChange={(e) => setUserInput(e.target.value)}
+            onSubmit={handleSubmit}
         />
-        <button
-          type="submit"
-          className={styles.button}
-          disabled={inputDisabled}
-        >
-          Send
-        </button>
-      </form>
     </div>
   );
 };
