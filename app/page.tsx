@@ -7,12 +7,14 @@ import JoinOurTeam from "@/app/components/JoinOurTeam";
 import ListaOportunidades from "@/app/components/ListaOportunidades";
 import Hero from "@/app/components/Hero";
 import JobApplicationForm from "@/app/components/JobApplicationForm";
+import Header from "@/app/components/Navigation/Header";
 
 Amplify.configure(outputs);
 
 export default function Home() {
   return (
     <main>
+        <Header/>
         <Hero/>
         {/*<Mission />*/}
         {/*<JoinOurTeam />*/}
