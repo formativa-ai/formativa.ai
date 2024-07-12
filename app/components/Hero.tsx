@@ -7,6 +7,7 @@ import {TypeAnimation} from "react-type-animation";
 import { useScroll, useTransform } from "framer-motion";
 import React from "react";
 import { GoogleGeminiEffect } from "./ui/google-gemini-effect";
+import {SparklesCore} from "@/app/components/ui/sparkles";
 
 
 export default function Hero() {
@@ -23,101 +24,64 @@ export default function Hero() {
     const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
     return (
-        <div className="bg-gray-900">
-            <div
-                className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
-                ref={ref}
-            >
-                <GoogleGeminiEffect
-                    pathLengths={[
-                        pathLengthFirst,
-                        pathLengthSecond,
-                        pathLengthThird,
-                        pathLengthFourth,
-                        pathLengthFifth,
-                    ]}
-                />
+        <div
+            className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+
+            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+                <div
+                    className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
+                    Estamos creciendo. {' '}
+                    <a href="#oportunidades" className="font-semibold text-white">
+                        <span aria-hidden="true" className="absolute inset-0"/>
+                        Únete al quipo <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
             </div>
 
-            <div className="relative isolate overflow-hidden pt-14">
-                <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-                    className="absolute inset-0 -z-10 h-full w-full object-cover"
+            <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
+                <TypeAnimation
+                    sequence={[
+                        'Acceso a la Educación',
+                        1000,
+                        'Educación para todos',
+                        2000,
+                        'Educación Formativa',
+                        2000,
+                        'Formativa AI',
+                        2000,
+                    ]}
+                    wrapper="span"
+                    speed={10}
+                    deletionSpeed={60}
+                    cursor={true}
+                    // style={{fontSize: '1em', display: 'block', whiteSpace: 'nowrap'}}
+                    repeat={0}
                 />
+            </h1>
+            <div className="w-[40rem] h-40 relative">
+                {/* Gradients */}
                 <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                >
-                    <div
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                        className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                    />
-                </div>
-                <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                    <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                        <div
-                            className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                            Estamos creciendo. {' '}
-                            <a href="#oportunidades" className="font-semibold text-white">
-                                <span aria-hidden="true" className="absolute inset-0"/>
-                                Únete al quipo <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <h1 className="text-xl font-bold tracking-tight text-white sm:text-6xl">
-                            <TypeAnimation
-                                sequence={[
-                                    'Acceso a la Educación',
-                                    1000,
-                                    'Educación para todos',
-                                    2000,
-                                    'Educación Formativa',
-                                    2000,
-                                    'Formativa AI',
-                                    2000,
-                                ]}
-                                wrapper="span"
-                                speed={10}
-                                deletionSpeed={60}
-                                cursor={true}
-                                style={{fontSize: '1em', display: 'block', whiteSpace: 'nowrap'}}
-                                repeat={0}
-                            />
-                        </h1>
-                        <p className="mt-6 text-lg leading-8 text-gray-300">
-                            Rompemos las barreras de entrada a tu carrera en tecnología. Democratizamos el accesso un
-                            futuro tecnológico.
-                        </p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <a
-                                href="/maco"
-                                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-                            >
-                                Prueba nuestro prototipo!
-                            </a>
-                            <a href="#" className="text-sm font-semibold leading-6 text-white">
-                                Learn more <span aria-hidden="true">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm"/>
                 <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                >
-                    <div
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                        className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-                    />
-                </div>
+                    className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4"/>
+                <div
+                    className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm"/>
+                <div
+                    className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4"/>
+
+                {/* Core component */}
+                <SparklesCore
+                    background="transparent"
+                    minSize={0.4}
+                    maxSize={1}
+                    particleDensity={1200}
+                    className="w-full h-full"
+                    particleColor="#FFFFFF"
+                />
+
+                {/* Radial Gradient to prevent sharp edges */}
+                <div
+                    className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
             </div>
         </div>
     )
