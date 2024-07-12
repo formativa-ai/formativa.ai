@@ -4,12 +4,41 @@ import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {TypeAnimation} from "react-type-animation";
+import { useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { GoogleGeminiEffect } from "./ui/google-gemini-effect";
 
 
 export default function Hero() {
+    const ref = React.useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+
+    const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+    const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+    const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+    const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+    const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
     return (
         <div className="bg-gray-900">
+            <div
+                className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+                ref={ref}
+            >
+                <GoogleGeminiEffect
+                    pathLengths={[
+                        pathLengthFirst,
+                        pathLengthSecond,
+                        pathLengthThird,
+                        pathLengthFourth,
+                        pathLengthFifth,
+                    ]}
+                />
+            </div>
+
             <div className="relative isolate overflow-hidden pt-14">
                 <img
                     alt=""
@@ -61,7 +90,8 @@ export default function Hero() {
                             />
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-300">
-                            Rompemos las barreras de entrada a tu carrera en tecnología. Democratizamos el accesso un futuro tecnológico.
+                            Rompemos las barreras de entrada a tu carrera en tecnología. Democratizamos el accesso un
+                            futuro tecnológico.
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <a

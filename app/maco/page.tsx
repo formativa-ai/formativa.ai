@@ -10,9 +10,9 @@ const Home = () => {
   return (
     <main className={styles.main}>
         <Header/>
-      <div className={styles.container}>
-        <Chat />
-      </div>
+        <div className={styles.container}>
+            <Chat />
+        </div>
     </main>
   );
 };
