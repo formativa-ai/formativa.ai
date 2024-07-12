@@ -9,7 +9,7 @@ import { AssistantStreamEvent } from "openai/resources/beta/assistants/assistant
 import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
 
 type MessageProps = {
-  role: "user" | "_assistant" | "code";
+  role: "user" | "maco" | "code";
   text: string;
 };
 
@@ -42,7 +42,7 @@ const Message = ({ role, text }: MessageProps) => {
   switch (role) {
     case "user":
       return <UserMessage text={text} />;
-    case "_assistant":
+    case "maco":
       return <AssistantMessage text={text} />;
     case "code":
       return <CodeMessage text={text} />;
@@ -133,12 +133,12 @@ const Chat = ({
 
   /* Stream Event Handlers */
 
-  // textCreated - create new _assistant message
+  // textCreated - create new maco message
   const handleTextCreated = () => {
-    appendMessage("_assistant", "");
+    appendMessage("maco", "");
   };
 
-  // textDelta - append text to last _assistant message
+  // textDelta - append text to last maco message
   const handleTextDelta = (delta) => {
     if (delta.value != null) {
       appendToLastMessage(delta.value);
