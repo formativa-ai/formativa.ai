@@ -3,14 +3,10 @@ import {TiPlus} from "react-icons/ti";
 const jobOpenings = [
     {
         id: 1,
-        role: 'Gestor de Redes Sociales',
+        role: 'Gestor de Redes Sociales (y todero)',
         href: '#',
-        description: [
-            'Creación y curación de contenido para plataformas de redes sociales.',
-            'Desarrollo de un calendario de contenido.',
-            'Interacción con la comunidad y respuesta a comentarios/mensajes.',
-            'Monitoreo de análisis para optimizar estrategias.'
-        ],
+        description:
+            '- Creación y curación de contenido para plataformas de redes sociales. - Desarrollo de un calendario de contenido. - Interacción con la comunidad y respuesta a comentarios/mensajes. - Monitoreo de análisis para optimizar estrategias. - Post-producción de contenido audiovisual. (Adobe Creative Suite)',
         salary: '$2.000.000-$2.500.000 / mes',
         location: 'Zona El Cable, Manizales (Presencial)',
     }
@@ -23,11 +19,14 @@ export default function ListaOportunidades() {
                 <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
                     <div className="w-full lg:max-w-lg lg:flex-auto">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                            Estamos creciendo y buscamos personas talentosas
+                            Buscamos Talento Como el Tuyo
+
+                            🚀
                         </h2>
                         <p className="mt-6 text-xl leading-8 text-gray-600">
-                            {/*Diam nunc lacus lacus aliquam turpis enim. Eget hac velit est euismod lacus. Est non placerat nam arcu.*/}
-                            {/*Cras purus nibh cursus sit eu in id.*/}
+                            ¿Eres una persona creativa, organizada y disciplinada? ¿Visualizas un futuro lleno de oportunidades para el talento joven Colombiano?
+                            <br/><br/>
+                            ¡Únete a nuestro equipo, y ayúdanos a crear un futuro más brillante!
                         </p>
                         <img
                             alt=""
@@ -38,7 +37,7 @@ export default function ListaOportunidades() {
                     <div className="w-full lg:max-w-xl lg:flex-auto">
                         <h3 className="sr-only">Job openings</h3>
                         <ul className="-my-8 divide-y divide-gray-100">
-                            {jobOpenings.map((opening) => (
+                            { jobOpenings.map((opening) => (
                                 <li key={opening.id} className="py-8">
                                     <dl className="relative flex flex-wrap gap-x-3">
                                         <dt className="sr-only">Role</dt>
@@ -49,17 +48,11 @@ export default function ListaOportunidades() {
                                             </a>
                                         </dd>
                                         <dt className="sr-only">Description</dt>
-                                        {opening.description.map((line, lineIdx) => {
-                                            return (
-                                                <dd className="mt-1 w-full flex-none text-base leading-7 text-gray-600"
-                                                    key={lineIdx}>
+                                                <dd className="mt-1 w-full flex-none text-base leading-7 text-gray-600">
                                                     <div className="inline-flex items-center">
-                                                        <TiPlus className="mr-2"/>{line}
+                                                        {opening.description}
                                                     </div>
                                                 </dd>
-                                            )
-                                        })
-                                        }
                                         <dt className="sr-only">Salary</dt>
                                         <dd className="mt-4 text-base font-semibold leading-7 text-gray-900">{opening.salary}</dd>
                                         <dt className="sr-only">Location</dt>
@@ -73,11 +66,11 @@ export default function ListaOportunidades() {
                                 </li>
                             ))}
                         </ul>
-                        {/*<div className="mt-8 flex border-t border-gray-100 pt-8">*/}
-                        {/*    <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">*/}
-                        {/*        View all openings <span aria-hidden="true">&rarr;</span>*/}
-                        {/*    </a>*/}
-                        {/*</div>*/}
+                        <div className="mt-8 flex border-t border-gray-100 pt-8">
+                            <a href="#" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                View all openings <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
