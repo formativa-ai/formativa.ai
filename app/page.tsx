@@ -6,6 +6,7 @@ import Footer from "@/app/components/Footer";
 import JoinOurTeam from "@/app/components/JoinOurTeam";
 import ListaOportunidades from "@/app/components/ListaOportunidades";
 import Hero from "@/app/components/Hero";
+import HeroGenerateText from "@/app/components/HeroGenerateText";
 import JobApplicationForm from "@/app/components/JobApplicationForm";
 import Header from "@/app/components/Navigation/Header";
 
@@ -15,7 +16,7 @@ export default function Home() {
   return (
     <main>
         <Header/>
-        <Hero/>
+        <HeroGenerateText/>
         {/*<Mission />*/}
         {/*<JoinOurTeam />*/}
         <ListaOportunidades/>

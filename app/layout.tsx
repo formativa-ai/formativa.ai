@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import {AuthenticatorProvider} from "@aws-amplify/ui-react-core";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Formativa AI - Facilitando el Acceso a la Tecnología y Educación",
