@@ -31,11 +31,6 @@ export default function HeroGenerateText() {
     const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
     const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
     const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
-    const [showMacoButton, setShowMacoButton] = useState(false)
-
-    const handleFinishTextGenerate = () => {
-        setShowMacoButton(true);
-    }
 
     return (
         <div
@@ -86,7 +81,7 @@ export default function HeroGenerateText() {
                 {/*    className="w-full h-full"*/}
                 {/*    particleColor="#FFFFFF"*/}
                 {/*/>*/}
-                <TextGenerateEffect handleFinishTextGenerate={handleFinishTextGenerate} words={words}/>
+                <TextGenerateEffect words={words}/>
                 {/* Radial Gradient to prevent sharp edges */}
                 {/*<div*/}
                 {/*    className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]">*/}
@@ -95,7 +90,7 @@ export default function HeroGenerateText() {
             {/*</div>*/}
             <a
                 href='/maco'
-                className={cn("relative inline-flex mt-16 h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-3 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50",showMacoButton? "hidden":"")}>
+                className="relative inline-flex mt-16 h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-3 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
                 <span
                     className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"/>
                 <span

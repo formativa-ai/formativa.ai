@@ -6,11 +6,10 @@ import { cn } from "../../utils/cn";
 export const TextGenerateEffect = ({
                                        words,
                                        className,
-                                       handleFinishTextGenerate
+
                                    }: {
     words: string;
     className?: string;
-    handleFinishTextGenerate: () => void;
 }) => {
     const [scope, animate] = useAnimate();
     let wordsArray = words.split(" ");
