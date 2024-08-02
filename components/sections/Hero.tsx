@@ -6,8 +6,7 @@ import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {TypeAnimation} from "react-type-animation";
 import {useScroll, useTransform} from "framer-motion";
 import React from "react";
-import {GoogleGeminiEffect} from "./ui/google-gemini-effect";
-import {SparklesCore} from "@/app/components/ui/sparkles";
+import {SparklesCore} from "@/components/ui/sparkles";
 import { useRouter } from 'next/router';
 import {router} from "next/client";
 
@@ -30,7 +29,7 @@ export default function Hero() {
 
     return (
         <div
-            className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+            className="h-[35rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
 
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                 <div

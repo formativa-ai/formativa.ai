@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 // @ts-expect-error - no types for this yet
 import { AssistantStreamEvent } from "openai/resources/beta/assistants/assistants";
 import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
-import {PlaceholdersAndVanishInput} from "@/app/components/ui/placeholders-and-vanish-input";
+import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 type MessageProps = {
   role: "user" | "assistant" | "code";

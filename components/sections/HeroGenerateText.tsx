@@ -6,12 +6,11 @@ import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {TypeAnimation} from "react-type-animation";
 import {useScroll, useTransform} from "framer-motion";
 import React from "react";
-import {GoogleGeminiEffect} from "./ui/google-gemini-effect";
-import {SparklesCore} from "@/app/components/ui/sparkles";
+import {SparklesCore} from "@/components/ui/sparkles";
 import { useRouter } from 'next/router';
 import {router} from "next/client";
 
-import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { TextGenerateEffect } from "../ui/text-generate-effect";
 import {cn} from "@/app/utils/cn";
 
 const words = `En Colombia, existen varias oportunidades de bootcamps de programación que 

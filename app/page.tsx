@@ -1,15 +1,15 @@
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import '@aws-amplify/ui-react/styles.css';
-import Mission from "@/app/components/Mission";
-import Footer from "@/app/components/Footer";
-import JoinOurTeam from "@/app/components/JoinOurTeam";
-import ListaOportunidades from "@/app/components/ListaOportunidades";
-import Hero from "@/app/components/Hero";
-import HeroGenerateText from "@/app/components/HeroGenerateText";
-import JobApplicationForm from "@/app/components/JobApplicationForm";
-import Header from "@/app/components/Navigation/Header";
-import GetInTouch from "@/app/components/GetInTouch";
+import Mission from "@/components/Mission";
+import Footer from "@/components/sections/Footer";
+import JoinOurTeam from "@/components/JoinOurTeam";
+import ListaOportunidades from "@/components/ListaOportunidades";
+import Hero from "@/components/sections/Hero";
+import HeroGenerateText from "@/components/sections/HeroGenerateText";
+import JobApplicationForm from "@/components/JobApplicationForm";
+import Header from "@/components/navigation/Header";
+import GetInTouch from "@/components/sections/GetInTouch";
 
 Amplify.configure(outputs);
 
