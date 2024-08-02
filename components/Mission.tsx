@@ -16,7 +16,7 @@ export default function Mission() {
                         <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                             <img
                                 className="absolute inset-0 h-full w-full object-cover brightness-125 saturate-0"
-                                src="/mission-formativa-ai.png"
+                                src="/mission-formativa-ai.webp"
                                 alt="Formativa AI Mission"
                             />
                             <div className="absolute inset-0 bg-gray-900 mix-blend-multiply" />
