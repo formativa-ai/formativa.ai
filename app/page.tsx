@@ -9,6 +9,7 @@ import Hero from "@/app/components/Hero";
 import HeroGenerateText from "@/app/components/HeroGenerateText";
 import JobApplicationForm from "@/app/components/JobApplicationForm";
 import Header from "@/app/components/Navigation/Header";
+import GetInTouch from "@/app/components/GetInTouch";
 
 Amplify.configure(outputs);
 
@@ -16,11 +17,11 @@ export default function Home() {
   return (
     <main>
         <Header/>
-        <HeroGenerateText/>
-        {/*<Mission />*/}
+        <Hero/>
+        <Mission />
         {/*<JoinOurTeam />*/}
         <ListaOportunidades/>
-        <JobApplicationForm/>
+        <GetInTouch/>
         <Footer/>
     </main>
   );
