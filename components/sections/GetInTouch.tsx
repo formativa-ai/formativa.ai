@@ -55,26 +55,41 @@ export default function GetInTouch() {
                             <div className="flex gap-x-4">
                                 <dt className="flex-none">
                                     <span className="sr-only">Dirección</span>
-                                    <BuildingOffice2Icon className="h-7 w-6 text-gray-400" aria-hidden="true" />
+                                    <BuildingOffice2Icon className="h-7 w-6 text-gray-400" aria-hidden="true"/>
                                 </dt>
                                 <dd>
                                     Av. Santander #63-15
-                                    <br />
+                                    <br/>
                                     Manizales, Caldas
                                 </dd>
                             </div>
                             <div className="flex gap-x-4">
                                 <dt className="flex-none">
                                     <span className="sr-only">Instagram</span>
-                                    <FaInstagram className="h-7 w-6 text-gray-400" aria-hidden="true" />
+                                    <FaXTwitter className="h-7 w-6 text-gray-400" aria-hidden="true"/>
                                 </dt>
                                 <dd>
                                     <a
                                         className="hover:text-white"
-                                       href="https://instagram.com/formativa.ai"
-                                       target="_blank" rel="noopener noreferrer"
+                                        href="https://X.com/formativa_ai"
+                                        target="_blank" rel="noopener noreferrer"
                                     >
-                                        @formativa.ai
+                                        Formativa_AI
+                                    </a>
+                                </dd>
+                            </div>
+                            <div className="flex gap-x-4">
+                                <dt className="flex-none">
+                                    <span className="sr-only">Instagram</span>
+                                    <FaInstagram className="h-7 w-6 text-gray-400" aria-hidden="true"/>
+                                </dt>
+                                <dd>
+                                    <a
+                                        className="hover:text-white"
+                                        href="https://instagram.com/formativa.ai"
+                                        target="_blank" rel="noopener noreferrer"
+                                    >
+                                        Formativa.AI
                                     </a>
                                 </dd>
                             </div>
@@ -85,7 +100,8 @@ export default function GetInTouch() {
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div>
-                                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-white">
+                                <label htmlFor="first-name"
+                                       className="block text-sm font-semibold leading-6 text-white">
                                     Primer nombre
                                 </label>
                                 <div className="mt-2.5">
