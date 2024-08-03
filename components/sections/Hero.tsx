@@ -57,11 +57,11 @@ export default function Hero() {
                     </a>
                 </div>
             </div>
-            <h2 className="mt-5 mb-5 text-xl text-center sm:text-5xl dark:text-white text-black">
+            <h2 className="mt-5 mb-5 text-xl text-center sm:text-6xl dark:text-white text-black">
                 ¡Preguntale lo que quieras!
             </h2>
-            <p className="mb-20 text-center text-gray-200 relative px-40">
-                Maco es tu guía personal para encontrar y aplicar a becas, inscribirte en cursos de tecnología, y mucho más.
+            <p className="mb-20 text-center text-slate-400 relative px-40">
+                Maco es tu asistente personal, guía y consejero para encontrar y aplicar a becas, inscribirte en cursos de tecnología, y mucho más.
             </p>
             <PlaceholdersAndVanishInput
                 placeholders={placeholders}
