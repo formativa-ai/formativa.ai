@@ -9,6 +9,7 @@ import React from "react";
 import {SparklesCore} from "@/components/ui/sparkles";
 import { useRouter } from 'next/router';
 import {router} from "next/client";
+import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 
 
@@ -19,7 +20,21 @@ export default function Hero() {
         offset: ["start start", "end start"],
     });
 
+    const placeholders = [
+        "Ayudame a aplicar a una beca",
+        "¿Qué becas hay en programas de tecnología?",
+        "¿Qué oportunidades en Tech ofrecen ayuda financiera?",
+        "¿Cómo escribo una declaración personal para una beca?",
+        "¿Cuáles cursos hay en línea para aprender programación?",
+    ];
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value);
+    };
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("submitted");
+    };
 
     const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
     const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
@@ -27,9 +42,10 @@ export default function Hero() {
     const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
     const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
+
     return (
         <div
-            className="h-[35rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+            className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
 
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                 <div
@@ -41,27 +57,17 @@ export default function Hero() {
                     </a>
                 </div>
             </div>
-
-            <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
-                <TypeAnimation
-                    sequence={[
-                        'Acceso a la Educación',
-                        1000,
-                        'Educación para todos',
-                        2000,
-                        'Educación Formativa',
-                        2000,
-                        'Formativa AI',
-                        2000,
-                    ]}
-                    wrapper="span"
-                    speed={10}
-                    deletionSpeed={60}
-                    cursor={true}
-                    // style={{fontSize: '1em', display: 'block', whiteSpace: 'nowrap'}}
-                    repeat={0}
-                />
-            </h1>
+            <h2 className="mt-5 mb-5 text-xl text-center sm:text-5xl dark:text-white text-black">
+                ¡Preguntale lo que quieras!
+            </h2>
+            <p className="mb-20 text-center text-gray-200 relative px-40">
+                Maco es tu guía personal para encontrar y aplicar a becas, inscribirte en cursos de tecnología, y mucho más.
+            </p>
+            <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onChange={handleChange}
+                onSubmit={onSubmit}
+            />
             <div className="w-[40rem] h-40 relative">
                 {/* Gradients */}
                 <div

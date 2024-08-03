@@ -3,12 +3,16 @@ import {TiPlus} from "react-icons/ti";
 const jobOpenings = [
     {
         id: 1,
-        role: 'Gestor de Redes Sociales (y todero)',
+        role: 'Analista Jr. Crecimiento y Mercadeo (todero)',
         href: '#',
-        description:
-            'Buscamos un Gerente de Redes Sociales y Tareas Ad-hoc para unirse a nuestro equipo en Formativa AI, una startup ubicada en Manizales, Colombia. Este rol es crucial para el crecimiento de nuestra presencia en redes sociales y la ejecución de diversas tareas adicionales. El candidato ideal debe tener habilidades en gestión de redes sociales, diseño gráfico, entrada y análisis de datos, así como la capacidad de crear documentación útil.',
-        salary: '$1.500.000-$2.500.000 / mes (con todos los beneficios)',
-        location: 'Zona El Cable, Manizales (Presencial)',
+        description: 'Este rol implica una variedad de responsabilidades, desde el manejo de redes sociales y la planificación ' +
+            'y creación de contenido, hasta el apoyo en el crecimiento del negocio mediante la recopilación de datos, la preparación ' +
+            'de propuestas de negocio y el soporte administrativo general. Buscamos a alguien con 2 años de experiencia profesional, ' +
+            'que posea un fuerte razonamiento analítico, creatividad y habilidades organizativas, para ayudarnos a lograr nuestra ' +
+            'misión de derribar barreras hacia un futuro apasionante.',
+
+        salary: '$1.500.000-$2.300.000 / mes (con prestaciones)',
+        location: 'Zona El Cable, Manizales (Lunes a Viernes - presencial)',
     }
 ]
 
@@ -28,7 +32,7 @@ export default function ListaOportunidades() {
                         </p>
                         <img
                             alt=""
-                            src="/office.webp"
+                            src="/oficina-formativa-ai.webp"
                             className="mt-16 aspect-[6/5] w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto lg:h-[34.5rem]"
                         />
                     </div>
