@@ -56,7 +56,7 @@ export default function ListaOportunidades() {
                                                     </div>
                                                 </dd>
                                         <dt className="sr-only">Salary</dt>
-                                        <dd className="mt-4 text-base font-semibold leading-7 text-gray-900">{opening.salary}</dd>
+                                        {/*<dd className="mt-4 text-base font-semibold leading-7 text-gray-900">{opening.salary}</dd>*/}
                                         <dt className="sr-only">Location</dt>
                                         <dd className="mt-4 flex items-center gap-x-3 text-base leading-7 text-gray-500">
                                             <svg viewBox="0 0 2 2" aria-hidden="true" className="h-0.5 w-0.5 flex-none fill-gray-300">
