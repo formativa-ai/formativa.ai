@@ -3,7 +3,7 @@ import {TiPlus} from "react-icons/ti";
 const jobOpenings = [
     {
         id: 1,
-        role: 'Analista Jr. Crecimiento y Mercadeo (todero)',
+        role: 'Analista Jr. Crecimiento y Mercadeo',
         href: '#',
         description1: 'Este rol implica una variedad de responsabilidades, desde el manejo de redes sociales y la planificación ' +
             'y creación de contenido, hasta el apoyo en el crecimiento del negocio mediante la recopilación de datos,  preparación ' +
