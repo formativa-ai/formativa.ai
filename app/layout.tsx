@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="scroll-smooth h-full bg-gray-900" lang="es-ES">
+    <html className="scroll-smooth" lang="es-ES">
     <head>
       <link
           rel="icon"
@@ -49,7 +49,7 @@ export default function RootLayout({
           sizes="any"
       />
     </head>
-    <body className="h-full">{children}</body>
+    <body className="h-full bg-black">{children}</body>
     </html>
   );
 }

@@ -10,6 +10,7 @@ import {SparklesCore} from "@/components/ui/sparkles";
 import { useRouter } from 'next/router';
 import {router} from "next/client";
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
+import {AnimatedModalDemo} from "@/components/PreReleaseModal";
 
 
 
@@ -34,7 +35,13 @@ export default function Hero() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("submitted");
+        triggerModal()
     };
+
+    const triggerModal = () => {
+        console.log("Triggered modal")
+    }
+
 
     const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
     const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
@@ -47,11 +54,11 @@ export default function Hero() {
         <div
             className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
 
-            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div className="hidden pt-16 sm:mb-8 sm:flex sm:justify-center">
                 <div
                     className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
                     Estamos creciendo. {' '}
-                    <a href="#oportunidades" className="font-semibold text-white">
+                    <a href="/nosotros/#oportunidades" className="font-semibold text-white">
                         <span aria-hidden="true" className="absolute inset-0"/>
                         Únete al quipo <span aria-hidden="true">&rarr;</span>
                     </a>

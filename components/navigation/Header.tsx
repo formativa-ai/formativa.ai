@@ -6,10 +6,10 @@ import {useState} from "react";
 const navigation = {
     main: [
         { name: 'Inicio', href: '/#' },
-        // { name: 'Nosotros', href: '/#nosotros' },
-        { name: 'Oportunidades', href: '/#oportunidades' },
+        { name: 'Nosotros', href: '/nosotros' },
+        { name: 'Oportunidades', href: '/nosotros/#oportunidades' },
         // { name: 'Únete', href: '/#unete' }
-        { name: 'Contacto', href: '/#contacto' },
+        { name: 'Contacto', href: '/nosotros/#contacto' },
     ]
 }
 export default function Header() {

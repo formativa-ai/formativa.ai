@@ -11,13 +11,17 @@ import JobApplicationForm from "@/components/sections/JobApplicationForm";
 import Header from "@/components/navigation/Header";
 import GetInTouch from "@/components/sections/GetInTouch";
 
-Amplify.configure(outputs);
 
-export default function Home() {
+export default function Nosotros() {
   return (
     <main>
         <Header/>
-        <Hero/>
+        {/*<Hero/>*/}
+        <Mission />
+        {/*<JoinOurTeam />*/}
+        <ListaOportunidades/>
+        <GetInTouch/>
+        <Footer/>
     </main>
   );
 }

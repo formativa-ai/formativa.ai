@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import {router} from "next/client";
 
 import { TextGenerateEffect } from "../ui/text-generate-effect";
-import {cn} from "@/app/utils/cn";
+import {cn} from "@/lib/utils/cn";
 
 const words = `En Colombia, existen varias oportunidades de bootcamps de programación que 
 ofrecen ayuda financiera, como ...`;
