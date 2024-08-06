@@ -10,7 +10,6 @@ import {SparklesCore} from "@/components/ui/sparkles";
 import { useRouter } from 'next/router';
 import {router} from "next/client";
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
-import {AnimatedModalDemo} from "@/components/PreReleaseModal";
 
 
 

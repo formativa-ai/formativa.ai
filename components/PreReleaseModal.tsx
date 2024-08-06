@@ -20,9 +20,7 @@ export function PreReleaseModal({value, handleCloseModal}:{value:string, handleC
         <div className="">
             <Modal>
                 <ModalTrigger
-                        disabled={!value}
-                        type="submit"
-                        onClose={handleCloseModal}
+                        // onClose={handleCloseModal}
                         className="absolute right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-gray-900 bg-black dark:bg-indigo-700 dark:disabled:bg-black transition duration-200 flex items-center justify-center"
                     >
                         <motion.svg
