@@ -91,7 +91,8 @@ const Chat = ({
       const data = await res.json();
       setThreadId(data.threadId);
     };
-    createThread();
+    // if(!threadId)
+      createThread();
   }, []);
 
   const sendMessage = async (text) => {
