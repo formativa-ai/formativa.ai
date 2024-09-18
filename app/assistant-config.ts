@@ -1,2 +1,5 @@
-import { secret } from '@aws-amplify/backend';
-export let assistantId = secret('ASSISTANT_ID');
+export let assistantId = ""; // set maco ID here, or in environment variable
+
+if (assistantId === "") {
+    assistantId = process.env.OPENAI_ASSISTANT_ID;
+}
