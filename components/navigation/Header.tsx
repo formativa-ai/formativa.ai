@@ -9,6 +9,7 @@ const navigation = {
         { name: 'Nosotros', href: '/nosotros' },
         { name: 'Oportunidades', href: '/nosotros/#oportunidades' },
         { name: 'Contacto', href: '/nosotros/#contacto' },
+        { name: 'Maco', href: '/maco' },
         { name: 'Perfil', href: '/perfil' },
     ]
 }
@@ -56,7 +57,7 @@ export default function Header() {
                     <div className="fixed inset-0 z-50" />
                     <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
                         <div className="flex items-center justify-between">
-                            <a href="#" className="-m-1.5 p-1.5">
+                            <a href="/" className="-m-1.5 p-1.5">
                                 <span className="sr-only">Formativa AI</span>
                                 <img
                                     alt=""

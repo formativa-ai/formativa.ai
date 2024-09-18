@@ -8,6 +8,9 @@ import Markdown from "react-markdown";
 import { AssistantStreamEvent } from "openai/resources/beta/assistants/assistants";
 import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/runs/runs";
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
+import { useSearchParams } from 'next/navigation'
+import ChatFeed from "@/components/ChatFeed";
+
 
 type MessageProps = {
   role: "user" | "assistant" | "code";
@@ -66,7 +69,7 @@ const Chat = ({
   functionCallHandler = () => Promise.resolve(""), // default to return empty string
 }: ChatProps) => {
   const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([{ role: "user", text: useSearchParams().get("initialMessage") || ""}]);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [threadId, setThreadId] = useState("");
 
@@ -92,6 +95,7 @@ const Chat = ({
   }, []);
 
   const sendMessage = async (text) => {
+    if(!threadId) return;
     const response = await fetch(
       `/api/assistants/threads/${threadId}/messages`,
       {
@@ -262,19 +266,21 @@ const Chat = ({
   ];
 
   return (
-    <div className={styles.chatContainer}>
-      <div className={styles.messages}>
-        {messages.map((msg, index) => (
-          <Message key={index} role={msg.role} text={msg.text} />
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-        <PlaceholdersAndVanishInput
-            placeholders={placeholders}
-            onChange={(e) => setUserInput(e.target.value)}
-            onSubmit={handleSubmit}
-        />
-    </div>
+      <>
+        <div className={styles.chatContainer}>
+          <ChatFeed messagesEndRef={messagesEndRef} messages={messages}/>
+          <div
+              className={`${styles.inputForm}`}
+          >
+            <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onChange={(e) => setUserInput(e.target.value)}
+                onSubmit={handleSubmit}
+                inputDisabled={inputDisabled}
+            />
+          </div>
+        </div>
+      </>
   );
 };
 

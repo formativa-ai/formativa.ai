@@ -7,18 +7,17 @@ import {TypeAnimation} from "react-type-animation";
 import {useScroll, useTransform} from "framer-motion";
 import React from "react";
 import {SparklesCore} from "@/components/ui/sparkles";
-import { useRouter } from 'next/router';
-import {router} from "next/client";
+import { useRouter } from 'next/navigation';
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 
 
 export default function Hero() {
     const ref = React.useRef(null);
-    const {scrollYProgress} = useScroll({
-        target: ref,
-        offset: ["start start", "end start"],
-    });
+    const [inputDisabled, setInputDisabled] = useState(false);
+    const [userInput, setUserInput] = useState("");
+    const router = useRouter()
+
 
     const placeholders = [
         "Ayudame a aplicar a una beca",
@@ -29,24 +28,12 @@ export default function Hero() {
     ];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
+        setUserInput(e.target.value);
     };
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("submitted");
-        triggerModal()
+        router.push(`/maco?initialMessage=${userInput}`);
     };
-
-    const triggerModal = () => {
-        console.log("Triggered modal")
-    }
-
-
-    const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
-    const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
-    const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
-    const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
-    const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
 
     return (
@@ -73,6 +60,7 @@ export default function Hero() {
                 placeholders={placeholders}
                 onChange={handleChange}
                 onSubmit={onSubmit}
+                inputDisabled={inputDisabled}
             />
             <div className="w-[40rem] h-40 relative">
                 {/* Gradients */}
