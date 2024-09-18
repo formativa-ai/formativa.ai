@@ -52,12 +52,12 @@ function UserProfile() {
                     given_name: userAttributes.given_name,
                     family_name: userAttributes.family_name,
                     email: userAttributes.email,
-                    preferred_username: userAttributes.preferred_username,
+                    // preferred_username: userAttributes.preferred_username,
                     // 'custom:personality_type': userAttributes['custom:personality_type']
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
-            console.log(error);
+            setNotificationList([...notificationList, {message: "Failed to update attribute. Please try again.", category: 'alert'}]);
         }
     }
 
@@ -84,7 +84,6 @@ function UserProfile() {
         } else {
             handleSuccessfulProfileUpdate();
         }
-        console.log(notificationList)
     }
 
     async function handleConfirmUserAttribute({
