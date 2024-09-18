@@ -10,6 +10,10 @@ const backend =
 
 const {cfnUserPool} = backend.auth.resources.cfnResources;
 
+
+const { cfnIdentityPool } = backend.auth.resources.cfnResources;
+cfnIdentityPool.allowUnauthenticatedIdentities = true;
+
 if (Array.isArray(cfnUserPool.schema)) {
     cfnUserPool.schema.push({
             name: 'govId',

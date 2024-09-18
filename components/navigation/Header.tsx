@@ -5,11 +5,12 @@ import {useState} from "react";
 
 const navigation = {
     main: [
-        { name: 'Inicio', href: '/#' },
+        { name: 'Inicio', href: '/' },
         { name: 'Nosotros', href: '/nosotros' },
         { name: 'Oportunidades', href: '/nosotros/#oportunidades' },
         // { name: 'Únete', href: '/#unete' }
         { name: 'Contacto', href: '/nosotros/#contacto' },
+        { name: 'Perfil', href: '/perfil' },
     ]
 }
 export default function Header() {
@@ -20,7 +21,7 @@ export default function Header() {
             <header className="absolute inset-x-0 top-0 z-50">
                 <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
                     <div className="flex lg:flex-1">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <a href="/" className="-m-1.5 p-1.5">
                             <span className="sr-only">Formativa AI</span>
                             <img
                                 alt=""

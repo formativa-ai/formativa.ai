@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.19",
     "aws-amplify": "^6.2.0",
     "clsx": "^2.1.1",
+    "discord.js": "^14.15.3",
     "framer-motion": "^11.3.2",
     "next": "13.5.4",
     "openai": "^4.52.3",
