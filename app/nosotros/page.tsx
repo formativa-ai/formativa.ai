@@ -10,12 +10,13 @@ import HeroGenerateText from "@/components/sections/HeroGenerateText";
 import JobApplicationForm from "@/components/sections/JobApplicationForm";
 import Header from "@/components/navigation/Header";
 import GetInTouch from "@/components/sections/GetInTouch";
+import HeaderDark from "@/components/navigation/HeaderDark";
 
 
 export default function Nosotros() {
   return (
     <main>
-        <Header/>
+        <HeaderDark/>
         {/*<Hero/>*/}
         <Mission />
         {/*<JoinOurTeam />*/}

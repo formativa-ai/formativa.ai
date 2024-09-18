@@ -99,6 +99,7 @@ function UserProfile() {
             setShowConfirmationCodeModal(false);
             handleSuccessfulProfileUpdate();
         } catch (error) {
+            setShowConfirmationCodeModal(false);
             setNotificationList([...notificationList, {message: "Failed to confirm attribute. Please try again.", category: 'alert'}]);
         }
     }

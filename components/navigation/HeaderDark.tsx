@@ -12,7 +12,7 @@ const navigation = {
         { name: 'Perfil', href: '/perfil' },
     ]
 }
-export default function Header() {
+export default function HeaderDark() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return(
@@ -24,7 +24,7 @@ export default function Header() {
                             <span className="sr-only">Formativa AI</span>
                             <img
                                 alt=""
-                                src="/logo-white.svg"
+                                src="/logo-blue.svg"
                                 className="h-10 w-auto"
                             />
                         </a>
@@ -41,13 +41,13 @@ export default function Header() {
                     </div>
                     <div className="hidden lg:flex lg:gap-x-12">
                         {navigation.main.map((item) => (
-                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
+                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-black">
                                 {item.name}
                             </a>
                         ))}
                     </div>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                        {/*<a href="#" className="text-sm font-semibold leading-6 text-white">*/}
+                        {/*<a href="#" className="text-sm font-semibold leading-6 text-black">*/}
                         {/*    Log in <span aria-hidden="true">&rarr;</span>*/}
                         {/*</a>*/}
                     </div>
@@ -81,7 +81,7 @@ export default function Header() {
                                             onClick={() => setMobileMenuOpen(false)}
                                             key={item.name}
                                             href={item.href}
-                                            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
+                                            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black hover:bg-gray-800"
                                         >
                                             {item.name}
                                         </a>
@@ -90,7 +90,7 @@ export default function Header() {
                                 <div className="py-6">
                                     {/*    <a*/}
                                     {/*        href="#"*/}
-                                    {/*        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800"*/}
+                                    {/*        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-black hover:bg-gray-800"*/}
                                     {/*    >*/}
                                     {/*        Log in*/}
                                     {/*    </a>*/}
