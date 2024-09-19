@@ -10,7 +10,12 @@ import { RequiredActionFunctionToolCall } from "openai/resources/beta/threads/ru
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 import { useSearchParams } from 'next/navigation'
 import ChatFeed from "@/components/ChatFeed";
+import type { Schema } from '@/amplify/data/resource'
+import { generateClient } from 'aws-amplify/data'
+import { Amplify } from 'aws-amplify';
+import outputs from '../amplify_outputs.json';
 
+Amplify.configure(outputs);
 
 type MessageProps = {
   role: "user" | "assistant" | "code";
@@ -72,12 +77,15 @@ const Chat = ({
   const [messages, setMessages] = useState([{ role: "user", text: useSearchParams().get("initialMessage") || ""}]);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [threadId, setThreadId] = useState("");
+  const client = generateClient<Schema>()
+
 
   // automatically scroll to bottom of chat
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -90,9 +98,16 @@ const Chat = ({
       });
       const data = await res.json();
       setThreadId(data.threadId);
+      createThreadEntry(data.threadId)
     };
     if(!threadId) createThread();
   }, [threadId]);
+
+  const createThreadEntry = async (threadId) => {
+    await client.models.Thread.create({
+      threadId: threadId,
+    })
+  }
 
   const sendMessage = async (text) => {
     if(!threadId) return;

@@ -8,12 +8,12 @@ const backend =
         data,
     });
 
-const {cfnUserPool} = backend.auth.resources.cfnResources;
 
 
 const { cfnIdentityPool } = backend.auth.resources.cfnResources;
 cfnIdentityPool.allowUnauthenticatedIdentities = true;
 
+const {cfnUserPool} = backend.auth.resources.cfnResources;
 if (Array.isArray(cfnUserPool.schema)) {
     cfnUserPool.schema.push({
             name: 'govId',
@@ -28,5 +28,21 @@ if (Array.isArray(cfnUserPool.schema)) {
             attributeDataType: 'String',
             developerOnlyAttribute: false,
         }
+        // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cognito.CfnUserPool.html
+        // ,{
+        //     attributeDataType: 'attributeDataType',
+        //         developerOnlyAttribute: false,
+        //     mutable: false,
+        //     name: 'name',
+        //     numberAttributeConstraints: {
+        //     maxValue: 'maxValue',
+        //         minValue: 'minValue',
+        //     },
+        //     required: false,
+        //         stringAttributeConstraints: {
+        //     maxLength: 'maxLength',
+        //         minLength: 'minLength',
+        //     }
+        // }
     );
 }
