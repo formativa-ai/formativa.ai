@@ -110,10 +110,6 @@ const Chat = ({
     })
   }
 
-  const fetchTodos = async () => {
-    const { data: items, errors } = await client.models.Chat.list();
-  };
-
   const sendMessage = async (text) => {
     if(!threadId) return;
     const response = await fetch(
