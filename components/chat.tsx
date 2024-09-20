@@ -77,8 +77,9 @@ const Chat = ({
   const [messages, setMessages] = useState([{ role: "user", text: useSearchParams().get("initialMessage") || ""}]);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [threadId, setThreadId] = useState("");
-  const client = generateClient<Schema>()
-
+  const client = generateClient<Schema>({
+    authMode: 'userPool',
+  });
 
   // automatically scroll to bottom of chat
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -98,16 +99,20 @@ const Chat = ({
       });
       const data = await res.json();
       setThreadId(data.threadId);
-      createThreadEntry(data.threadId)
+      createChatEntry(data.threadId)
     };
     if(!threadId) createThread();
   }, [threadId]);
 
-  const createThreadEntry = async (threadId) => {
-    await client.models.Thread.create({
+  const createChatEntry = async (threadId) => {
+    await client.models.Chat.create({
       threadId: threadId,
     })
   }
+
+  const fetchTodos = async () => {
+    const { data: items, errors } = await client.models.Chat.list();
+  };
 
   const sendMessage = async (text) => {
     if(!threadId) return;
