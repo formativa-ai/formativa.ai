@@ -22,6 +22,7 @@ import {NotificationType} from "@/lib/types/NotificationType";
 import type { Schema } from '@/amplify/data/resource'
 import { generateClient } from 'aws-amplify/data'
 import {PersonalDataProfile} from "@/lib/types/PersonalDataProfile";
+import Badge from "@/app/_elements/Badges";
 Amplify.configure(outputs);
 
 function UserProfile() {
@@ -30,7 +31,6 @@ function UserProfile() {
     const [notificationList, setNotificationList] = useState<NotificationType[]>([]);
     const [showConfirmationCodeModal, setShowConfirmationCodeModal] = useState(false);
     const [codeDeliveryDetails, setCodeDeliveryDetails] = useState({});
-    const personalityTypes = ['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']
     const client = generateClient<Schema>({
         authMode: 'userPool',
     });
@@ -48,15 +48,14 @@ function UserProfile() {
                 let { data: personalData, errors } = await client.models.PersonalDataProfile.list()
 
                 if (personalData.length > 1) {
-                    await client.models.PersonalDataProfile.delete(personalData[0].id)
+                    await client.models.PersonalDataProfile.delete(personalData[0])
                 }
 
                 if(personalData.length === 0){ // Todo: Remove this when we have a proper way to create a new PersonalDataProfile
 
                    await client.models.PersonalDataProfile.create({
                         personalityType: 'INTJ',
-                        userType: 'STUDENT',
-                        skills: [],
+                        userType: 'STUDENT'
                     })
                 }
 
@@ -64,7 +63,7 @@ function UserProfile() {
                     id: personalData[0]?.id,
                     personalityType: personalData[0]?.personalityType,
                     userType: personalData[0]?.userType,
-                    skills: personalData[0]?.skills,
+                    skills: ['Public Speaking', 'Ingenieria','Analisis de Datos'],
                     owner: personalData[0]?.owner,
                     createdAt: personalData[0]?.createdAt,
                     updatedAt: personalData[0]?.updatedAt
@@ -217,19 +216,6 @@ function UserProfile() {
                             </div>
 
                             <div className="col-span-full">
-                                <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
-                                    Tipo de Personalidad
-                                </label>
-                                <div className="mt-2">
-                                    <div
-                                        className="block px-3 w-full min-h-8 rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
-                                    >
-                                        {personalDataProfile?.personalityType}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-span-full">
                                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
                                     Usuario
                                 </label>
@@ -269,51 +255,34 @@ function UserProfile() {
                 </div>
 
 
-                <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
-                    <div>
-                        <h2 className="text-base font-semibold leading-7 text-white">Atributos Personales</h2>
-                        <p className="mt-1 text-sm leading-6 text-gray-400">
 
-                        </p>
-                    </div>
+                {personalDataProfile &&
+                    <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+                        <div>
+                            <h2 className="text-base font-semibold leading-7 text-white">Atributos Personales</h2>
+                            <p className="mt-1 text-sm leading-6 text-gray-400">
+
+                            </p>
+                        </div>
 
 
-                    <div className="md:col-span-2">
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
-                            <div className="col-span-full">
-                                <label htmlFor="logout-password"
-                                       className="block text-sm font-medium leading-6 text-white">
-                                    Your password
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="logout-password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                                    />
+                        <div className="md:col-span-2">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                                <div className="col-span-full mt-2">
+                                    <Badge badgeType={'personalityType'} text={personalDataProfile?.personalityType}/>
+                                    <Badge badgeType={'userType'} text={personalDataProfile?.userType}/>
+                                    <Badge badgeType={'interest'} text={"Ingenieria"}/>
+                                    {personalDataProfile.skills.map((skill,index) => {
+                                        return <Badge key={index} badgeType={'skill'} text={skill}/>
+                                    })}
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="mt-8 flex">
-                            <button
-                                type="submit"
-                                onClick={() => signOut({global: false})}
-                                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                            >
-                                Salir de esta sesión
-                            </button>
-                            <button
-                                type="submit"
-                                onClick={() => signOut({global: true})}
-                                className="ml-8 border-slate-400 border-2 rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:border-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                            >
-                                Salir de todas las sesiones
-                            </button>
                         </div>
                     </div>
-                </div>
+                }
+
+
 
 
                 <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
