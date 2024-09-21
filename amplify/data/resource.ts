@@ -2,14 +2,29 @@ import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
 
 const schema = a.schema({
-
     // PersonalDataProfile object model to store attributes like personality type, etc
     PersonalDataProfile: a
         .model({
             picture: a.string(),
+            strongInterestResult: a.hasOne('StrongInterestsResult', 'personalDataProfileId'),
             personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
             userType: a.enum(['STUDENT', 'TEACHER', 'EMPLOYER']),
             skills: a.hasMany('PersonalDataProfileSkills', 'personalDataProfileId'),
+            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])]) // this prevents the user from assigning this entry to another user
+        })
+        .authorization(allow => [allow.owner()]),
+
+    // StrongInterestResult object model to store the result of the Strong Interest Inventory test
+    StrongInterestsResult: a
+        .model({
+            personalDataProfileId: a.id().required(),
+            realistic: a.integer(),
+            investigative: a.integer(),
+            artistic: a.integer(),
+            social: a.integer(),
+            enterprising: a.integer(),
+            conventional: a.integer(),
+            personalDataProfile: a.belongsTo('PersonalDataProfile', 'personalDataProfileId'),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])]) // this prevents the user from assigning this entry to another user
         })
         .authorization(allow => [allow.owner()]),

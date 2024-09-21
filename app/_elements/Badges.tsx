@@ -61,12 +61,12 @@ const StrongInterestBadge = ({ interest }:{interest: StrongInterest}) => {
     );
 };
 
-const DefaultBadge = ({ skill }:{skill: string}) => {
+const DefaultBadge = ({ content }:{content: string}) => {
     const badgeStyle : { [key:string] : {color: string,icon: string} } = {}
 
     return (
         <span className="inline-flex ml-3 mt-3 items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">
-            {'💡' + ' ' + skill.charAt(0).toUpperCase() + skill.slice(1)}
+            {'💡' + ' ' + content.charAt(0).toUpperCase() + content.slice(1)}
         </span>
     );
 };

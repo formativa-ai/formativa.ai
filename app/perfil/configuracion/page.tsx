@@ -21,9 +21,8 @@ import NotificationBanners from "@/components/ui/NotificationList";
 import {NotificationType} from "@/lib/types/NotificationType";
 import type { Schema } from '@/amplify/data/resource'
 import { generateClient } from 'aws-amplify/data'
-import {PersonalDataProfile, StrongInterest, StrongInterests} from "@/lib/types/PersonalDataProfile";
+import {PersonalDataProfile} from "@/lib/types/PersonalDataProfile";
 import Badge from "@/app/_elements/Badges";
-import StrongInterestsChart from "@/components/StrongInterestsChart";
 Amplify.configure(outputs);
 
 function UserProfileConfiguration() {
@@ -62,10 +61,11 @@ function UserProfileConfiguration() {
 
                 setPersonalDataProfile({
                     id: personalData[0]?.id,
+                    picture: personalData[0]?.picture,
                     personalityType: personalData[0]?.personalityType,
                     userType: personalData[0]?.userType,
-                    strongInterests: strongInterests, //TODO: Remove this when we have a way to retrieve the user's strongInterests
-                    skills: skills, //TODO: Remove this when we have a way to retrieve the user's skills
+                    strongInterests: null, //TODO: Remove this when we have a way to retrieve the user's strongInterests
+                    skills: null, //TODO: Remove this when we have a way to retrieve the user's skills
                     owner: personalData[0]?.owner,
                     createdAt: personalData[0]?.createdAt,
                     updatedAt: personalData[0]?.updatedAt
@@ -254,60 +254,6 @@ function UserProfileConfiguration() {
                         </div>
                     </div>
                 </div>
-
-
-
-                {personalDataProfile &&
-                    <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
-                        <div>
-                            <h2 className="text-base font-semibold leading-7 text-white">Atributos Personales</h2>
-                            <p className="mt-1 text-sm leading-6 text-gray-400">
-                                Estos son tus atributos personales basados en tu interaccion con Maco.
-                            </p>
-                        </div>
-
-
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
-                            <div className="col-span-full mt-2">
-                                <Badge badgeType={'personalityType'} content={personalDataProfile?.personalityType}/>
-                                <Badge badgeType={'userType'} content={personalDataProfile?.userType}/>
-                                {personalDataProfile.skills.map((skill, index) => {
-                                    return <Badge key={index} badgeType={'skill'} content={skill}/>
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                {personalDataProfile &&
-                    <div>
-                        <div
-                            className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 pt-16 pb-8 sm:px-6 md:grid-cols-3 lg:px-8">
-                            <div>
-                                <h2 className="text-base font-semibold leading-7 text-white">Intereses Fuertes</h2>
-                                <p className="mt-1 text-sm leading-6 text-gray-400">
-                                    Estos son tus intereses fuertes basados en tus interacciones con Maco.
-                                </p>
-                            </div>
-
-
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl" >
-                                <div className="col-span-full mt-2">
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Realistic}/>
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Investigative}/>
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Artistic}/>
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Social}/>
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Enterprising}/>
-                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Conventional}/>
-                                </div>
-                                <StrongInterestsChart data={personalDataProfile.strongInterests}/>
-                            </div>
-
-
-                        </div>
-                    </div>
-                }
-
 
                 <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
                     <div>
