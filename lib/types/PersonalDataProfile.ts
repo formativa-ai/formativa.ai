@@ -1,5 +1,6 @@
 export type PersonalDataProfile = {
     id: string | null;
+    picture: string | null;
     personalityType: 'INTJ' | 'INTP' | 'ENTJ' | 'ENTP' | 'INFJ' | 'INFP' | 'ENFJ' | 'ENFP' | 'ISTJ' | 'ISFJ' | 'ESTJ' | 'ESFJ' | 'ISTP' | 'ISFP' | 'ESTP' | 'ESFP' | null;
     userType: 'STUDENT' | 'TEACHER' | 'EMPLOYER' | null;
     skills: string[] | null;

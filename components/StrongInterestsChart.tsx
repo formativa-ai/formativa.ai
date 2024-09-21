@@ -122,22 +122,22 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                     );
                 })}
 
-                 {/*Draw the concentric circles*/}
-                {[...Array(gridLevels)].map((_, idx) => {
-                    const level = idx + 1;
-                    const r = (radius / gridLevels) * level;
-                    return (
-                        <circle
-                            key={idx}
-                            cx={center}
-                            cy={center}
-                            r={r}
-                            fill="none"
-                            stroke="black"
-                            strokeWidth="1"
-                        />
-                    );
-                })}
+                {/* /!*Draw the concentric circles*!/*/}
+                {/*{[...Array(gridLevels)].map((_, idx) => {*/}
+                {/*    const level = idx + 1;*/}
+                {/*    const r = (radius / gridLevels) * level;*/}
+                {/*    return (*/}
+                {/*        <circle*/}
+                {/*            key={idx}*/}
+                {/*            cx={center}*/}
+                {/*            cy={center}*/}
+                {/*            r={r}*/}
+                {/*            fill="none"*/}
+                {/*            stroke="black"*/}
+                {/*            strokeWidth="1"*/}
+                {/*        />*/}
+                {/*    );*/}
+                {/*})}*/}
 
                 {/* Draw the radar area */}
                 <polygon
@@ -150,9 +150,9 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                             return `${x},${y}`;
                         })
                         .join(' ')}
-                    fill="rgba(255, 255, 255, 0.3)"
-                    stroke="rgba(0, 0, 255, 0.4)"
-                    strokeWidth="0"
+                    fill="rgba(255, 255, 255, 0.5)"
+                    stroke="rgba(255, 255, 255, 0.4)"
+                    strokeWidth=""
                 />
 
                 {/* Draw the labels */}

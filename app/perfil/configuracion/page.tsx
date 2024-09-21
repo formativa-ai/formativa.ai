@@ -26,7 +26,7 @@ import Badge from "@/app/_elements/Badges";
 import StrongInterestsChart from "@/components/StrongInterestsChart";
 Amplify.configure(outputs);
 
-function UserProfile() {
+function UserProfileConfiguration() {
     const [userAttributes , setUserAttributes] = useState<FetchUserAttributesOutput>({});
     const [personalDataProfile , setPersonalDataProfile] = useState<PersonalDataProfile>();
     const [notificationList, setNotificationList] = useState<NotificationType[]>([]);
@@ -36,41 +36,6 @@ function UserProfile() {
         authMode: 'userPool',
     });
 
-    //TODO: Remove this when we have a way to retrieve the user's strongInterests
-    const realistic: StrongInterest = {
-        interest: 'Realistic',
-        score: 10,
-    };
-    const investigative: StrongInterest = {
-        interest: 'Investigative',
-        score: 20,
-    };
-    const artistic: StrongInterest = {
-        interest: 'Artistic',
-        score: 30,
-    };
-    const social: StrongInterest = {
-        interest: 'Social',
-        score: 40,
-    };
-    const enterprising: StrongInterest = {
-        interest: 'Enterprising',
-        score: 50,
-    };
-    const conventional: StrongInterest = {
-        interest: 'Conventional',
-        score: 60,
-    };
-
-    const strongInterests: StrongInterests = {
-        Realistic: realistic,
-        Investigative: investigative,
-        Artistic: artistic,
-        Social: social,
-        Enterprising: enterprising,
-        Conventional: conventional,
-    };
-    const skills = ['Public Speaking', 'Ingenieria','Analisis de Datos']
 
     useEffect(() => {
         const fetchUserPoolAttributes = async () => {
@@ -97,7 +62,6 @@ function UserProfile() {
 
                 setPersonalDataProfile({
                     id: personalData[0]?.id,
-                    picture: personalData[0]?.picture,
                     personalityType: personalData[0]?.personalityType,
                     userType: personalData[0]?.userType,
                     strongInterests: strongInterests, //TODO: Remove this when we have a way to retrieve the user's strongInterests
@@ -272,7 +236,7 @@ function UserProfile() {
                                                 ...userAttributes,
                                                 preferred_username: e.target.value
                                             })}
-                                            className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
+                                            className="flex-1 border-0 bg-transparent py-1.5 pl-0.5 text-white focus:ring-0 sm:text-sm sm:leading-6"
                                         />
                                     </div>
                                 </div>
@@ -290,6 +254,7 @@ function UserProfile() {
                         </div>
                     </div>
                 </div>
+
 
 
                 {personalDataProfile &&
@@ -313,6 +278,7 @@ function UserProfile() {
                         </div>
                     </div>
                 }
+
                 {personalDataProfile &&
                     <div>
                         <div
@@ -325,26 +291,19 @@ function UserProfile() {
                             </div>
 
 
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl" >
                                 <div className="col-span-full mt-2">
-                                    <Badge badgeType={'interest'}
-                                           content={personalDataProfile.strongInterests.Realistic}/>
-                                    <Badge badgeType={'interest'}
-                                           content={personalDataProfile.strongInterests.Investigative}/>
-                                    <Badge badgeType={'interest'}
-                                           content={personalDataProfile.strongInterests.Artistic}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Realistic}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Investigative}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Artistic}/>
                                     <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Social}/>
-                                    <Badge badgeType={'interest'}
-                                           content={personalDataProfile.strongInterests.Enterprising}/>
-                                    <Badge badgeType={'interest'}
-                                           content={personalDataProfile.strongInterests.Conventional}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Enterprising}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Conventional}/>
                                 </div>
+                                <StrongInterestsChart data={personalDataProfile.strongInterests}/>
                             </div>
 
 
-                        </div>
-                        <div className="pb-16">
-                            <StrongInterestsChart data={personalDataProfile.strongInterests}/>
                         </div>
                     </div>
                 }
@@ -454,7 +413,7 @@ export default function Page() {
         <div className="text-white">
             <Header/>
             <Authenticator variation="modal">
-                <UserProfile/>
+                <UserProfileConfiguration/>
             </Authenticator>
         </div>
     );

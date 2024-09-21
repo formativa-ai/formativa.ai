@@ -179,7 +179,7 @@ const PersonalityBadge = ({personalityType}: { personalityType: 'INTJ' | 'INTP' 
     }
 
     return (
-        <span className={"inline-flex ml-3 mt-3 items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset " + badgeStyle[personalityType].color}>
+        <span className={"inline-flex ml-3 mt-3 items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset " + badgeStyle[personalityType]?.color}>
             {badgeStyle[personalityType]?.icon + ' ' + personalityType}
         </span>
     )

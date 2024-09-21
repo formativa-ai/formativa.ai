@@ -6,6 +6,7 @@ const schema = a.schema({
     // PersonalDataProfile object model to store attributes like personality type, etc
     PersonalDataProfile: a
         .model({
+            picture: a.string(),
             personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
             userType: a.enum(['STUDENT', 'TEACHER', 'EMPLOYER']),
             skills: a.hasMany('PersonalDataProfileSkills', 'personalDataProfileId'),
