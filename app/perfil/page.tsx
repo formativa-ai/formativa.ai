@@ -21,8 +21,9 @@ import NotificationBanners from "@/components/ui/NotificationList";
 import {NotificationType} from "@/lib/types/NotificationType";
 import type { Schema } from '@/amplify/data/resource'
 import { generateClient } from 'aws-amplify/data'
-import {PersonalDataProfile} from "@/lib/types/PersonalDataProfile";
+import {PersonalDataProfile, StrongInterest, StrongInterests} from "@/lib/types/PersonalDataProfile";
 import Badge from "@/app/_elements/Badges";
+import StrongInterestsChart from "@/components/StrongInterestsChart";
 Amplify.configure(outputs);
 
 function UserProfile() {
@@ -34,6 +35,42 @@ function UserProfile() {
     const client = generateClient<Schema>({
         authMode: 'userPool',
     });
+
+    //TODO: Remove this when we have a way to retrieve the user's strongInterests
+    const realistic: StrongInterest = {
+        interest: 'Realistic',
+        score: 10,
+    };
+    const investigative: StrongInterest = {
+        interest: 'Investigative',
+        score: 20,
+    };
+    const artistic: StrongInterest = {
+        interest: 'Artistic',
+        score: 30,
+    };
+    const social: StrongInterest = {
+        interest: 'Social',
+        score: 40,
+    };
+    const enterprising: StrongInterest = {
+        interest: 'Enterprising',
+        score: 50,
+    };
+    const conventional: StrongInterest = {
+        interest: 'Conventional',
+        score: 60,
+    };
+
+    const strongInterests: StrongInterests = {
+        Realistic: realistic,
+        Investigative: investigative,
+        Artistic: artistic,
+        Social: social,
+        Enterprising: enterprising,
+        Conventional: conventional,
+    };
+    const skills = ['Public Speaking', 'Ingenieria','Analisis de Datos']
 
     useEffect(() => {
         const fetchUserPoolAttributes = async () => {
@@ -47,12 +84,11 @@ function UserProfile() {
             try {
                 let { data: personalData, errors } = await client.models.PersonalDataProfile.list()
 
-                if (personalData.length > 1) {
+                if (personalData?.length > 1) {
                     await client.models.PersonalDataProfile.delete(personalData[0])
                 }
 
-                if(personalData.length === 0){ // Todo: Remove this when we have a proper way to create a new PersonalDataProfile
-
+                if(personalData?.length === 0){ // Todo: Remove this when we have a proper way to create a new PersonalDataProfile
                    await client.models.PersonalDataProfile.create({
                         personalityType: 'INTJ',
                         userType: 'STUDENT'
@@ -63,11 +99,11 @@ function UserProfile() {
                     id: personalData[0]?.id,
                     personalityType: personalData[0]?.personalityType,
                     userType: personalData[0]?.userType,
-                    skills: ['Public Speaking', 'Ingenieria','Analisis de Datos'],
+                    strongInterests: strongInterests, //TODO: Remove this when we have a way to retrieve the user's strongInterests
+                    skills: skills, //TODO: Remove this when we have a way to retrieve the user's skills
                     owner: personalData[0]?.owner,
                     createdAt: personalData[0]?.createdAt,
                     updatedAt: personalData[0]?.updatedAt
-
                 });
             } catch (error) {
                 setNotificationList([...notificationList, {message: `Hubo un error actualizando tus atributos personales.`, category: 'error'}]);
@@ -261,28 +297,52 @@ function UserProfile() {
                         <div>
                             <h2 className="text-base font-semibold leading-7 text-white">Atributos Personales</h2>
                             <p className="mt-1 text-sm leading-6 text-gray-400">
-
+                                Estos son tus atributos personales basados en tu interaccion con Maco.
                             </p>
                         </div>
 
 
-                        <div className="md:col-span-2">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
-                                <div className="col-span-full mt-2">
-                                    <Badge badgeType={'personalityType'} text={personalDataProfile?.personalityType}/>
-                                    <Badge badgeType={'userType'} text={personalDataProfile?.userType}/>
-                                    <Badge badgeType={'interest'} text={"Ingenieria"}/>
-                                    {personalDataProfile.skills.map((skill,index) => {
-                                        return <Badge key={index} badgeType={'skill'} text={skill}/>
-                                    })}
-                                </div>
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                            <div className="col-span-full mt-2">
+                                <Badge badgeType={'personalityType'} text={personalDataProfile?.personalityType}/>
+                                <Badge badgeType={'userType'} text={personalDataProfile?.userType}/>
+                                {personalDataProfile.skills.map((skill, index) => {
+                                    return <Badge key={index} badgeType={'skill'} text={skill}/>
+                                })}
                             </div>
-
                         </div>
                     </div>
                 }
+                {personalDataProfile &&
+                    <div>
+                        <div
+                            className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 pt-16 pb-8 sm:px-6 md:grid-cols-3 lg:px-8">
+                            <div>
+                                <h2 className="text-base font-semibold leading-7 text-white">Intereses Fuertes</h2>
+                                <p className="mt-1 text-sm leading-6 text-gray-400">
+                                    Estos son tus intereses fuertes basados en tus interacciones con Maco.
+                                </p>
+                            </div>
 
 
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
+                                <div className="col-span-full mt-2">
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Realistic}/>
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Investigative}/>
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Artistic}/>
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Social}/>
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Enterprising}/>
+                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Conventional}/>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div className="pb-16">
+                            <StrongInterestsChart data={personalDataProfile.strongInterests}/>
+                        </div>
+                    </div>
+                }
 
 
                 <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -385,7 +445,6 @@ function UserProfile() {
 
 
 export default function Page() {
-
     return (
         <div className="text-white">
             <Header/>

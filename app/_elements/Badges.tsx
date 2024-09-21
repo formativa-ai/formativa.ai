@@ -1,6 +1,8 @@
+import {StrongInterest} from "@/lib/types/PersonalDataProfile";
+
 export default function Badge({badgeType, text}: {
     badgeType: "personalityType" | "userType" | "skill" | "interest" | "default";
-    text: string
+    text: any;
 }) {
     const getBadge = () => {
         switch (badgeType) {
@@ -24,24 +26,19 @@ export default function Badge({badgeType, text}: {
     );
 }
 
-const StrongInterestBadge = ({ interest }) => {
-    const getUserTypeIcon = (interest) => {
-        switch (interest) {
-            case 'estudiante':
-                return <span className="mr-1">🎓</span>;
-            case 'empleador':
-                return <span className="mr-1">💼</span>;
-            case 'instructor':
-                return <span className="mr-1">📚</span>;
-            default:
-                return <span className="mr-1">❓</span>;
-        }
+const StrongInterestBadge = ({ interest }:{interest: StrongInterest}) => {
+    const colorMapping: { [key: string]: string} = {
+        Realistic: "inline-flex ml-3 mt-3 items-center rounded-md bg-red-400/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-400/20",
+        Investigative: "inline-flex ml-3 mt-3 items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/20",
+        Artistic: "inline-flex ml-3 mt-3 items-center rounded-md bg-teal-400/10 px-2 py-1 text-xs font-medium text-teal-400 ring-1 ring-inset ring-teal-400/20",
+        Social: "inline-flex ml-3 mt-3 items-center rounded-md bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/20",
+        Enterprising: "inline-flex ml-3 mt-3 items-center rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-400 ring-1 ring-inset ring-orange-400/20",
+        Conventional: "inline-flex ml-3 mt-3 items-center rounded-md bg-yellow-400/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-400/20",
     };
 
     return (
-        <span className="inline-flex ml-3 mt-3 items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">
-            {getUserTypeIcon(interest)}
-            {interest.charAt(0).toUpperCase() + interest.slice(1)}
+        <span className={colorMapping[interest.interest]}>
+            {interest.interest} | {interest.score}
         </span>
     );
 };
@@ -55,7 +52,7 @@ const SkillBadge = ({ skill }) => {
     };
 
     return (
-        <span className="inline-flex ml-3 mt-3 items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">
+        <span className="inline-flex ml-3 mt-3 items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">
             {getSkillIcon(skill)}
             {skill.charAt(0).toUpperCase() + skill.slice(1)}
         </span>
@@ -64,7 +61,6 @@ const SkillBadge = ({ skill }) => {
 
 const UserTypeBadge = ({ userType }) => {
     const getUserTypeIcon = (type) => {
-        console.log(type.toLowerCase())
         switch (type.toLowerCase()) {
             case 'student':
             case 'estudiante':
@@ -91,46 +87,45 @@ const PersonalityBadge = ({personalityType}: { personalityType: string }) => {
     const getPersonalityTypeIcon = (personalityType) => {
         switch (personalityType) {
             case 'INTJ':
-                return <span className="mr-1">🧠</span>;
+                return <>🧠</>;
             case 'INTP':
-                return <span className="mr-1">🔍</span>;
+                return <>🔍</>;
             case 'ENTJ':
-                return <span className="mr-1">🦁</span>;
+                return <>🦁</>;
             case 'ENTP':
-                return <span className="mr-1">🗣️</span>;
+                return <>🗣️</>;
             case 'INFJ':
-                return <span className="mr-1">🌿</span>;
+                return <>🌿</>;
             case 'INFP':
-                return <span className="mr-1">💖</span>;
+                return <>💖</>;
             case 'ENFJ':
-                return <span className="mr-1">🌟</span>;
+                return <>🌟</>;
             case 'ENFP':
-                return <span className="mr-1">🌈</span>;
+                return <>🌈</>;
             case 'ISTJ':
-                return <span className="mr-1">🗂️</span>;
+                return <>🗂️</>;
             case 'ISFJ':
-                return <span className="mr-1">🛡️</span>;
+                return <>🛡️</>;
             case 'ESTJ':
-                return <span className="mr-1">📋</span>;
+                return <>📋</>;
             case 'ESFJ':
-                return <span className="mr-1">🎉</span>;
+                return <>🎉</>;
             case 'ISTP':
-                return <span className="mr-1">🛠️</span>;
+                return <>🛠️</>;
             case 'ISFP':
-                return <span className="mr-1">🎨</span>;
+                return <>🎨</>;
             case 'ESTP':
-                return <span className="mr-1">🚀</span>;
+                return <>🚀</>;
             case 'ESFP':
-                return <span className="mr-1">🎭</span>;
+                return <>🎭</>;
             default:
-                return <span className="mr-1">❓</span>;
+                return <>❓</>;
         }
     };
 
     return (
         <span className="inline-flex ml-3 mt-3 items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/20">
-            {getPersonalityTypeIcon(personalityType)}
-            {personalityType}
+            {<span className="mr-1">{getPersonalityTypeIcon(personalityType)}</span>} {personalityType}
         </span>
     )
 }
