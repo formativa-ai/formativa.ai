@@ -304,10 +304,10 @@ function UserProfile() {
 
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
                             <div className="col-span-full mt-2">
-                                <Badge badgeType={'personalityType'} text={personalDataProfile?.personalityType}/>
-                                <Badge badgeType={'userType'} text={personalDataProfile?.userType}/>
+                                <Badge badgeType={'personalityType'} content={personalDataProfile?.personalityType}/>
+                                <Badge badgeType={'userType'} content={personalDataProfile?.userType}/>
                                 {personalDataProfile.skills.map((skill, index) => {
-                                    return <Badge key={index} badgeType={'skill'} text={skill}/>
+                                    return <Badge key={index} badgeType={'skill'} content={skill}/>
                                 })}
                             </div>
                         </div>
@@ -327,12 +327,12 @@ function UserProfile() {
 
                             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
                                 <div className="col-span-full mt-2">
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Realistic}/>
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Investigative}/>
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Artistic}/>
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Social}/>
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Enterprising}/>
-                                    <Badge badgeType={'interest'} text={personalDataProfile.strongInterests.Conventional}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Realistic}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Investigative}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Artistic}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Social}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Enterprising}/>
+                                    <Badge badgeType={'interest'} content={personalDataProfile.strongInterests.Conventional}/>
                                 </div>
                             </div>
 
