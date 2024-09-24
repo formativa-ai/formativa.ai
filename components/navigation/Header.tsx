@@ -7,8 +7,8 @@ const navigation = {
     main: [
         { name: 'Inicio', href: '/' },
         { name: 'Nosotros', href: '/nosotros' },
-        { name: 'Oportunidades', href: '/nosotros/#oportunidades' },
-        { name: 'Contacto', href: '/nosotros/#contacto' },
+        // { name: 'Oportunidades', href: '/nosotros/#oportunidades' },
+        // { name: 'Contacto', href: '/nosotros/#contacto' },
         { name: 'Maco', href: '/maco' },
         { name: 'Perfil', href: '/perfil' },
     ]
@@ -17,7 +17,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return(
-        <div className="bg-gray-900">
+        <div className="">
             <header className="absolute inset-x-0 top-0 z-50">
                 <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
                     <div className="flex lg:flex-1">
