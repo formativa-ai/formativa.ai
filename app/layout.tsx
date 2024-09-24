@@ -49,7 +49,7 @@ export default function RootLayout({
           sizes="any"
       />
     </head>
-    <body className="h-full bg-black">{children}</body>
+    <body className="bg-black">{children}</body>
     </html>
   );
 }
