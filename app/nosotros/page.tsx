@@ -22,7 +22,7 @@ export default function Nosotros() {
         {/*<JoinOurTeam />*/}
         <ListaOportunidades/>
         <GetInTouch/>
-        <Footer/>
+        <Footer background={"bg-white"}/>
     </main>
   );
 }
