@@ -1,0 +1,12 @@
+export { default as PersonalDataProfileCreateForm } from "./PersonalDataProfileCreateForm";
+export { default as PersonalDataProfileUpdateForm } from "./PersonalDataProfileUpdateForm";
+export { default as StrongInterestsResultCreateForm } from "./StrongInterestsResultCreateForm";
+export { default as StrongInterestsResultUpdateForm } from "./StrongInterestsResultUpdateForm";
+export { default as PersonalDataProfileSkillsCreateForm } from "./PersonalDataProfileSkillsCreateForm";
+export { default as PersonalDataProfileSkillsUpdateForm } from "./PersonalDataProfileSkillsUpdateForm";
+export { default as SkillCreateForm } from "./SkillCreateForm";
+export { default as SkillUpdateForm } from "./SkillUpdateForm";
+export { default as ChatCreateForm } from "./ChatCreateForm";
+export { default as ChatUpdateForm } from "./ChatUpdateForm";
+export { default as MessageCreateForm } from "./MessageCreateForm";
+export { default as MessageUpdateForm } from "./MessageUpdateForm";
