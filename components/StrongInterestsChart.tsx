@@ -1,22 +1,18 @@
 import React from 'react';
-import { StrongInterests } from '@/lib/types/PersonalDataProfile';
+import {StrongInterest, StrongInterestsResult} from '@/lib/types/PersonalDataProfile';
 
-interface StrongInterestsChartProps {
-    data: StrongInterests;
-}
-
-const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => {
-    const interests = [
-        data.Realistic,
-        data.Investigative,
-        data.Artistic,
-        data.Social,
-        data.Enterprising,
-        data.Conventional,
+export default function StrongInterestsChart({ data } : { data: StrongInterestsResult }){
+    const interests: StrongInterest[] = [
+        data?.Realistic,
+        data?.Investigative,
+        data?.Artistic,
+        data?.Social,
+        data?.Enterprising,
+        data?.Conventional
     ];
 
 
-    const scores = interests.map((interest) => interest.score);
+    const scores = interests.map((interest) => interest?.score);
     const maxScore = 100; //Math.max(...scores, 1); // Avoid division by zero
 
     const size = 300; // Size of the SVG
@@ -108,13 +104,13 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                     const startAngle = angleSlice * i - 2*Math.PI / 3;
                     const endAngle = angleSlice * (i + 1) - 2*Math.PI / 3;
                     const pathData = describeSector(center, center, radius, startAngle, endAngle);
-                    const color = colorMapping[interest.interest];
+                    const color = colorMapping[interest?.interest];
 
                     return (
                         <path
                             key={i}
                             d={pathData}
-                            fill={color.text}
+                            fill={color?.text}
                             stroke="black"
                             strokeWidth="2"
 
@@ -144,7 +140,7 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                     points={interests
                         .map((interest, i) => {
                             const angle = angleSlice * i - Math.PI / 2;
-                            const scoreRatio = interest.score / maxScore;
+                            const scoreRatio = interest?.score / maxScore;
                             const x = center + radius * scoreRatio * Math.cos(angle);
                             const y = center + radius * scoreRatio * Math.sin(angle);
                             return `${x},${y}`;
@@ -160,7 +156,7 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                     const angle = angleSlice * i - Math.PI / 2;
                     const x = center + (radius) * Math.cos(angle);
                     const y = center + (radius) * Math.sin(angle);
-                    const color = colorMapping[interest.interest];
+                    const color = colorMapping[interest?.interest];
                     return (
                         <text
                             key={i}
@@ -168,9 +164,9 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
                             y={y}
                             textAnchor="middle"
                             dominantBaseline="middle"
-                            fill={color.text}
+                            fill={color?.text}
                         >
-                            {interest.interest.charAt(0).toUpperCase()}
+                            {interest?.interest.charAt(0).toUpperCase()}
                         </text>
                     );
                 })}
@@ -179,4 +175,3 @@ const StrongInterestsChart: React.FC<StrongInterestsChartProps> = ({ data }) => 
     );
 };
 
-export default StrongInterestsChart;

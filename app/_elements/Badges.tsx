@@ -1,4 +1,4 @@
-import {StrongInterest} from "@/lib/types/PersonalDataProfile";
+import {StrongInterest, StrongInterestsResult} from "@/lib/types/PersonalDataProfile";
 
 export default function Badge({badgeType, content}: {
     badgeType: "personalityType" | "userType" | "skill" | "interest" | "default";
@@ -53,10 +53,10 @@ const StrongInterestBadge = ({ interest }:{interest: StrongInterest}) => {
             icon: '📊',
         },
     };
-
+    if(!interest) return null
     return (
-        <span className={badgeStyle[interest.interest].color}>
-            {interest.interest} | {interest.score}
+        <span className={badgeStyle[interest?.interest]?.color}>
+            {interest?.interest} | {interest?.score}
         </span>
     );
 };
@@ -104,7 +104,7 @@ const UserTypeBadge = ({ userType }:{ userType: string }) => {
 
     return (
         <span className={"inline-flex ml-3 mt-3 items-center rounded-md px-2 py-1 text-xs font-medium  ring-1 ring-inset " + (badgeStyle[userType]? badgeStyle[userType].color : badgeStyle['OTHER'].color)}>
-            {(badgeStyle[userType]? badgeStyle[userType].icon : badgeStyle['OTHER'].icon) + ' ' + userType.charAt(0).toUpperCase() + userType.slice(1).toLowerCase()}
+            {(badgeStyle[userType]? badgeStyle[userType].icon : badgeStyle['OTHER'].icon) + ' ' + userType?.charAt(0).toUpperCase() + userType?.slice(1).toLowerCase()}
         </span>
     );
 };

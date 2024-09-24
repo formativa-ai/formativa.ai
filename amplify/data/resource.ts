@@ -6,7 +6,7 @@ const schema = a.schema({
     PersonalDataProfile: a
         .model({
             picture: a.string(),
-            strongInterestResult: a.hasOne('StrongInterestsResult', 'personalDataProfileId'),
+            strongInterestsResult: a.hasOne('StrongInterestsResult', 'personalDataProfileId'),
             personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
             userType: a.enum(['STUDENT', 'TEACHER', 'EMPLOYER']),
             skills: a.hasMany('PersonalDataProfileSkills', 'personalDataProfileId'),
