@@ -21,26 +21,31 @@ export const auth = defineAuth({
             mutable: true,
             required: true,
         },
+        gender: {
+          mutable: true,
+          required: false,
+        },
         birthdate: {
             mutable: true,
-            required: true,
+            required: false,
         },
         phoneNumber: {
-            mutable: true,
-            required: true,
-        },
-        nickname: {
             mutable: true,
             required: false,
         },
         preferredUsername: {
             mutable: true,
-            required: true,
+            required: false,
         },
         website: {
             mutable: true,
             required: false,
-        }
+        },
+        profilePicture: {
+            mutable: true,
+            required: false,
+        },
+
     }
 });
 
