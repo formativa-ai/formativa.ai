@@ -43,10 +43,10 @@ const schema = a.schema({
     Skill: a
         .model({
             PersonalDataProfiles: a.hasMany('PersonalDataProfileSkills', 'skillId'),
-            skillName: a.string().authorization(allow => [allow.owner().to(['read', 'create'])]),  //TODO: add custom rule to allow only admins to create skills, then update 'create' permissions here
+            skillName: a.string(),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])]) // this prevents the user from assigning this entry to another user
         })
-        .authorization(allow => [allow.owner()]),
+        .authorization(allow => [allow.authenticated()]),
 
     // Chat object model to store Messages in a thread, identified by chatId
     Chat: a
