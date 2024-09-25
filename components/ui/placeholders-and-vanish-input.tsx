@@ -3,7 +3,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils/cn";
-import {PreReleaseModal} from "@/components/PreReleaseModal";
 
 export function PlaceholdersAndVanishInput({
                                                placeholders,
@@ -50,10 +49,6 @@ export function PlaceholdersAndVanishInput({
     const inputRef = useRef<HTMLInputElement>(null);
     const [value, setValue] = useState("");
     const [animating, setAnimating] = useState(false);
-
-    const handleCloseModal = () => {
-        setAnimating(false)
-    }
 
     const draw = useCallback(() => {
         if (!inputRef.current) return;
@@ -212,8 +207,6 @@ export function PlaceholdersAndVanishInput({
                     animating && "text-transparent dark:text-transparent"
                 )}
             />
-
-            {/*<PreReleaseModal value={value} handleCloseModal={handleCloseModal}/>*/}
 
             <button
                 disabled={!value || inputDisabled}
