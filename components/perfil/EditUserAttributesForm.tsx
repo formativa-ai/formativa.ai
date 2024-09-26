@@ -62,6 +62,11 @@ export default function EditUserAttributesForm({
                     preferred_username: userAttributes.preferred_username? userAttributes.preferred_username : '',
                     picture: userAttributes.picture? userAttributes.picture : '',
                     profile: userAttributes.profile? userAttributes.profile : '',
+                    "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : 'Universidad',
+                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : '',
+                    // "custom:govId": userAttributes["custom:govId"]? userAttributes["custom:govId"] : '',
+                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : '',
+                    "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : '',
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
