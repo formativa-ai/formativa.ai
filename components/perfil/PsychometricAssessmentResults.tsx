@@ -46,7 +46,7 @@ export function PsychometricAssessmentResults({
 
                     <div className="col-span-full">
                         <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
-                            Tipo de Perspnalidad
+                            Tipo de Personalidad
                         </label>
                         <div className="mt-2">
                             <select
