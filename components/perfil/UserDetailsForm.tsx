@@ -170,7 +170,7 @@ export default function UserDetailsform({
 
                     <div className="col-span-4">
                         <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
-                            Nombre de entidad
+                            Nombre de Entidad
                         </label>
                         <div className="mt-2">
                             <div
