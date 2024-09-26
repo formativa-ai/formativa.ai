@@ -6,7 +6,7 @@ import {
     FetchUserAttributesOutput, updateUserAttributes,
     UpdateUserAttributesOutput
 } from "aws-amplify/auth";
-import EditUserAttributesForm from "@/components/perfil/EditUserAttributesForm";
+import EditUserAttributes from "@/components/perfil/EditUserAttributes";
 import React, {useEffect, useState} from "react";
 import NotificationBanners from "@/components/ui/NotificationList";
 import {NotificationType} from "@/lib/types/NotificationType";
@@ -45,7 +45,7 @@ export default function UserProfile() {
     return (
         <main className="mx-10 my-20">
             {editingProfile?
-                <EditUserAttributesForm
+                <EditUserAttributes
                     userAttributes={userAttributes}
                     setUserAttributes={setUserAttributes}
                     notificationList={notificationList}

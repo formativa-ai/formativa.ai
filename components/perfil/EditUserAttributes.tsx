@@ -9,7 +9,10 @@ import {
     updateUserAttributes,
     UpdateUserAttributesOutput
 } from "aws-amplify/auth";
+import UserDetailsForm from "@/components/perfil/UserDetailsForm";
+import ChangePasswordForm from "@/components/perfil/ChangePasswordForm";
 import ConfirmationCodeModal from "@/components/perfil/CodeConfirmationModal";
+import {PsychometricAssessmentResults} from "@/components/perfil/PsychometricAssessmentResults";
 
 interface EditUserAttributesFormProps {
     notificationList?: NotificationType[],
@@ -24,7 +27,9 @@ interface EditUserAttributesFormProps {
     setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void
 }
 
-export default function EditUserAttributesForm({
+
+
+export default function EditUserAttributes({
                                                    notificationList,
                                                    setNotificationList,
                                                    userAttributes,
@@ -54,17 +59,17 @@ export default function EditUserAttributesForm({
                     given_name: userAttributes.given_name,
                     family_name: userAttributes.family_name,
                     email: userAttributes.email,
-                    middle_name: userAttributes.middle_name? userAttributes.middle_name : '',
-                    gender: userAttributes.gender? userAttributes.gender : '',
-                    birthdate: userAttributes.birthdate? userAttributes.birthdate : '',
-                    phone_number: userAttributes.phone_number? userAttributes.phone_number : '',
-                    website: userAttributes.website? userAttributes.website : '',
-                    preferred_username: userAttributes.preferred_username? userAttributes.preferred_username : '',
-                    picture: userAttributes.picture? userAttributes.picture : '',
-                    profile: userAttributes.profile? userAttributes.profile : '',
-                    "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : 'Universidad',
-                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : 'Universidad Nacional de Colombia',
-                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : 'ENFJ',
+                    middle_name: userAttributes.middle_name ? userAttributes.middle_name : '',
+                    gender: userAttributes.gender ? userAttributes.gender : '',
+                    birthdate: userAttributes.birthdate ? userAttributes.birthdate : '',
+                    phone_number: userAttributes.phone_number ? userAttributes.phone_number : '',
+                    website: userAttributes.website ? userAttributes.website : '',
+                    preferred_username: userAttributes.preferred_username ? userAttributes.preferred_username : '',
+                    picture: userAttributes.picture ? userAttributes.picture : '',
+                    profile: userAttributes.profile ? userAttributes.profile : '',
+                    "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : '',
+                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : '',
+                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : '',
                     "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : 'Estudiante',
                     "custom:realistic": userAttributes["custom:realistic"]? userAttributes["custom:realistic"] : '0',
                     "custom:investigative": userAttributes["custom:investigative"]? userAttributes["custom:investigative"] : '0',
@@ -136,16 +141,48 @@ export default function EditUserAttributesForm({
 
 
     return (
-        <div>
-            Editing Profile
-            <br></br>
-            <button onClick={handleUpdateUserAttributes}>Save</button>
-            <ConfirmationCodeModal
-                isOpen={showConfirmationCodeModal}
-                onClose={() => setShowConfirmationCodeModal(false)}
-                onConfirm={handleConfirmUserAttribute}
-                codeDeliveryDetails={codeDeliveryDetails}
-            />
+        <div className="divide-y divide-white/5">
+            <UserDetailsForm setEditingProfile={setEditingProfile} userAttributes={userAttributes} setUserAttributes={setUserAttributes} handleUpdateUserAttributes={handleUpdateUserAttributes} />
+            <PsychometricAssessmentResults setEditingProfile={setEditingProfile} userAttributes={userAttributes} setUserAttributes={setUserAttributes} handleUpdateUserAttributes={handleUpdateUserAttributes} />
+            {/*<ChangePasswordForm />*/}
+            {/*<ManageOtherSessionsForm/>*/}
+            <DeleteAccountForm />
+             <ConfirmationCodeModal
+                 isOpen={showConfirmationCodeModal}
+                 onClose={() => setShowConfirmationCodeModal(false)}
+                 onConfirm={handleConfirmUserAttribute}
+                 codeDeliveryDetails={codeDeliveryDetails}
+             />
         </div>
     )
+}
+
+
+
+
+function DeleteAccountForm() {
+    return (
+        <div className="mt-20">
+            <p className="text-center font-mono font-bold text-red-800">Zona de Peligro</p>
+            <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+
+                <div>
+                    <h2 className="text-base font-semibold leading-7 text-white">Delete account</h2>
+                    <p className="mt-1 text-sm leading-6 text-gray-400">
+                        No longer want to use our service? You can delete your account here. This action is not reversible.
+                        All information related to this account will be deleted permanently.
+                    </p>
+                </div>
+
+                <div className="flex items-start md:col-span-2">
+                    <button
+                        type="submit"
+                        className="rounded-md border-2 border-red-500 bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"
+                    >
+                        Yes, delete my account
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 }
