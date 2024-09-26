@@ -64,9 +64,14 @@ export default function EditUserAttributesForm({
                     profile: userAttributes.profile? userAttributes.profile : '',
                     "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : 'Universidad',
                     "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : 'Universidad Nacional de Colombia',
-                    // "custom:govId": userAttributes["custom:govId"]? userAttributes["custom:govId"] : '',
                     "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : 'ENFJ',
                     "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : 'Estudiante',
+                    "custom:realistic": userAttributes["custom:realistic"]? userAttributes["custom:realistic"] : '0',
+                    "custom:investigative": userAttributes["custom:investigative"]? userAttributes["custom:investigative"] : '0',
+                    "custom:artistic": userAttributes["custom:artistic"]? userAttributes["custom:artistic"] : '0',
+                    "custom:social": userAttributes["custom:social"]? userAttributes["custom:social"] : '0',
+                    "custom:enterprising": userAttributes["custom:enterprising"]? userAttributes["custom:enterprising"] : '0',
+                    "custom:conventional": userAttributes["custom:conventional"]? userAttributes["custom:conventional"] : '0',
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {

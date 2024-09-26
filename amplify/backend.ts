@@ -68,6 +68,67 @@ if (Array.isArray(cfnUserPool.schema)) {
                 maxLength: '20',
                 minLength: '0',
             }
+        }, {
+            name: 'realistic',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
+        }
+        , {
+            name: 'investigative',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
+        }, {
+            name: 'artistic',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
+        }, {
+            name: 'social',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
+        }, {
+            name: 'enterprising',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
+        }, {
+            name: 'conventional',
+            attributeDataType: 'Number',
+            developerOnlyAttribute: false,
+            mutable: true,
+            required: false,
+            numberAttributeConstraints: {
+                maxValue: '10',
+                minValue: '0',
+            }
         }
         // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cognito.CfnUserPool.html
     );
