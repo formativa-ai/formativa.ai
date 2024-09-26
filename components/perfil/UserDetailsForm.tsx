@@ -15,7 +15,7 @@ export default function UserDetailsform({
                                             setEditingProfile
                                         }: UserDetailsFormProps) {
     const userTypes = ["Estudiante", "Egresado", "Profesor", "Docente", "Consejero", "Representate de Empresa/Empleador", "Representante de Universidad"];
-    const entityTypes = ["Colegion", "Universidad", "Empresa", "Organización"];
+    const entityTypes = ["Colegio", "Universidad", "Empresa", "Organización"];
     return (
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
             <div>
@@ -120,7 +120,7 @@ export default function UserDetailsform({
                         </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="col-span-4">
                         <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
                             Nombre de Usuario
                         </label>
@@ -145,7 +145,7 @@ export default function UserDetailsform({
                         </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="col-span-2">
                         <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
                             Tipo de Usuario
                         </label>
@@ -167,6 +167,55 @@ export default function UserDetailsform({
                             </select>
                         </div>
                     </div>
+
+                    <div className="col-span-4">
+                        <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+                            Nombre de entidad
+                        </label>
+                        <div className="mt-2">
+                            <div
+                                className="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
+                      <span className="flex select-none items-center pl-3 text-gray-400 sm:text-sm">
+                        {userAttributes.entityType}
+                      </span>
+                                <input
+                                    id="username"
+                                    defaultValue={userAttributes["custom:entityName"]}
+                                    onChange={(e) => setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:entityName"]: e.target.value
+                                    })}
+                                    type="text"
+                                    autoComplete="username"
+                                    className="flex-1 border-0 bg-transparent py-1.5 pl-0.5 text-white focus:ring-0 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-span-2">
+                        <label htmlFor="entityType" className="block text-sm font-medium leading-6 text-white">
+                            Tipo de Entidad
+                        </label>
+                        <div className="mt-2">
+                            <select
+                                id="entityType"
+                                defaultValue={userAttributes["custom:entityType"]}
+                                onChange={(e) => setUserAttributes({
+                                    ...userAttributes,
+                                    ["custom:entityType"]: e.target.value
+                                })}
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+                            >
+                                {entityTypes.map((userType) => (
+                                    <option key={userType} value={userType}>
+                                        {userType}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="mt-8 flex">

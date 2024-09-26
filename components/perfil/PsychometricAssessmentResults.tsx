@@ -42,122 +42,7 @@ export function PsychometricAssessmentResults({
             </div>
 
             <div className="md:col-span-2">
-                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-12">
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="realistic" className="block text-sm font-medium leading-6 text-white">
-                            Realista
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="realistic"
-                                defaultValue={userAttributes["custom:realistic"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:realistic"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="realistic"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="investigative" className="block text-sm font-medium leading-6 text-white">
-                            Investigativo
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="investigative"
-                                defaultValue={userAttributes["custom:investigative"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:investigative"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="investigative"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="artistic" className="block text-sm font-medium leading-6 text-white">
-                            Artistico
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="artistic"
-                                defaultValue={userAttributes["custom:artistic"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:artistic"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="artistic"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="social" className="block text-sm font-medium leading-6 text-white">
-                            Social
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="social"
-                                defaultValue={userAttributes["custom:social"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:social"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="social"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="enterprising" className="block text-sm font-medium leading-6 text-white">
-                            Emprendedor
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="enterprising"
-                                defaultValue={userAttributes["custom:enterprising"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:enterprising"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="enterprising"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="sm:col-span-2">
-                        <label htmlFor="conventional" className="block text-sm font-medium leading-6 text-white">
-                            Convencional
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="conventional"
-                                defaultValue={userAttributes["custom:conventional"]}
-                                onChange={(e) => setUserAttributes({
-                                    ...userAttributes,
-                                    ["custom:conventional"]: e.target.value
-                                })}
-                                type="number" min="0" max="10" step="1"
-                                autoComplete="conventional"
-                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
+                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
 
                     <div className="col-span-full">
                         <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
@@ -179,6 +64,175 @@ export function PsychometricAssessmentResults({
                                     </option>
                                 ))}
                             </select>
+                        </div>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="realistic" className="block text-sm font-medium leading-6 text-white">
+                            Realista
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="realistic"
+                                defaultValue={userAttributes["custom:realistic"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:realistic"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="realistic"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="investigative" className="block text-sm font-medium leading-6 text-white">
+                            Investigativo
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="investigative"
+                                defaultValue={userAttributes["custom:investigative"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:investigative"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="investigative"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="artistic" className="block text-sm font-medium leading-6 text-white">
+                            Artistico
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="artistic"
+                                defaultValue={userAttributes["custom:artistic"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:artistic"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="artistic"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="social" className="block text-sm font-medium leading-6 text-white">
+                            Social
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="social"
+                                defaultValue={userAttributes["custom:social"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:social"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="social"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="enterprising" className="block text-sm font-medium leading-6 text-white">
+                            Emprendedor
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="enterprising"
+                                defaultValue={userAttributes["custom:enterprising"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:enterprising"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="enterprising"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                        <label htmlFor="conventional" className="block text-sm font-medium leading-6 text-white">
+                            Convencional
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="conventional"
+                                defaultValue={userAttributes["custom:conventional"]}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    let numberValue = parseInt(value, 10);
+
+                                    // Adjust the number to be within the range 0-10
+                                    if (numberValue > 10) numberValue = 10;
+                                    if (numberValue < 0) numberValue = 0;
+
+                                    setUserAttributes({
+                                        ...userAttributes,
+                                        ["custom:conventional"]: numberValue.toString(),
+                                    });
+                                }}
+                                type="number" min="0" max="10" step="1"
+                                autoComplete="conventional"
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                            />
                         </div>
                     </div>
                 </div>
