@@ -63,10 +63,10 @@ export default function EditUserAttributesForm({
                     picture: userAttributes.picture? userAttributes.picture : '',
                     profile: userAttributes.profile? userAttributes.profile : '',
                     "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : 'Universidad',
-                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : '',
+                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : 'Universidad Nacional de Colombia',
                     // "custom:govId": userAttributes["custom:govId"]? userAttributes["custom:govId"] : '',
-                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : '',
-                    "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : '',
+                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : 'ENFJ',
+                    "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : 'Estudiante',
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
