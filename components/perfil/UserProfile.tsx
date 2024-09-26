@@ -14,6 +14,7 @@ import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import {SkillCreateForm} from "@/ui-components";
 import ConfirmationCodeModal from "@/components/perfil/CodeConfirmationModal";
+import UserProfileDetails from "@/components/perfil/UserProfileDetails";
 Amplify.configure(outputs);
 
 interface UserProfileProps {
@@ -43,7 +44,7 @@ export default function UserProfile() {
 
     return (
         <main className="mx-10 my-20">
-            {editingProfile &&
+            {editingProfile?
                 <EditUserAttributesForm
                     userAttributes={userAttributes}
                     setUserAttributes={setUserAttributes}
@@ -56,12 +57,8 @@ export default function UserProfile() {
                     editingProfile={editingProfile}
                     setEditingProfile={setEditingProfile}
                 />
-            }
-            {!editingProfile &&
-                <button onClick={() => setEditingProfile(!editingProfile)}
-                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Edit Profile
-                </button>
+                :
+                <UserProfileDetails setEditingProfile={setEditingProfile} userAttributes={userAttributes}/>
             }
             <div onClick={signOut} className="cursor-pointer">
                 Sign Out
