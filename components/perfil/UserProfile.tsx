@@ -43,7 +43,7 @@ export default function UserProfile() {
 
     return (
         <main className="mx-10 my-20">
-            {editingProfile?
+            {editingProfile &&
                 <EditUserAttributesForm
                     userAttributes={userAttributes}
                     setUserAttributes={setUserAttributes}
@@ -56,9 +56,11 @@ export default function UserProfile() {
                     editingProfile={editingProfile}
                     setEditingProfile={setEditingProfile}
                 />
-                :
-                <button onClick={() => setEditingProfile(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Edit Profile
+            }
+            {!editingProfile &&
+                <button onClick={() => setEditingProfile(!editingProfile)}
+                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Edit Profile
                 </button>
             }
             <div onClick={signOut} className="cursor-pointer">

@@ -52,16 +52,16 @@ export default function EditUserAttributesForm({
             await updateUserAttributes({
                 userAttributes: {
                     given_name: userAttributes.given_name,
-                    // middle_Name: userAttributes.middle_name,
                     family_name: userAttributes.family_name,
                     email: userAttributes.email,
-                    // gender: userAttributes.gender,
-                    // birthdate: userAttributes.birthdate,
-                    // phoneNumber: userAttributes.phone_number,
-                    // website: userAttributes.website,
-                    // preferred_username: userAttributes.preferred_username,
-                    // picture: userAttributes.picture,
-                    // profile: userAttributes.profile,
+                    middle_name: userAttributes.middle_name? userAttributes.middle_name : '',
+                    gender: userAttributes.gender? userAttributes.gender : '',
+                    birthdate: userAttributes.birthdate? userAttributes.birthdate : '',
+                    phone_number: userAttributes.phone_number? userAttributes.phone_number : '',
+                    website: userAttributes.website? userAttributes.website : '',
+                    preferred_username: userAttributes.preferred_username? userAttributes.preferred_username : '',
+                    picture: userAttributes.picture? userAttributes.picture : '',
+                    profile: userAttributes.profile? userAttributes.profile : '',
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
