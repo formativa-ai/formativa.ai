@@ -17,30 +17,30 @@ export default function UserDetailsform({
     const userTypes = ["Estudiante", "Egresado", "Profesor", "Docente", "Consejero", "Representate de Empresa/Empleador", "Representante de Universidad"];
     const entityTypes = ["Colegio", "Universidad", "Empresa", "Organización"];
     // Country codes array
-    const countryCodes = [
-        {code: "+57", label: "🇨🇴 +57"},
-        {code: "+1", label: "🇺🇸 +1"},
-        // Add more country codes as needed
-    ];
-
-    const [phoneCountryCode, setPhoneCountryCode] = useState("+57");
-    const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
-
-    useEffect(() => {
-        // Parse the existing phone number to separate country code and local number
-        if (userAttributes.phone_number) {
-            const phoneNumber = userAttributes.phone_number;
-            const match = phoneNumber.match(/^(\+\d+)(\d+)$/);
-            if (match) {
-                setPhoneCountryCode(match[1]);
-                setPhoneLocalNumber(match[2]);
-            } else {
-                // Default values if parsing fails
-                setPhoneCountryCode("+57");
-                setPhoneLocalNumber(phoneNumber);
-            }
-        }
-    }, [userAttributes.phone_number]);
+    // const countryCodes = [
+    //     {code: "+57", label: "🇨🇴 +57"},
+    //     {code: "+1", label: "🇺🇸 +1"},
+    //     // Add more country codes as needed
+    // ];
+    //
+    // const [phoneCountryCode, setPhoneCountryCode] = useState("+57");
+    // const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
+    //
+    // useEffect(() => {
+    //     // Parse the existing phone number to separate country code and local number
+    //     if (userAttributes.phone_number) {
+    //         const phoneNumber = userAttributes.phone_number;
+    //         const match = phoneNumber.match(/^(\+\d+)(\d+)$/);
+    //         if (match) {
+    //             setPhoneCountryCode(match[1]);
+    //             setPhoneLocalNumber(match[2]);
+    //         } else {
+    //             // Default values if parsing fails
+    //             setPhoneCountryCode("+57");
+    //             setPhoneLocalNumber(phoneNumber);
+    //         }
+    //     }
+    // }, [userAttributes.phone_number]);
 
 
     return (
@@ -225,7 +225,7 @@ export default function UserDetailsform({
                     </div>
 
                     <div className="col-span-2">
-                        <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-white">
+                        <label htmlFor="userType" className="block text-sm font-medium leading-6 text-white">
                             Tipo de Usuario
                         </label>
                         <div className="mt-2">
@@ -248,7 +248,7 @@ export default function UserDetailsform({
                     </div>
 
                     <div className="col-span-4">
-                        <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+                        <label htmlFor="entitiyName" className="block text-sm font-medium leading-6 text-white">
                             Nombre de Entidad
                         </label>
                         <div className="mt-2">
@@ -258,7 +258,7 @@ export default function UserDetailsform({
                                     {userAttributes.entityType}
                                 </span>
                                 <input
-                                    id="username"
+                                    id="entitiyName"
                                     defaultValue={userAttributes["custom:entityName"]}
                                     onChange={(e) => setUserAttributes({
                                         ...userAttributes,

@@ -1,6 +1,8 @@
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 import Badge from "@/app/_elements/Badges";
 import {StrongInterestsResult} from "@/lib/types/PersonalDataProfile";
+import {useEffect} from "react";
+import {downloadData} from "@aws-amplify/storage";
 
 interface UserProfileDetailsProps {
     userAttributes?: FetchUserAttributesOutput,
@@ -15,6 +17,17 @@ export default function UserProfileDetails({
                                                strongInterests,
                                                setStrongInterests
                                            }: UserProfileDetailsProps) {
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await downloadData({
+                path: "images/profile-picture/random.avif",
+            }).result;
+            console.log(result);
+        };
+        fetchData();
+    }, []);
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-col items-center">
