@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 import {downloadData, getUrl, uploadData, UploadDataWithPathOutput} from "aws-amplify/storage";
 import {NotificationType} from "@/lib/types/NotificationType";
+import Image from "next/image";
 
 interface UserDetailsFormProps {
     userAttributes?: FetchUserAttributesOutput,
@@ -25,30 +26,24 @@ export default function UserDetailsform({
     const userTypes = ["Estudiante", "Egresado", "Profesor", "Docente", "Consejero", "Representate de Empresa/Empleador", "Representante de Universidad"];
     const entityTypes = ["Colegio", "Universidad", "Empresa", "Organización"];
     // Country codes array
-    // const countryCodes = [
-    //     {code: "+57", label: "🇨🇴 +57"},
-    //     {code: "+1", label: "🇺🇸 +1"},
-    //     // Add more country codes as needed
-    // ];
-    //
-    // const [phoneCountryCode, setPhoneCountryCode] = useState("+57");
-    // const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
-    //
-    // useEffect(() => {
-    //     // Parse the existing phone number to separate country code and local number
-    //     if (userAttributes.phone_number) {
-    //         const phoneNumber = userAttributes.phone_number;
-    //         const match = phoneNumber.match(/^(\+\d+)(\d+)$/);
-    //         if (match) {
-    //             setPhoneCountryCode(match[1]);
-    //             setPhoneLocalNumber(match[2]);
-    //         } else {
-    //             // Default values if parsing fails
-    //             setPhoneCountryCode("+57");
-    //             setPhoneLocalNumber(phoneNumber);
-    //         }
-    //     }
-    // }, [userAttributes.phone_number]);
+    const countryCodes = [
+        {code: "+57", label: "🇨🇴 +57"},
+        {code: "+1", label: "🇺🇸 +1"},
+        // Add more country codes as needed
+    ];
+
+    const [phoneCountryCode, setPhoneCountryCode] = useState("+57");
+    const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
+
+
+
+    useEffect(() => {
+        //TODO: add format matching for phone number
+        setUserAttributes({
+            ...userAttributes,
+            phone_number: phoneCountryCode + phoneLocalNumber
+        })
+    }, [phoneCountryCode,phoneLocalNumber]);
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
@@ -82,7 +77,7 @@ export default function UserDetailsform({
     return (
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
             <div>
-                <h2 className="text-base font-semibold leading-7 text-white">Personal Information</h2>
+                <h2 className="text-base font-semibold leading-7 text-white">Información Personal</h2>
                 <p className="mt-1 text-sm leading-6 text-gray-400">
                     Use a permanent address where you can receive mail.
                 </p>
@@ -91,10 +86,12 @@ export default function UserDetailsform({
             <div className="md:col-span-2">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
                     <div className="col-span-full flex items-center gap-x-8">
-                        <img
+                        <Image
                             alt=""
-                            src={userAttributes.picture? profilePictureUrl: '/blank-profile.webp'}
+                            src={userAttributes.picture ? profilePictureUrl : '/blank-profile.webp'}
                             className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
+                            width={96}
+                            height={96}
                         />
                         <div>
                             <button
@@ -190,57 +187,49 @@ export default function UserDetailsform({
                         </div>
                     </div>
 
-                    {/*<div className="col-span-3">*/}
-                    {/*    <label htmlFor="phone-number" className="block text-sm font-medium leading-6 text-white">*/}
-                    {/*        Numero de Telefono*/}
-                    {/*    </label>*/}
-                    {/*    <div className="mt-2">*/}
-                    {/*        /!*<input*!/*/}
-                    {/*        /!*    id="phone-number"*!/*/}
-                    {/*        /!*    defaultValue={userAttributes.phone_number}*!/*/}
-                    {/*        /!*    onChange={(e) => setUserAttributes({*!/*/}
-                    {/*        /!*        ...userAttributes,*!/*/}
-                    {/*        /!*        phone_number: e.target.value*!/*/}
-                    {/*        /!*    })}*!/*/}
-                    {/*        /!*    autoComplete="phone-number"*!/*/}
-                    {/*        /!*    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*!/*/}
-                    {/*        />*!/*/}
-                    {/*        <div className="mt-2 flex">*/}
-                    {/*            <select*/}
-                    {/*                id="country-code"*/}
-                    {/*                value={phoneCountryCode}*/}
-                    {/*                onChange={(e) => {*/}
-                    {/*                    setPhoneCountryCode(e.target.value)*/}
-                    {/*                    // setUserAttributes({*/}
-                    {/*                    //     ...userAttributes,*/}
-                    {/*                    //     phone_number: phoneCountryCode+phoneLocalNumber*/}
-                    {/*                    // })*/}
-                    {/*                }}*/}
-                    {/*                className="block w-20 rounded-l-md border-0 bg-white/5 py-1.5 pl-2 pr-1 text-white text-center shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
-                    {/*            >*/}
-                    {/*                {countryCodes.map((country) => (*/}
-                    {/*                    <option key={country.code} value={country.code}>*/}
-                    {/*                        {country.label}*/}
-                    {/*                    </option>*/}
-                    {/*                ))}*/}
-                    {/*            </select>*/}
-                    {/*            <input*/}
-                    {/*                id="phone-number"*/}
-                    {/*                value={phoneLocalNumber}*/}
-                    {/*                onChange={(e) => {*/}
-                    {/*                    setPhoneLocalNumber(e.target.value)*/}
-                    {/*                    // setUserAttributes({*/}
-                    {/*                    //     ...userAttributes,*/}
-                    {/*                    //     phone_number: phoneCountryCode+phoneLocalNumber*/}
-                    {/*                    // })*/}
-                    {/*                }}*/}
-                    {/*                autoComplete="phone-number"*/}
-                    {/*                className="block w-full rounded-r-md border-0 bg-white/5 py-1.5 pl-2 pr-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
-                    {/*                placeholder="Número de teléfono"*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                    <div className="col-span-3">
+                        <label htmlFor="phone-number" className="block text-sm font-medium leading-6 text-white">
+                            Numero de Telefono
+                        </label>
+                        <div className="mt-2">
+                            {/*<input*/}
+                            {/*    id="phone-number"*/}
+                            {/*    defaultValue={userAttributes.phone_number}*/}
+                            {/*    onChange={(e) => setUserAttributes({*/}
+                            {/*        ...userAttributes,*/}
+                            {/*        phone_number: e.target.value*/}
+                            {/*    })}*/}
+                            {/*    autoComplete="phone-number"*/}
+                            {/*    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
+                            {/*/>*!/*/}
+                            <div className="mt-2 flex">
+                                <select
+                                    id="country-code"
+                                    value={phoneCountryCode}
+                                    onChange={(e) => {
+                                        setPhoneCountryCode(e.target.value)
+                                    }}
+                                    className="block w-20 rounded-l-md border-0 bg-white/5 py-1.5 pl-2 pr-2 text-white text-center shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                                >
+                                    {countryCodes.map((country) => (
+                                        <option key={country.code} value={country.code}>
+                                            {country.label}
+                                        </option>
+                                    ))}
+                                </select>
+                                <input
+                                    id="phone-number"
+                                    value={phoneLocalNumber}
+                                    onChange={(e) => {
+                                        setPhoneLocalNumber(e.target.value)
+                                    }}
+                                    autoComplete="phone-number"
+                                    className="block w-full rounded-r-md border-0 bg-white/5 py-1.5 pl-2 pr-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                                    placeholder="Número de teléfono"
+                                />
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="col-span-4">
                         <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
@@ -308,7 +297,7 @@ export default function UserDetailsform({
                                         ["custom:entityName"]: e.target.value
                                     })}
                                     type="text"
-                                    autoComplete="username"
+                                    autoComplete="entitiyName"
                                     className="flex-1 border-0 bg-transparent py-1.5 pl-0.5 text-white focus:ring-0 sm:text-sm sm:leading-6"
                                 />
                             </div>

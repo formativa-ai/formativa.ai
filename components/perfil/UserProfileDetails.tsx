@@ -1,8 +1,9 @@
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 import Badge from "@/app/_elements/Badges";
 import {StrongInterestsResult} from "@/lib/types/PersonalDataProfile";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {downloadData} from "@aws-amplify/storage";
+import Image from "next/image";
 
 interface UserProfileDetailsProps {
     userAttributes?: FetchUserAttributesOutput,
@@ -22,7 +23,13 @@ export default function UserProfileDetails({
             <div className="flex flex-col items-center">
                 <h1 className="text-2xl font-bold">Perfil</h1>
                 <div className="flex flex-col items-center">
-                    <img src={profilePictureUrl? profilePictureUrl: "/blank-profile.webp"} alt="profile" className="rounded-full w-20 h-20"/>
+                    <Image
+                        alt=""
+                        src={userAttributes.picture ? profilePictureUrl : '/blank-profile.webp'}
+                        className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
+                        width={96}
+                        height={96}
+                    />
                     <h2 className="text-lg font-bold">{userAttributes?.given_name} {userAttributes?.family_name}</h2>
                 </div>
                 <div className="flex flex-col items-center">
