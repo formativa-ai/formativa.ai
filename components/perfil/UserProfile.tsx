@@ -52,10 +52,9 @@ export default function UserProfile() {
                 path: userAttributes.picture,
             });
             setProfilePictureUrl(result.url.href);
-            console.log("Fetched Image result URL:", result);
         }
         if(userAttributes.picture)
-            fetchImage().then(r => console.log("Fetched Image result URL:", r));
+            fetchImage();
     }, [userAttributes.picture]);
 
 

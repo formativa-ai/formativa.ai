@@ -88,7 +88,6 @@ export default function EditUserAttributes({
     async function handleUpdateUserAttributes() {
         try {
             validateAttributes()
-            console.log(userAttributes)
             await updateUserAttributes({
                 userAttributes: {
                     given_name: userAttributes.given_name,
@@ -115,7 +114,6 @@ export default function EditUserAttributes({
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
-            console.log(error)
             setNotificationList([...notificationList, {
                 message: error.message,
                 category: 'alert'
@@ -124,7 +122,6 @@ export default function EditUserAttributes({
     }
 
     function handleUpdateUserAttributeNextSteps(output: UpdateUserAttributesOutput) {
-        console.log(output)
         const {
             given_name,
             middle_name,

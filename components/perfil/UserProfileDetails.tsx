@@ -25,7 +25,7 @@ export default function UserProfileDetails({
                 <div className="flex flex-col items-center">
                     <Image
                         alt=""
-                        src={userAttributes.picture ? profilePictureUrl : '/blank-profile.webp'}
+                        src={profilePictureUrl? profilePictureUrl : '/blank-profile.webp'}
                         className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
                         width={96}
                         height={96}
