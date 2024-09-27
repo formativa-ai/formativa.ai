@@ -11,8 +11,8 @@ Amplify.configure(outputs);
 
 export default function Page() {
     return (
-        <main className="flex flex-col min-h-screen text-white">
-            <Header/>
+        <main className="flex flex-col min-h-screen">
+            {/*<Header/>*/}
             <Authenticator variation="modal">
                 <UserProfile/>
             </Authenticator>

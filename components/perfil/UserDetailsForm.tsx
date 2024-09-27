@@ -87,7 +87,7 @@ export default function UserDetailsform({
                     <div className="col-span-full flex items-center gap-x-8">
                         <Image
                             alt={userAttributes.given_name+" "+userAttributes.family_name + " profile picture"}
-                            src={userAttributes.picture ? profilePictureUrl : '/blank-profile.webp'}
+                            src={profilePictureUrl ? profilePictureUrl : '/blank-profile.webp'}
                             className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
                             width={96}
                             height={96}

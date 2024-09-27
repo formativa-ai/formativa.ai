@@ -59,7 +59,7 @@ export default function UserProfile() {
 
 
     return (
-        <main className="mx-10 my-20">
+        <main>
             {editingProfile?
                 <EditUserAttributes
                     profilePictureUrl={profilePictureUrl}
@@ -80,9 +80,6 @@ export default function UserProfile() {
                     setEditingProfile={setEditingProfile}
                     userAttributes={userAttributes}/>
             }
-            <div onClick={signOut} className="cursor-pointer">
-                Sign Out
-            </div>
             <NotificationBanners notificationList={notificationList} setNotificationList={setNotificationList}/>
         </main>)
 }
