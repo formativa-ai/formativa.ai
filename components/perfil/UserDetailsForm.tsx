@@ -78,7 +78,7 @@ export default function UserDetailsform({
             <div>
                 <h2 className="text-base font-semibold leading-7 text-white">Información Personal</h2>
                 <p className="mt-1 text-sm leading-6 text-gray-400">
-                    Use a permanent address where you can receive mail.
+                    Aca puedes actualizar tu información personal.
                 </p>
             </div>
 
@@ -98,7 +98,7 @@ export default function UserDetailsform({
                                 className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
                                 onClick={() => document.getElementById('profile-picture-upload').click()} // on click, trigger the file input below
                             >
-                                Change avatar
+                                Cambiar Imagen
                             </button>
                             <input
                                 type="file"

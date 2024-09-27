@@ -37,7 +37,7 @@ export function PsychometricAssessmentResults({
             <div>
                 <h2 className="text-base font-semibold leading-7 text-white">Perfil Psicometrico</h2>
                 <p className="mt-1 text-sm leading-6 text-gray-400">
-                    Use a permanent address where you can receive mail.
+                    En esta sección puedes actualizar tu perfil psicometrico con tus resultados mas recientes.
                 </p>
             </div>
 
