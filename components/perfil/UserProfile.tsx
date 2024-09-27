@@ -42,7 +42,7 @@ export default function UserProfile() {
         };
 
         fetchUserPoolAttributes();
-    }, []);
+    }, [editingProfile]);
 
 
 

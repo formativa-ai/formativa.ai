@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 import {downloadData, getUrl, uploadData, UploadDataWithPathOutput} from "aws-amplify/storage";
 import {NotificationType} from "@/lib/types/NotificationType";
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import Image from "next/image";
 
 interface UserDetailsFormProps {
@@ -36,14 +37,12 @@ export default function UserDetailsform({
     const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
 
 
-
     useEffect(() => {
-        //TODO: add format matching for phone number
         setUserAttributes({
             ...userAttributes,
-            phone_number: phoneCountryCode + phoneLocalNumber
-        })
-    }, [phoneCountryCode,phoneLocalNumber]);
+            phone_number: phoneCountryCode+phoneLocalNumber
+        });
+    }, [phoneCountryCode, phoneLocalNumber]);
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
@@ -192,16 +191,6 @@ export default function UserDetailsform({
                             Numero de Telefono
                         </label>
                         <div className="mt-2">
-                            {/*<input*/}
-                            {/*    id="phone-number"*/}
-                            {/*    defaultValue={userAttributes.phone_number}*/}
-                            {/*    onChange={(e) => setUserAttributes({*/}
-                            {/*        ...userAttributes,*/}
-                            {/*        phone_number: e.target.value*/}
-                            {/*    })}*/}
-                            {/*    autoComplete="phone-number"*/}
-                            {/*    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
-                            {/*/>*!/*/}
                             <div className="mt-2 flex">
                                 <select
                                     id="country-code"

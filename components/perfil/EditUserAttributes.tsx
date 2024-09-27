@@ -13,6 +13,9 @@ import UserDetailsForm from "@/components/perfil/UserDetailsForm";
 import ChangePasswordForm from "@/components/perfil/ChangePasswordForm";
 import ConfirmationCodeModal from "@/components/perfil/CodeConfirmationModal";
 import {PsychometricAssessmentResults} from "@/components/perfil/PsychometricAssessmentResults";
+import {parsePhoneNumberFromString} from "libphonenumber-js";
+import {deleteUser} from 'aws-amplify/auth';
+
 
 interface EditUserAttributesFormProps {
     notificationList?: NotificationType[],
@@ -51,8 +54,36 @@ export default function EditUserAttributes({
         }]);
     }
 
+    async function handleDeleteUser() {
+        try {
+            await deleteUser();
+        } catch (error) {
+            setNotificationList([...notificationList, {
+                message: "No se pudo eliminar la cuenta. Por favor, inténtalo mas tarde.",
+                category: 'alert'
+            }]);
+        }
+    }
+
+    function validateAttributes() {
+        if (!userAttributes.given_name || !userAttributes.family_name || !userAttributes.email) {
+            throw new Error("Porfavor ingrese su nombre, apellido y correo electrónico.");
+        }
+
+        try{
+            const parsedNumber = parsePhoneNumberFromString(userAttributes.phone_number);
+
+            if (parsedNumber && !parsedNumber.isValid()) {
+                throw new Error();
+            }
+        } catch (error) {
+            throw new Error("Porfavor ingrese un número de teléfono válido.");
+        }
+    }
+
     async function handleUpdateUserAttributes() {
         try {
+            validateAttributes()
             console.log(userAttributes)
             await updateUserAttributes({
                 userAttributes: {
@@ -82,7 +113,7 @@ export default function EditUserAttributes({
         } catch (error) {
             console.log(error)
             setNotificationList([...notificationList, {
-                message: "Failed to update attribute. Please try again.",
+                message: error.message,
                 category: 'alert'
             }]);
         }
@@ -159,7 +190,7 @@ export default function EditUserAttributes({
             />
             {/*<ChangePasswordForm />*/}
             {/*<ManageOtherSessionsForm/>*/}
-            <DeleteAccountForm/>
+            <DeleteAccountForm handleDeleteUser={handleDeleteUser}/>
             <ConfirmationCodeModal
                 isOpen={showConfirmationCodeModal}
                 onClose={() => setShowConfirmationCodeModal(false)}
@@ -171,7 +202,11 @@ export default function EditUserAttributes({
 }
 
 
-function DeleteAccountForm() {
+interface DeleteAccountFormProps {
+    handleDeleteUser?: () => Promise<void>
+}
+
+function DeleteAccountForm({handleDeleteUser}: DeleteAccountFormProps) {
     return (
         <div className="mt-20">
             <p className="text-center font-mono font-bold text-red-800">Zona de Peligro</p>
@@ -189,6 +224,7 @@ function DeleteAccountForm() {
                 <div className="flex items-start md:col-span-2">
                     <button
                         type="submit"
+                        onClick={handleDeleteUser}
                         className="rounded-md border-2 border-red-500 bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"
                     >
                         Yes, delete my account
@@ -198,3 +234,4 @@ function DeleteAccountForm() {
         </div>
     );
 }
+
