@@ -48,7 +48,7 @@ export default function EditUserAttributes({
 
     const handleSuccessfulProfileUpdate = () => {
         setEditingProfile(false);
-        setNotificationList([...notificationList, {
+        setNotificationList([{
             message: `Tu perfil fue actualizado exitosamente.`,
             category: 'success'
         }]);
@@ -68,6 +68,10 @@ export default function EditUserAttributes({
     function validateAttributes() {
         if (!userAttributes.given_name || !userAttributes.family_name || !userAttributes.email) {
             throw new Error("Porfavor ingrese su nombre, apellido y correo electrónico.");
+        }
+
+        if(userAttributes.phone_number && userAttributes.phone_number.length < "+123".length){
+            throw new Error("Porfavor ingrese un número de teléfono válido.");
         }
 
         try{
