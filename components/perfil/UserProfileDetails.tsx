@@ -7,33 +7,22 @@ import {downloadData} from "@aws-amplify/storage";
 interface UserProfileDetailsProps {
     userAttributes?: FetchUserAttributesOutput,
     setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
-    strongInterests?: StrongInterestsResult,
-    setStrongInterests?: (value: (((prevState: StrongInterestsResult) => StrongInterestsResult) | StrongInterestsResult)) => void
+    profilePictureUrl?: string
 }
 
 export default function UserProfileDetails({
                                                userAttributes,
                                                setEditingProfile,
-                                               strongInterests,
-                                               setStrongInterests
+                                               profilePictureUrl
                                            }: UserProfileDetailsProps) {
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await downloadData({
-                path: "images/profile-picture/random.avif",
-            }).result;
-            console.log(result);
-        };
-        fetchData();
-    }, []);
 
     return (
         <div className="flex flex-col">
             <div className="flex flex-col items-center">
                 <h1 className="text-2xl font-bold">Perfil</h1>
                 <div className="flex flex-col items-center">
-                    <img src={userAttributes?.profile} alt="profile" className="rounded-full w-20 h-20"/>
+                    <img src={profilePictureUrl? profilePictureUrl: "/blank-profile.webp"} alt="profile" className="rounded-full w-20 h-20"/>
                     <h2 className="text-lg font-bold">{userAttributes?.given_name} {userAttributes?.family_name}</h2>
                 </div>
                 <div className="flex flex-col items-center">

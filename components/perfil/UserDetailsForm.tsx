@@ -1,18 +1,26 @@
 import React, {useEffect, useState} from "react";
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
+import {downloadData, getUrl, uploadData, UploadDataWithPathOutput} from "aws-amplify/storage";
+import {NotificationType} from "@/lib/types/NotificationType";
 
 interface UserDetailsFormProps {
     userAttributes?: FetchUserAttributesOutput,
     setUserAttributes?: (value: (((prevState: FetchUserAttributesOutput) => FetchUserAttributesOutput) | FetchUserAttributesOutput)) => void,
     handleUpdateUserAttributes?: () => Promise<void>,
-    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void
+    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+    setNotificationList?: (value: (((prevState: NotificationType[]) => NotificationType[]) | NotificationType[])) => void,
+    notificationList?: NotificationType[],
+    profilePictureUrl?: string
 }
 
 export default function UserDetailsform({
                                             userAttributes,
                                             setUserAttributes,
                                             handleUpdateUserAttributes,
-                                            setEditingProfile
+                                            setEditingProfile,
+                                            setNotificationList,
+                                            notificationList,
+                                            profilePictureUrl
                                         }: UserDetailsFormProps) {
     const userTypes = ["Estudiante", "Egresado", "Profesor", "Docente", "Consejero", "Representate de Empresa/Empleador", "Representante de Universidad"];
     const entityTypes = ["Colegio", "Universidad", "Empresa", "Organización"];
@@ -42,6 +50,34 @@ export default function UserDetailsform({
     //     }
     // }, [userAttributes.phone_number]);
 
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            try {
+                console.log("path in user attributes BEFORE", userAttributes.picture);
+                const result = await uploadData({
+                    path: `images/profile-picture/${file.name}+${new Date().getTime()}`,
+                    data: file,
+                    options: {
+                        contentType: "image/png", // contentType is optional
+                    },
+                }).result
+                console.log("Image upload result: ", result);
+                setUserAttributes({
+                    ...userAttributes,
+                    picture: result.path
+                })
+                console.log("path in user attributes AFTER", userAttributes.picture);
+            } catch (error) {
+                setNotificationList([...notificationList, {
+                    message: `Hubo un error subiendo la imagen.`,
+                    category: 'error'
+                }]);
+            }
+        }
+    }
+
 
     return (
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
@@ -57,16 +93,23 @@ export default function UserDetailsform({
                     <div className="col-span-full flex items-center gap-x-8">
                         <img
                             alt=""
-                            src={userAttributes.picture ? userAttributes.picture : 'https://via.placeholder.com/150'}
+                            src={userAttributes.picture? profilePictureUrl: '/blank-profile.webp'}
                             className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
                         />
                         <div>
                             <button
                                 type="button"
                                 className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+                                onClick={() => document.getElementById('profile-picture-upload').click()} // on click, trigger the file input below
                             >
                                 Change avatar
                             </button>
+                            <input
+                                type="file"
+                                id="profile-picture-upload"
+                                style={{display: 'none'}} //hide the button for this input
+                                onChange={handleImageUpload} // when a file is selected, trigger the handleImageUpload function
+                            />
                             <p className="mt-2 text-xs leading-5 text-gray-400">JPG, GIF or PNG. 1MB max.</p>
                         </div>
                     </div>

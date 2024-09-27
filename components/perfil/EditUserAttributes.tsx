@@ -24,23 +24,24 @@ interface EditUserAttributesFormProps {
     showConfirmationCodeModal?: boolean,
     setShowConfirmationCodeModal?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     editingProfile?: boolean,
-    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void
+    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+    profilePictureUrl?: string
 }
 
 
-
 export default function EditUserAttributes({
-                                                   notificationList,
-                                                   setNotificationList,
-                                                   userAttributes,
-                                                   setUserAttributes,
-                                                   codeDeliveryDetails,
-                                                   setCodeDeliveryDetails,
-                                                   showConfirmationCodeModal,
-                                                   setShowConfirmationCodeModal,
-                                                   editingProfile,
-                                                   setEditingProfile
-                                               }: EditUserAttributesFormProps) {
+                                               notificationList,
+                                               setNotificationList,
+                                               userAttributes,
+                                               setUserAttributes,
+                                               codeDeliveryDetails,
+                                               setCodeDeliveryDetails,
+                                               showConfirmationCodeModal,
+                                               setShowConfirmationCodeModal,
+                                               editingProfile,
+                                               setEditingProfile,
+                                               profilePictureUrl
+                                           }: EditUserAttributesFormProps) {
 
     const handleSuccessfulProfileUpdate = () => {
         setEditingProfile(false);
@@ -66,16 +67,16 @@ export default function EditUserAttributes({
                     preferred_username: userAttributes.preferred_username ? userAttributes.preferred_username : '',
                     picture: userAttributes.picture ? userAttributes.picture : '',
                     profile: userAttributes.profile ? userAttributes.profile : '',
-                    "custom:entityType": userAttributes["custom:entityType"]? userAttributes["custom:entityType"] : '',
-                    "custom:entityName": userAttributes["custom:entityName"]? userAttributes["custom:entityName"] : '',
-                    "custom:personalityType": userAttributes["custom:personalityType"]? userAttributes["custom:personalityType"] : '',
-                    "custom:userType": userAttributes["custom:userType"]? userAttributes["custom:userType"] : 'Estudiante',
-                    "custom:realistic": userAttributes["custom:realistic"]? userAttributes["custom:realistic"] : '0',
-                    "custom:investigative": userAttributes["custom:investigative"]? userAttributes["custom:investigative"] : '0',
-                    "custom:artistic": userAttributes["custom:artistic"]? userAttributes["custom:artistic"] : '0',
-                    "custom:social": userAttributes["custom:social"]? userAttributes["custom:social"] : '0',
-                    "custom:enterprising": userAttributes["custom:enterprising"]? userAttributes["custom:enterprising"] : '0',
-                    "custom:conventional": userAttributes["custom:conventional"]? userAttributes["custom:conventional"] : '0',
+                    "custom:entityType": userAttributes["custom:entityType"] ? userAttributes["custom:entityType"] : '',
+                    "custom:entityName": userAttributes["custom:entityName"] ? userAttributes["custom:entityName"] : '',
+                    "custom:personalityType": userAttributes["custom:personalityType"] ? userAttributes["custom:personalityType"] : '',
+                    "custom:userType": userAttributes["custom:userType"] ? userAttributes["custom:userType"] : 'Estudiante',
+                    "custom:realistic": userAttributes["custom:realistic"] ? userAttributes["custom:realistic"] : '0',
+                    "custom:investigative": userAttributes["custom:investigative"] ? userAttributes["custom:investigative"] : '0',
+                    "custom:artistic": userAttributes["custom:artistic"] ? userAttributes["custom:artistic"] : '0',
+                    "custom:social": userAttributes["custom:social"] ? userAttributes["custom:social"] : '0',
+                    "custom:enterprising": userAttributes["custom:enterprising"] ? userAttributes["custom:enterprising"] : '0',
+                    "custom:conventional": userAttributes["custom:conventional"] ? userAttributes["custom:conventional"] : '0',
                 },
             }).then(output => handleUpdateUserAttributeNextSteps(output));
         } catch (error) {
@@ -141,22 +142,33 @@ export default function EditUserAttributes({
 
     return (
         <div className="divide-y divide-white/5">
-            <UserDetailsForm setEditingProfile={setEditingProfile} userAttributes={userAttributes} setUserAttributes={setUserAttributes} handleUpdateUserAttributes={handleUpdateUserAttributes} />
-            <PsychometricAssessmentResults setEditingProfile={setEditingProfile} userAttributes={userAttributes} setUserAttributes={setUserAttributes} handleUpdateUserAttributes={handleUpdateUserAttributes} />
+            <UserDetailsForm
+                profilePictureUrl={profilePictureUrl}
+                setNotificationList={setNotificationList}
+                notificationList={notificationList}
+                setEditingProfile={setEditingProfile}
+                userAttributes={userAttributes}
+                setUserAttributes={setUserAttributes}
+                handleUpdateUserAttributes={handleUpdateUserAttributes}
+            />
+            <PsychometricAssessmentResults
+                setEditingProfile={setEditingProfile}
+                userAttributes={userAttributes}
+                setUserAttributes={setUserAttributes}
+                handleUpdateUserAttributes={handleUpdateUserAttributes}
+            />
             {/*<ChangePasswordForm />*/}
             {/*<ManageOtherSessionsForm/>*/}
-            <DeleteAccountForm />
-             <ConfirmationCodeModal
-                 isOpen={showConfirmationCodeModal}
-                 onClose={() => setShowConfirmationCodeModal(false)}
-                 onConfirm={handleConfirmUserAttribute}
-                 codeDeliveryDetails={codeDeliveryDetails}
-             />
+            <DeleteAccountForm/>
+            <ConfirmationCodeModal
+                isOpen={showConfirmationCodeModal}
+                onClose={() => setShowConfirmationCodeModal(false)}
+                onConfirm={handleConfirmUserAttribute}
+                codeDeliveryDetails={codeDeliveryDetails}
+            />
         </div>
     )
 }
-
-
 
 
 function DeleteAccountForm() {
@@ -168,7 +180,8 @@ function DeleteAccountForm() {
                 <div>
                     <h2 className="text-base font-semibold leading-7 text-white">Delete account</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-400">
-                        No longer want to use our service? You can delete your account here. This action is not reversible.
+                        No longer want to use our service? You can delete your account here. This action is not
+                        reversible.
                         All information related to this account will be deleted permanently.
                     </p>
                 </div>
