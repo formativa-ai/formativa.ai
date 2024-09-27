@@ -50,7 +50,6 @@ export default function EditUserAttributes({
         }]);
     }
 
-
     async function handleUpdateUserAttributes() {
         try {
             console.log(userAttributes)

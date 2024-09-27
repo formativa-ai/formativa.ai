@@ -22,6 +22,6 @@ export type StrongInterestsResult = {
 }
 
 export type StrongInterest = {
-    interest: 'Realistic' | 'Investigative' | 'Artistic' | 'Social' | 'Enterprising' | 'Conventional' | null;
+    interest: 'Realistic' | 'Investigative' | 'Artistic' | 'Social' | 'Enterprising' | 'Conventional' | 'Realista' | 'Investigativo' | 'Artistico' | 'Emprendedor' | 'Convencional' | null;
     score: number | null;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 
 interface UserDetailsFormProps {
@@ -16,6 +16,33 @@ export default function UserDetailsform({
                                         }: UserDetailsFormProps) {
     const userTypes = ["Estudiante", "Egresado", "Profesor", "Docente", "Consejero", "Representate de Empresa/Empleador", "Representante de Universidad"];
     const entityTypes = ["Colegio", "Universidad", "Empresa", "Organización"];
+    // Country codes array
+    const countryCodes = [
+        {code: "+57", label: "🇨🇴 +57"},
+        {code: "+1", label: "🇺🇸 +1"},
+        // Add more country codes as needed
+    ];
+
+    const [phoneCountryCode, setPhoneCountryCode] = useState("+57");
+    const [phoneLocalNumber, setPhoneLocalNumber] = useState("");
+
+    useEffect(() => {
+        // Parse the existing phone number to separate country code and local number
+        if (userAttributes.phone_number) {
+            const phoneNumber = userAttributes.phone_number;
+            const match = phoneNumber.match(/^(\+\d+)(\d+)$/);
+            if (match) {
+                setPhoneCountryCode(match[1]);
+                setPhoneLocalNumber(match[2]);
+            } else {
+                // Default values if parsing fails
+                setPhoneCountryCode("+57");
+                setPhoneLocalNumber(phoneNumber);
+            }
+        }
+    }, [userAttributes.phone_number]);
+
+
     return (
         <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
             <div>
@@ -101,7 +128,7 @@ export default function UserDetailsform({
                         </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="col-span-3">
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                             Correo Electronico
                         </label>
@@ -119,6 +146,58 @@ export default function UserDetailsform({
                             />
                         </div>
                     </div>
+
+                    {/*<div className="col-span-3">*/}
+                    {/*    <label htmlFor="phone-number" className="block text-sm font-medium leading-6 text-white">*/}
+                    {/*        Numero de Telefono*/}
+                    {/*    </label>*/}
+                    {/*    <div className="mt-2">*/}
+                    {/*        /!*<input*!/*/}
+                    {/*        /!*    id="phone-number"*!/*/}
+                    {/*        /!*    defaultValue={userAttributes.phone_number}*!/*/}
+                    {/*        /!*    onChange={(e) => setUserAttributes({*!/*/}
+                    {/*        /!*        ...userAttributes,*!/*/}
+                    {/*        /!*        phone_number: e.target.value*!/*/}
+                    {/*        /!*    })}*!/*/}
+                    {/*        /!*    autoComplete="phone-number"*!/*/}
+                    {/*        /!*    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*!/*/}
+                    {/*        />*!/*/}
+                    {/*        <div className="mt-2 flex">*/}
+                    {/*            <select*/}
+                    {/*                id="country-code"*/}
+                    {/*                value={phoneCountryCode}*/}
+                    {/*                onChange={(e) => {*/}
+                    {/*                    setPhoneCountryCode(e.target.value)*/}
+                    {/*                    // setUserAttributes({*/}
+                    {/*                    //     ...userAttributes,*/}
+                    {/*                    //     phone_number: phoneCountryCode+phoneLocalNumber*/}
+                    {/*                    // })*/}
+                    {/*                }}*/}
+                    {/*                className="block w-20 rounded-l-md border-0 bg-white/5 py-1.5 pl-2 pr-1 text-white text-center shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
+                    {/*            >*/}
+                    {/*                {countryCodes.map((country) => (*/}
+                    {/*                    <option key={country.code} value={country.code}>*/}
+                    {/*                        {country.label}*/}
+                    {/*                    </option>*/}
+                    {/*                ))}*/}
+                    {/*            </select>*/}
+                    {/*            <input*/}
+                    {/*                id="phone-number"*/}
+                    {/*                value={phoneLocalNumber}*/}
+                    {/*                onChange={(e) => {*/}
+                    {/*                    setPhoneLocalNumber(e.target.value)*/}
+                    {/*                    // setUserAttributes({*/}
+                    {/*                    //     ...userAttributes,*/}
+                    {/*                    //     phone_number: phoneCountryCode+phoneLocalNumber*/}
+                    {/*                    // })*/}
+                    {/*                }}*/}
+                    {/*                autoComplete="phone-number"*/}
+                    {/*                className="block w-full rounded-r-md border-0 bg-white/5 py-1.5 pl-2 pr-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"*/}
+                    {/*                placeholder="Número de teléfono"*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className="col-span-4">
                         <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
@@ -175,9 +254,9 @@ export default function UserDetailsform({
                         <div className="mt-2">
                             <div
                                 className="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-                      <span className="flex select-none items-center pl-3 text-gray-400 sm:text-sm">
-                        {userAttributes.entityType}
-                      </span>
+                                <span className="flex select-none items-center pl-3 text-gray-400 sm:text-sm">
+                                    {userAttributes.entityType}
+                                </span>
                                 <input
                                     id="username"
                                     defaultValue={userAttributes["custom:entityName"]}

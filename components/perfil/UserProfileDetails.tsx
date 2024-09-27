@@ -1,12 +1,20 @@
 import {FetchUserAttributesOutput} from "aws-amplify/auth";
 import Badge from "@/app/_elements/Badges";
+import {StrongInterestsResult} from "@/lib/types/PersonalDataProfile";
 
 interface UserProfileDetailsProps {
     userAttributes?: FetchUserAttributesOutput,
-    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void
+    setEditingProfile?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+    strongInterests?: StrongInterestsResult,
+    setStrongInterests?: (value: (((prevState: StrongInterestsResult) => StrongInterestsResult) | StrongInterestsResult)) => void
 }
 
-export default function UserProfileDetails({userAttributes, setEditingProfile}: UserProfileDetailsProps) {
+export default function UserProfileDetails({
+                                               userAttributes,
+                                               setEditingProfile,
+                                               strongInterests,
+                                               setStrongInterests
+                                           }: UserProfileDetailsProps) {
     return (
         <div className="flex flex-col">
             <div className="flex flex-col items-center">
@@ -68,5 +76,5 @@ export default function UserProfileDetails({userAttributes, setEditingProfile}: 
                 Editar Perfil
             </button>
         </div>
-)
+    )
 }
