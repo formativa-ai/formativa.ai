@@ -1,19 +1,12 @@
 import React from 'react';
 import {StrongInterest, StrongInterestsResult} from '@/lib/types/PersonalDataProfile';
 
-export default function StrongInterestsChart({ data } : { data: StrongInterestsResult }){
-    const interests: StrongInterest[] = [
-        data?.Realistic,
-        data?.Investigative,
-        data?.Artistic,
-        data?.Social,
-        data?.Enterprising,
-        data?.Conventional
-    ];
+export default function StrongInterestsChart({ interests } : { interests: StrongInterest[] }){
+
 
 
     const scores = interests.map((interest) => interest?.score);
-    const maxScore = 100; //Math.max(...scores, 1); // Avoid division by zero
+    const maxScore = 10; //Math.max(...scores, 1); // Avoid division by zero
 
     const size = 300; // Size of the SVG
     const center = size / 2;

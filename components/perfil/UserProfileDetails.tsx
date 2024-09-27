@@ -4,6 +4,7 @@ import {StrongInterestsResult} from "@/lib/types/PersonalDataProfile";
 import React, {useEffect} from "react";
 import {downloadData} from "@aws-amplify/storage";
 import Image from "next/image";
+import StrongInterestsChart from "@/components/StrongInterestsChart";
 
 interface UserProfileDetailsProps {
     userAttributes?: FetchUserAttributesOutput,
@@ -76,6 +77,16 @@ export default function UserProfileDetails({
                     }
                     {/*<p>{userAttributes?.*/}
                 </div>
+                <StrongInterestsChart
+                    interests={[
+                        {interest: "Realistic", score: parseInt(userAttributes["custom:realistic"])},
+                        {interest: "Investigative", score: parseInt(userAttributes["custom:investigative"])},
+                        {interest: "Artistic", score: parseInt(userAttributes["custom:artistic"])},
+                        {interest: "Social", score: parseInt(userAttributes["custom:social"])},
+                        {interest: "Enterprising", score: parseInt(userAttributes["custom:enterprising"])},
+                        {interest: "Conventional", score: parseInt(userAttributes["custom:conventional"])}
+                    ]}
+                />
             </div>
             <button
                 type="submit"
