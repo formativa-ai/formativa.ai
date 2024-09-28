@@ -11,12 +11,12 @@ Amplify.configure(outputs);
 
 export default function Page() {
     return (
-        <main className="flex flex-col min-h-screen">
+        <main className="flex flex-col min-h-screen bg-gray-100">
             {/*<Header/>*/}
             <Authenticator variation="modal">
                 <UserProfile/>
             </Authenticator>
-            <Footer background={"bg-black"}/>
+            <Footer background={"bg-gray-100"}/>
         </main>
     )
 }

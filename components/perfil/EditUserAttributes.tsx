@@ -177,7 +177,7 @@ export default function EditUserAttributes({
 
 
     return (
-        <div className="divide-y divide-white/5">
+        <div className="divide-y divide-white/5 bg-black">
             <UserDetailsForm
                 profilePictureUrl={profilePictureUrl}
                 setNotificationList={setNotificationList}
