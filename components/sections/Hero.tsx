@@ -7,15 +7,19 @@ import {TypeAnimation} from "react-type-animation";
 import {useScroll, useTransform} from "framer-motion";
 import React from "react";
 import {SparklesCore} from "@/components/ui/sparkles";
-import { useRouter } from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 
+interface HeroProps {
+    handleSubmit?: (e) => void,
+    setUserInput?: (value: (((prevState: string) => string) | string)) => void,
+    userInput?: string
+}
 
-export default function Hero() {
+export default function Hero({handleSubmit, setUserInput, userInput}: HeroProps) {
     const ref = React.useRef(null);
     const [inputDisabled, setInputDisabled] = useState(false);
-    const [userInput, setUserInput] = useState("");
     const router = useRouter()
 
 
@@ -32,7 +36,7 @@ export default function Hero() {
     };
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        router.push(`/maco?initialMessage=${userInput}`);
+        handleSubmit(e)
     };
 
 
@@ -54,7 +58,8 @@ export default function Hero() {
                 ¡Preguntale lo que quieras!
             </h2>
             <p className="mb-20 text-center text-slate-400 relative">
-                Maco es tu asistente personal, guía y consejero para encontrar y aplicar a becas, inscribirte en cursos de tecnología, y mucho más.
+                Maco es tu asistente personal, guía y consejero para encontrar y aplicar a becas, inscribirte en cursos
+                de tecnología, y mucho más.
             </p>
             <PlaceholdersAndVanishInput
                 placeholders={placeholders}
