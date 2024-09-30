@@ -11,6 +11,9 @@ import Markdown from "react-markdown";
 // @ts-expect-error - no types for this yet
 import {AssistantStreamEvent} from "openai/resources/beta/assistants/assistants";
 import {RequiredActionFunctionToolCall} from "openai/resources/beta/threads/runs/runs";
+import {Authenticator} from "@aws-amplify/ui-react";
+import {Amplify} from "aws-amplify";
+import outputs from "@/amplify_outputs.json";
 
 type MessageProps = {
     role: "user" | "assistant" | "code";
@@ -291,21 +294,37 @@ function MacoChat({
                       setUserInput
                   }: MacoChatProps) {
 
+    const [requireAuth, setRequireAuth] = useState(false);
+    Amplify.configure(outputs);
+
     return (
         <main className={styles.main}>
             <div className={styles.container}>
                 <HeaderDark/>
-                <Suspense>
-                    <Chat
-                        setUserInput={setUserInput}
-                        inputDisabled={inputDisabled}
-                        userInput={userInput}
-                        handleSubmit={handleSubmit}
-                        messagesEndRef={messagesEndRef}
-                        messages={messages}
-                        setMessages={setMessages}
-                    />
-                </Suspense>
+                {messages.length > 4?
+                    <Authenticator>
+                        <Chat
+                            requireAuth={requireAuth}
+                            setUserInput={setUserInput}
+                            inputDisabled={inputDisabled}
+                            userInput={userInput}
+                            handleSubmit={handleSubmit}
+                            messagesEndRef={messagesEndRef}
+                            messages={messages}
+                            setMessages={setMessages}
+                        />
+                    </Authenticator>
+                    :<Chat
+                    requireAuth={requireAuth}
+                    setUserInput={setUserInput}
+                    inputDisabled={inputDisabled}
+                    userInput={userInput}
+                    handleSubmit={handleSubmit}
+                    messagesEndRef={messagesEndRef}
+                    messages={messages}
+                    setMessages={setMessages}
+                />
+                }
             </div>
         </main>
     )

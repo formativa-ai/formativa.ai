@@ -12,7 +12,6 @@ export default function Home() {
       <main className="flex flex-col min-h-screen">
           <Header/>
           <Maco />
-          <Footer background={"bg-black"}/>
       </main>
   );
 }

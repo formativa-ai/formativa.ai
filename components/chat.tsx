@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect, useRef} from "react";
+import React from "react";
 import styles from "./chat.module.css";
 import Markdown from "react-markdown";
 import {RequiredActionFunctionToolCall} from "openai/resources/beta/threads/runs/runs";
@@ -58,7 +58,8 @@ type ChatProps = {
     handleSubmit?: any,
     userInput?: string,
     inputDisabled?: boolean,
-    setUserInput?: (value: (((prevState: string) => string) | string)) => void
+    setUserInput?: (value: (((prevState: string) => string) | string)) => void,
+    requireAuth?: boolean
 };
 
 const Chat = ({
@@ -68,7 +69,8 @@ const Chat = ({
                   handleSubmit,
                   userInput,
                   inputDisabled,
-                  setUserInput
+                  setUserInput,
+                  requireAuth
               }: ChatProps) => {
 
     return (

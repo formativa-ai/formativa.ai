@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils/cn";
 
 export function PlaceholdersAndVanishInput({
@@ -9,11 +9,13 @@ export function PlaceholdersAndVanishInput({
                                                onChange,
                                                onSubmit,
                                                inputDisabled,
+                                               setInputDisabled
                                            }: {
-    placeholders: string[];
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-    inputDisabled: boolean;
+    placeholders: string[],
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+    inputDisabled: boolean,
+    setInputDisabled?: (value: (((prevState: boolean) => boolean) | boolean)) => void
 }) {
     const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 

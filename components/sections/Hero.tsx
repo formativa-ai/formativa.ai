@@ -7,7 +7,6 @@ import {TypeAnimation} from "react-type-animation";
 import {useScroll, useTransform} from "framer-motion";
 import React from "react";
 import {SparklesCore} from "@/components/ui/sparkles";
-import {useRouter} from 'next/navigation';
 import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 
@@ -18,9 +17,7 @@ interface HeroProps {
 }
 
 export default function Hero({handleSubmit, setUserInput, userInput}: HeroProps) {
-    const ref = React.useRef(null);
     const [inputDisabled, setInputDisabled] = useState(false);
-    const router = useRouter()
 
 
     const placeholders = [
@@ -66,6 +63,7 @@ export default function Hero({handleSubmit, setUserInput, userInput}: HeroProps)
                 onChange={handleChange}
                 onSubmit={onSubmit}
                 inputDisabled={inputDisabled}
+                setInputDisabled={setInputDisabled}
             />
             <div className="w-[40rem] h-40 relative">
                 {/* Gradients */}
