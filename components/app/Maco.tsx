@@ -301,20 +301,7 @@ function MacoChat({
         <main className={styles.main}>
             <div className={styles.container}>
                 <HeaderDark/>
-                {messages.length > 4?
-                    <Authenticator>
-                        <Chat
-                            requireAuth={requireAuth}
-                            setUserInput={setUserInput}
-                            inputDisabled={inputDisabled}
-                            userInput={userInput}
-                            handleSubmit={handleSubmit}
-                            messagesEndRef={messagesEndRef}
-                            messages={messages}
-                            setMessages={setMessages}
-                        />
-                    </Authenticator>
-                    :<Chat
+                <Chat
                     requireAuth={requireAuth}
                     setUserInput={setUserInput}
                     inputDisabled={inputDisabled}
@@ -324,7 +311,6 @@ function MacoChat({
                     messages={messages}
                     setMessages={setMessages}
                 />
-                }
             </div>
         </main>
     )
