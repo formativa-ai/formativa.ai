@@ -52,20 +52,6 @@ export const getPersonalDataProfile = /* GraphQL */ `
         nextToken
         __typename
       }
-      strongInterestsResult {
-        artistic
-        conventional
-        createdAt
-        enterprising
-        id
-        investigative
-        owner
-        personalDataProfileId
-        realistic
-        social
-        updatedAt
-        __typename
-      }
       updatedAt
       userType
       __typename
@@ -103,6 +89,19 @@ export const getPersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const getProgramaParticular = /* GraphQL */ `
+  query GetProgramaParticular($id: ID!) {
+    getProgramaParticular(id: $id) {
+      createdAt
+      id
+      nombreDePrograma
+      owner
+      personalityType
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const getSkill = /* GraphQL */ `
   query GetSkill($id: ID!) {
     getSkill(id: $id) {
@@ -114,34 +113,6 @@ export const getSkill = /* GraphQL */ `
       id
       owner
       skillName
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const getStrongInterestsResult = /* GraphQL */ `
-  query GetStrongInterestsResult($id: ID!) {
-    getStrongInterestsResult(id: $id) {
-      artistic
-      conventional
-      createdAt
-      enterprising
-      id
-      investigative
-      owner
-      personalDataProfile {
-        createdAt
-        id
-        owner
-        personalityType
-        picture
-        updatedAt
-        userType
-        __typename
-      }
-      personalDataProfileId
-      realistic
-      social
       updatedAt
       __typename
     }
@@ -240,6 +211,35 @@ export const listPersonalDataProfiles = /* GraphQL */ `
     }
   }
 `;
+export const listProgramaParticulars = /* GraphQL */ `
+  query ListProgramaParticulars(
+    $filter: ModelProgramaParticularFilterInput
+    $id: ID
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listProgramaParticulars(
+      filter: $filter
+      id: $id
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        personalityType
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const listSkills = /* GraphQL */ `
   query ListSkills(
     $filter: ModelSkillFilterInput
@@ -252,36 +252,6 @@ export const listSkills = /* GraphQL */ `
         id
         owner
         skillName
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const listStrongInterestsResults = /* GraphQL */ `
-  query ListStrongInterestsResults(
-    $filter: ModelStrongInterestsResultFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listStrongInterestsResults(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        artistic
-        conventional
-        createdAt
-        enterprising
-        id
-        investigative
-        owner
-        personalDataProfileId
-        realistic
-        social
         updatedAt
         __typename
       }

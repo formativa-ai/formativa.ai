@@ -51,7 +51,7 @@ export default function ChatUpdateForm(props) {
   }, [idProp, chatModelProp]);
   React.useEffect(resetStateValues, [chatRecord]);
   const validations = {
-    threadId: [],
+    threadId: [{ type: "Required" }],
     owner: [],
   };
   const runValidationTasks = async (
@@ -80,7 +80,7 @@ export default function ChatUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          threadId: threadId ?? null,
+          threadId,
           owner: owner ?? null,
         };
         const validationResponses = await Promise.all(
@@ -135,7 +135,7 @@ export default function ChatUpdateForm(props) {
     >
       <TextField
         label="Thread id"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={threadId}
         onChange={(e) => {

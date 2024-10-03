@@ -30,7 +30,7 @@ export default function ChatCreateForm(props) {
     setErrors({});
   };
   const validations = {
-    threadId: [],
+    threadId: [{ type: "Required" }],
     owner: [],
   };
   const runValidationTasks = async (
@@ -116,7 +116,7 @@ export default function ChatCreateForm(props) {
     >
       <TextField
         label="Thread id"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={threadId}
         onChange={(e) => {

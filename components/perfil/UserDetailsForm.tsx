@@ -15,6 +15,7 @@ interface UserDetailsFormProps {
     profilePictureUrl?: string
 }
 
+//TODO: https://tailwindui.com/components/application-ui/forms/form-layouts
 export default function UserDetailsform({
                                             userAttributes,
                                             setUserAttributes,
@@ -251,7 +252,7 @@ export default function UserDetailsform({
                         </label>
                         <div className="mt-2">
                             <select
-                                id="personalityType"
+                                id="userTypes"
                                 defaultValue={userAttributes["custom:userType"]}
                                 onChange={(e) => setUserAttributes({
                                     ...userAttributes,

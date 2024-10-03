@@ -52,6 +52,32 @@ const schema = a.schema({
         })
         .authorization(allow => [allow.owner()]),
 
+
+    ProgramaParticularPersonalityType: a
+        .model({
+            programaParticularId: a.id().required(),
+            personalityTypeId: a.id().required(),
+            programaParticular: a.belongsTo('ProgramaParticular', 'programaParticularId'),
+            personalityType: a.belongsTo('PersonalityType', 'personalityTypeId'),
+        })
+        .authorization(allow => [allow.owner()]),
+
+    ProgramaParticular: a
+        .model({
+            nombreDePrograma: a.string(),
+            personalityTypes: a.hasMany('ProgramaParticularPersonalityType', 'programaParticularId'),
+            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
+        })
+        .authorization(allow => [allow.owner()]),
+
+    PersonalityType: a
+        .model({
+            personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
+            weigth: a.integer().default(1),
+            programasParticulares: a.hasMany('ProgramaParticularPersonalityType', 'personalityTypeId'),
+            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
+        })
+        .authorization(allow => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

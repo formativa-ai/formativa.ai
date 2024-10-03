@@ -291,6 +291,8 @@ export default function UserProfileDetails({
     )
 }
 
+
+//TODO: https://tailwindui.com/components/application-ui/headings/page-headings
 function ProfileCard({profilePictureUrl, userAttributes}: {profilePictureUrl: string, userAttributes: FetchUserAttributesOutput}) {
     return (
         <div className="grid grid-cols-1 gap-4">

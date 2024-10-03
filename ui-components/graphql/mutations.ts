@@ -61,20 +61,6 @@ export const createPersonalDataProfile = /* GraphQL */ `
         nextToken
         __typename
       }
-      strongInterestsResult {
-        artistic
-        conventional
-        createdAt
-        enterprising
-        id
-        investigative
-        owner
-        personalDataProfileId
-        realistic
-        social
-        updatedAt
-        __typename
-      }
       updatedAt
       userType
       __typename
@@ -115,6 +101,22 @@ export const createPersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const createProgramaParticular = /* GraphQL */ `
+  mutation CreateProgramaParticular(
+    $condition: ModelProgramaParticularConditionInput
+    $input: CreateProgramaParticularInput!
+  ) {
+    createProgramaParticular(condition: $condition, input: $input) {
+      createdAt
+      id
+      nombreDePrograma
+      owner
+      personalityType
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createSkill = /* GraphQL */ `
   mutation CreateSkill(
     $condition: ModelSkillConditionInput
@@ -129,37 +131,6 @@ export const createSkill = /* GraphQL */ `
       id
       owner
       skillName
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createStrongInterestsResult = /* GraphQL */ `
-  mutation CreateStrongInterestsResult(
-    $condition: ModelStrongInterestsResultConditionInput
-    $input: CreateStrongInterestsResultInput!
-  ) {
-    createStrongInterestsResult(condition: $condition, input: $input) {
-      artistic
-      conventional
-      createdAt
-      enterprising
-      id
-      investigative
-      owner
-      personalDataProfile {
-        createdAt
-        id
-        owner
-        personalityType
-        picture
-        updatedAt
-        userType
-        __typename
-      }
-      personalDataProfileId
-      realistic
-      social
       updatedAt
       __typename
     }
@@ -224,20 +195,6 @@ export const deletePersonalDataProfile = /* GraphQL */ `
         nextToken
         __typename
       }
-      strongInterestsResult {
-        artistic
-        conventional
-        createdAt
-        enterprising
-        id
-        investigative
-        owner
-        personalDataProfileId
-        realistic
-        social
-        updatedAt
-        __typename
-      }
       updatedAt
       userType
       __typename
@@ -278,6 +235,22 @@ export const deletePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const deleteProgramaParticular = /* GraphQL */ `
+  mutation DeleteProgramaParticular(
+    $condition: ModelProgramaParticularConditionInput
+    $input: DeleteProgramaParticularInput!
+  ) {
+    deleteProgramaParticular(condition: $condition, input: $input) {
+      createdAt
+      id
+      nombreDePrograma
+      owner
+      personalityType
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const deleteSkill = /* GraphQL */ `
   mutation DeleteSkill(
     $condition: ModelSkillConditionInput
@@ -292,37 +265,6 @@ export const deleteSkill = /* GraphQL */ `
       id
       owner
       skillName
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteStrongInterestsResult = /* GraphQL */ `
-  mutation DeleteStrongInterestsResult(
-    $condition: ModelStrongInterestsResultConditionInput
-    $input: DeleteStrongInterestsResultInput!
-  ) {
-    deleteStrongInterestsResult(condition: $condition, input: $input) {
-      artistic
-      conventional
-      createdAt
-      enterprising
-      id
-      investigative
-      owner
-      personalDataProfile {
-        createdAt
-        id
-        owner
-        personalityType
-        picture
-        updatedAt
-        userType
-        __typename
-      }
-      personalDataProfileId
-      realistic
-      social
       updatedAt
       __typename
     }
@@ -387,20 +329,6 @@ export const updatePersonalDataProfile = /* GraphQL */ `
         nextToken
         __typename
       }
-      strongInterestsResult {
-        artistic
-        conventional
-        createdAt
-        enterprising
-        id
-        investigative
-        owner
-        personalDataProfileId
-        realistic
-        social
-        updatedAt
-        __typename
-      }
       updatedAt
       userType
       __typename
@@ -441,6 +369,22 @@ export const updatePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const updateProgramaParticular = /* GraphQL */ `
+  mutation UpdateProgramaParticular(
+    $condition: ModelProgramaParticularConditionInput
+    $input: UpdateProgramaParticularInput!
+  ) {
+    updateProgramaParticular(condition: $condition, input: $input) {
+      createdAt
+      id
+      nombreDePrograma
+      owner
+      personalityType
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const updateSkill = /* GraphQL */ `
   mutation UpdateSkill(
     $condition: ModelSkillConditionInput
@@ -455,37 +399,6 @@ export const updateSkill = /* GraphQL */ `
       id
       owner
       skillName
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateStrongInterestsResult = /* GraphQL */ `
-  mutation UpdateStrongInterestsResult(
-    $condition: ModelStrongInterestsResultConditionInput
-    $input: UpdateStrongInterestsResultInput!
-  ) {
-    updateStrongInterestsResult(condition: $condition, input: $input) {
-      artistic
-      conventional
-      createdAt
-      enterprising
-      id
-      investigative
-      owner
-      personalDataProfile {
-        createdAt
-        id
-        owner
-        personalityType
-        picture
-        updatedAt
-        userType
-        __typename
-      }
-      personalDataProfileId
-      realistic
-      social
       updatedAt
       __typename
     }
