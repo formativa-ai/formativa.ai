@@ -101,6 +101,26 @@ export const createPersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const createPersonalityType = /* GraphQL */ `
+  mutation CreatePersonalityType(
+    $condition: ModelPersonalityTypeConditionInput
+    $input: CreatePersonalityTypeInput!
+  ) {
+    createPersonalityType(condition: $condition, input: $input) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const createProgramaParticular = /* GraphQL */ `
   mutation CreateProgramaParticular(
     $condition: ModelProgramaParticularConditionInput
@@ -111,7 +131,46 @@ export const createProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createProgramaParticularPersonalityType = /* GraphQL */ `
+  mutation CreateProgramaParticularPersonalityType(
+    $condition: ModelProgramaParticularPersonalityTypeConditionInput
+    $input: CreateProgramaParticularPersonalityTypeInput!
+  ) {
+    createProgramaParticularPersonalityType(
+      condition: $condition
+      input: $input
+    ) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }
@@ -235,6 +294,26 @@ export const deletePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const deletePersonalityType = /* GraphQL */ `
+  mutation DeletePersonalityType(
+    $condition: ModelPersonalityTypeConditionInput
+    $input: DeletePersonalityTypeInput!
+  ) {
+    deletePersonalityType(condition: $condition, input: $input) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const deleteProgramaParticular = /* GraphQL */ `
   mutation DeleteProgramaParticular(
     $condition: ModelProgramaParticularConditionInput
@@ -245,7 +324,46 @@ export const deleteProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteProgramaParticularPersonalityType = /* GraphQL */ `
+  mutation DeleteProgramaParticularPersonalityType(
+    $condition: ModelProgramaParticularPersonalityTypeConditionInput
+    $input: DeleteProgramaParticularPersonalityTypeInput!
+  ) {
+    deleteProgramaParticularPersonalityType(
+      condition: $condition
+      input: $input
+    ) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }
@@ -369,6 +487,26 @@ export const updatePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const updatePersonalityType = /* GraphQL */ `
+  mutation UpdatePersonalityType(
+    $condition: ModelPersonalityTypeConditionInput
+    $input: UpdatePersonalityTypeInput!
+  ) {
+    updatePersonalityType(condition: $condition, input: $input) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const updateProgramaParticular = /* GraphQL */ `
   mutation UpdateProgramaParticular(
     $condition: ModelProgramaParticularConditionInput
@@ -379,7 +517,46 @@ export const updateProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateProgramaParticularPersonalityType = /* GraphQL */ `
+  mutation UpdateProgramaParticularPersonalityType(
+    $condition: ModelProgramaParticularPersonalityTypeConditionInput
+    $input: UpdateProgramaParticularPersonalityTypeInput!
+  ) {
+    updateProgramaParticularPersonalityType(
+      condition: $condition
+      input: $input
+    ) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }

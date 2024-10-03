@@ -101,6 +101,26 @@ export const onCreatePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePersonalityType = /* GraphQL */ `
+  subscription OnCreatePersonalityType(
+    $filter: ModelSubscriptionPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onCreatePersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const onCreateProgramaParticular = /* GraphQL */ `
   subscription OnCreateProgramaParticular(
     $filter: ModelSubscriptionProgramaParticularFilterInput
@@ -111,7 +131,43 @@ export const onCreateProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateProgramaParticularPersonalityType = /* GraphQL */ `
+  subscription OnCreateProgramaParticularPersonalityType(
+    $filter: ModelSubscriptionProgramaParticularPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onCreateProgramaParticularPersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }
@@ -235,6 +291,26 @@ export const onDeletePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const onDeletePersonalityType = /* GraphQL */ `
+  subscription OnDeletePersonalityType(
+    $filter: ModelSubscriptionPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onDeletePersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const onDeleteProgramaParticular = /* GraphQL */ `
   subscription OnDeleteProgramaParticular(
     $filter: ModelSubscriptionProgramaParticularFilterInput
@@ -245,7 +321,43 @@ export const onDeleteProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteProgramaParticularPersonalityType = /* GraphQL */ `
+  subscription OnDeleteProgramaParticularPersonalityType(
+    $filter: ModelSubscriptionProgramaParticularPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onDeleteProgramaParticularPersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }
@@ -369,6 +481,26 @@ export const onUpdatePersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const onUpdatePersonalityType = /* GraphQL */ `
+  subscription OnUpdatePersonalityType(
+    $filter: ModelSubscriptionPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onUpdatePersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const onUpdateProgramaParticular = /* GraphQL */ `
   subscription OnUpdateProgramaParticular(
     $filter: ModelSubscriptionProgramaParticularFilterInput
@@ -379,7 +511,43 @@ export const onUpdateProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateProgramaParticularPersonalityType = /* GraphQL */ `
+  subscription OnUpdateProgramaParticularPersonalityType(
+    $filter: ModelSubscriptionProgramaParticularPersonalityTypeFilterInput
+    $owner: String
+  ) {
+    onUpdateProgramaParticularPersonalityType(filter: $filter, owner: $owner) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }

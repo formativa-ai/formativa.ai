@@ -1,13 +1,7 @@
 /* eslint-disable */
 "use client";
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getProgramaParticular } from "./graphql/queries";
@@ -27,14 +21,10 @@ export default function ProgramaParticularUpdateForm(props) {
   } = props;
   const initialValues = {
     nombreDePrograma: "",
-    personalityType: "",
     owner: "",
   };
   const [nombreDePrograma, setNombreDePrograma] = React.useState(
     initialValues.nombreDePrograma
-  );
-  const [personalityType, setPersonalityType] = React.useState(
-    initialValues.personalityType
   );
   const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
@@ -43,7 +33,6 @@ export default function ProgramaParticularUpdateForm(props) {
       ? { ...initialValues, ...programaParticularRecord }
       : initialValues;
     setNombreDePrograma(cleanValues.nombreDePrograma);
-    setPersonalityType(cleanValues.personalityType);
     setOwner(cleanValues.owner);
     setErrors({});
   };
@@ -66,7 +55,6 @@ export default function ProgramaParticularUpdateForm(props) {
   React.useEffect(resetStateValues, [programaParticularRecord]);
   const validations = {
     nombreDePrograma: [],
-    personalityType: [],
     owner: [],
   };
   const runValidationTasks = async (
@@ -96,7 +84,6 @@ export default function ProgramaParticularUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           nombreDePrograma: nombreDePrograma ?? null,
-          personalityType: personalityType ?? null,
           owner: owner ?? null,
         };
         const validationResponses = await Promise.all(
@@ -159,7 +146,6 @@ export default function ProgramaParticularUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               nombreDePrograma: value,
-              personalityType,
               owner,
             };
             const result = onChange(modelFields);
@@ -175,113 +161,6 @@ export default function ProgramaParticularUpdateForm(props) {
         hasError={errors.nombreDePrograma?.hasError}
         {...getOverrideProps(overrides, "nombreDePrograma")}
       ></TextField>
-      <SelectField
-        label="Personality type"
-        placeholder="Please select an option"
-        isDisabled={false}
-        value={personalityType}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              nombreDePrograma,
-              personalityType: value,
-              owner,
-            };
-            const result = onChange(modelFields);
-            value = result?.personalityType ?? value;
-          }
-          if (errors.personalityType?.hasError) {
-            runValidationTasks("personalityType", value);
-          }
-          setPersonalityType(value);
-        }}
-        onBlur={() => runValidationTasks("personalityType", personalityType)}
-        errorMessage={errors.personalityType?.errorMessage}
-        hasError={errors.personalityType?.hasError}
-        {...getOverrideProps(overrides, "personalityType")}
-      >
-        <option
-          children="Intj"
-          value="INTJ"
-          {...getOverrideProps(overrides, "personalityTypeoption0")}
-        ></option>
-        <option
-          children="Intp"
-          value="INTP"
-          {...getOverrideProps(overrides, "personalityTypeoption1")}
-        ></option>
-        <option
-          children="Entj"
-          value="ENTJ"
-          {...getOverrideProps(overrides, "personalityTypeoption2")}
-        ></option>
-        <option
-          children="Entp"
-          value="ENTP"
-          {...getOverrideProps(overrides, "personalityTypeoption3")}
-        ></option>
-        <option
-          children="Infj"
-          value="INFJ"
-          {...getOverrideProps(overrides, "personalityTypeoption4")}
-        ></option>
-        <option
-          children="Infp"
-          value="INFP"
-          {...getOverrideProps(overrides, "personalityTypeoption5")}
-        ></option>
-        <option
-          children="Enfj"
-          value="ENFJ"
-          {...getOverrideProps(overrides, "personalityTypeoption6")}
-        ></option>
-        <option
-          children="Enfp"
-          value="ENFP"
-          {...getOverrideProps(overrides, "personalityTypeoption7")}
-        ></option>
-        <option
-          children="Istj"
-          value="ISTJ"
-          {...getOverrideProps(overrides, "personalityTypeoption8")}
-        ></option>
-        <option
-          children="Isfj"
-          value="ISFJ"
-          {...getOverrideProps(overrides, "personalityTypeoption9")}
-        ></option>
-        <option
-          children="Estj"
-          value="ESTJ"
-          {...getOverrideProps(overrides, "personalityTypeoption10")}
-        ></option>
-        <option
-          children="Esfj"
-          value="ESFJ"
-          {...getOverrideProps(overrides, "personalityTypeoption11")}
-        ></option>
-        <option
-          children="Istp"
-          value="ISTP"
-          {...getOverrideProps(overrides, "personalityTypeoption12")}
-        ></option>
-        <option
-          children="Isfp"
-          value="ISFP"
-          {...getOverrideProps(overrides, "personalityTypeoption13")}
-        ></option>
-        <option
-          children="Estp"
-          value="ESTP"
-          {...getOverrideProps(overrides, "personalityTypeoption14")}
-        ></option>
-        <option
-          children="Esfp"
-          value="ESFP"
-          {...getOverrideProps(overrides, "personalityTypeoption15")}
-        ></option>
-      </SelectField>
       <TextField
         label="Owner"
         isRequired={false}
@@ -292,7 +171,6 @@ export default function ProgramaParticularUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               nombreDePrograma,
-              personalityType,
               owner: value,
             };
             const result = onChange(modelFields);

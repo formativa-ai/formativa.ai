@@ -73,7 +73,7 @@ const schema = a.schema({
     PersonalityType: a
         .model({
             personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
-            weigth: a.integer().default(1),
+            weight: a.integer().default(1),
             programasParticulares: a.hasMany('ProgramaParticularPersonalityType', 'personalityTypeId'),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
         })

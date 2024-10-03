@@ -65,7 +65,6 @@ export default function CreateProgramaCurricularForm() {
 
         const { errors, data: programaCreado } = await client.models.ProgramaParticular.create({
             nombreDePrograma: programaCurricular.nombreDePrograma,
-            personalityType: programaCurricular.personalityType,
         })
         if (errors) {
             console.error(errors)

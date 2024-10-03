@@ -89,6 +89,23 @@ export const getPersonalDataProfileSkills = /* GraphQL */ `
     }
   }
 `;
+export const getPersonalityType = /* GraphQL */ `
+  query GetPersonalityType($id: ID!) {
+    getPersonalityType(id: $id) {
+      createdAt
+      id
+      owner
+      personalityType
+      programasParticulares {
+        nextToken
+        __typename
+      }
+      updatedAt
+      weigth
+      __typename
+    }
+  }
+`;
 export const getProgramaParticular = /* GraphQL */ `
   query GetProgramaParticular($id: ID!) {
     getProgramaParticular(id: $id) {
@@ -96,7 +113,40 @@ export const getProgramaParticular = /* GraphQL */ `
       id
       nombreDePrograma
       owner
-      personalityType
+      personalityTypes {
+        nextToken
+        __typename
+      }
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const getProgramaParticularPersonalityType = /* GraphQL */ `
+  query GetProgramaParticularPersonalityType($id: ID!) {
+    getProgramaParticularPersonalityType(id: $id) {
+      createdAt
+      id
+      owner
+      personalityType {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      personalityTypeId
+      programaParticular {
+        createdAt
+        id
+        nombreDePrograma
+        owner
+        updatedAt
+        __typename
+      }
+      programaParticularId
       updatedAt
       __typename
     }
@@ -211,27 +261,72 @@ export const listPersonalDataProfiles = /* GraphQL */ `
     }
   }
 `;
+export const listPersonalityTypes = /* GraphQL */ `
+  query ListPersonalityTypes(
+    $filter: ModelPersonalityTypeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPersonalityTypes(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        createdAt
+        id
+        owner
+        personalityType
+        updatedAt
+        weigth
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const listProgramaParticularPersonalityTypes = /* GraphQL */ `
+  query ListProgramaParticularPersonalityTypes(
+    $filter: ModelProgramaParticularPersonalityTypeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProgramaParticularPersonalityTypes(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        createdAt
+        id
+        owner
+        personalityTypeId
+        programaParticularId
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const listProgramaParticulars = /* GraphQL */ `
   query ListProgramaParticulars(
     $filter: ModelProgramaParticularFilterInput
-    $id: ID
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
     listProgramaParticulars(
       filter: $filter
-      id: $id
       limit: $limit
       nextToken: $nextToken
-      sortDirection: $sortDirection
     ) {
       items {
         createdAt
         id
         nombreDePrograma
         owner
-        personalityType
         updatedAt
         __typename
       }
