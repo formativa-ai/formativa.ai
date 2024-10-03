@@ -6,25 +6,9 @@ const schema = a.schema({
     PersonalDataProfile: a
         .model({
             picture: a.string(),
-            strongInterestsResult: a.hasOne('StrongInterestsResult', 'personalDataProfileId'),
             personalityType: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
             userType: a.enum(['STUDENT', 'TEACHER', 'EMPLOYER']),
             skills: a.hasMany('PersonalDataProfileSkills', 'personalDataProfileId'),
-            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])]) // this prevents the user from assigning this entry to another user
-        })
-        .authorization(allow => [allow.owner()]),
-
-    // StrongInterestResult object model to store the result of the Strong Interest Inventory test
-    StrongInterestsResult: a
-        .model({
-            personalDataProfileId: a.id().required(),
-            realistic: a.integer(),
-            investigative: a.integer(),
-            artistic: a.integer(),
-            social: a.integer(),
-            enterprising: a.integer(),
-            conventional: a.integer(),
-            personalDataProfile: a.belongsTo('PersonalDataProfile', 'personalDataProfileId'),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])]) // this prevents the user from assigning this entry to another user
         })
         .authorization(allow => [allow.owner()]),
@@ -51,7 +35,7 @@ const schema = a.schema({
     // Chat object model to store Messages in a thread, identified by chatId
     Chat: a
         .model({
-            threadId: a.string(),
+            threadId: a.string().required(),
             messages: a.hasMany('Message', 'chatId'),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
         })
@@ -67,6 +51,7 @@ const schema = a.schema({
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
         })
         .authorization(allow => [allow.owner()]),
+
 });
 
 export type Schema = ClientSchema<typeof schema>;

@@ -14,6 +14,11 @@ import {RequiredActionFunctionToolCall} from "openai/resources/beta/threads/runs
 import {Authenticator} from "@aws-amplify/ui-react";
 import {Amplify} from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
+import { generateClient } from 'aws-amplify/data';
+import { type Schema } from '@/amplify/data/resource';
+
+Amplify.configure(outputs);
+const client = generateClient<Schema>();
 
 type MessageProps = {
     role: "user" | "assistant" | "code";
@@ -63,14 +68,22 @@ export default function Maco() {
     const [messages, setMessages] = useState([]);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [threadId, setThreadId] = useState("");
+    const [chat, setChat] = useState({id: ""});
 
     // automatically scroll to bottom of chat
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({behavior: "smooth"});
     };
+
+    const getMessages = async () => {
+        const { data: chats } = await client.models.Chat.list();
+        console.log("Query: ",chats);
+    }
+
     useEffect(() => {
         scrollToBottom();
+        getMessages().then(r => console.log(r));
     }, [messages]);
 
     // create a new threadID when chat component created
@@ -82,8 +95,22 @@ export default function Maco() {
             const data = await res.json();
             setThreadId(data.threadId);
         };
+
         createThread();
     }, []);
+
+    useEffect(() => {
+        if(!threadId || threadId === "") return;
+
+        const createChatInDataBase = async () => {
+            const { errors, data: newChat } = await client.models.Chat.create({
+                threadId: threadId,
+            })
+            setChat({id: newChat.id});
+            console.log("New Chat: ", newChat);
+        };
+        createChatInDataBase();
+    }, [threadId]);
 
     const sendMessage = async (text) => {
         const response = await fetch(
@@ -178,6 +205,7 @@ export default function Maco() {
 
     // handleRunCompleted - re-enable the input form
     const handleRunCompleted = () => {
+        // handleAddMessageToDB({role: "assistant", text: messages[messages.length - 1]?.text});
         setInputDisabled(false);
     };
 
@@ -241,14 +269,25 @@ export default function Maco() {
 
     }
 
+    const handleAddMessageToDB = async (newMessage: { role: string; text: string }) => {
+        const { data: dbMessage } = await client.models.Message.create({
+            chatId: chat.id,
+            content: newMessage.text,
+            role: newMessage.role
+        });
+        console.log("New Message: ", dbMessage);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!userInput.trim()) return;
         sendMessage(userInput);
+        let newMessage = {role: "user", text: userInput};
         setMessages((prevMessages) => [
             ...prevMessages,
-            {role: "user", text: userInput},
+            newMessage,
         ]);
+        handleAddMessageToDB(newMessage);
         setUserInput("");
         setInputDisabled(true);
         scrollToBottom();
