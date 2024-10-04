@@ -28,7 +28,7 @@ const schema = a.schema({
             weight: a.integer().default(1),
             careerId: a.id(),
             career: a.belongsTo('Career', 'careerId'),
-            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
+            owner: a.string()
         })
         .authorization(allow => [allow.authenticated()]),
 
@@ -36,7 +36,7 @@ const schema = a.schema({
         .model({
             name: a.string(),
             personalityTypes: a.hasMany('PersonalityType', 'careerId'),
-            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
+            owner: a.string()
         })
         .authorization(allow => [allow.authenticated()]),
 });
