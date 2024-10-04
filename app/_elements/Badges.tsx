@@ -95,7 +95,7 @@ const UserTypeBadge = ({ userType }:{ userType: string }) => {
             color: 'bg-blue-400/10 text-blue-400 ring-blue-400/20',
             icon: '📚',
         },
-        OTHER : {
+        OTHER: {
             color: 'bg-gray-400/10 text-gray-400 ring-gray-400/20',
             icon: '🌐',
         }
