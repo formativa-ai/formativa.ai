@@ -65,6 +65,7 @@ export default function CreateCareerModal({
         try {
             // Create a new Career
             const {data: careerData, errors: careerErrors} = await client.models.Career.create({
+                // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
                 name: careerName,
             });
 
@@ -78,7 +79,9 @@ export default function CreateCareerModal({
             const createPromises = personalityTypesData.map(async ({personalityType, weight}) => {
                 const {errors: ptErrors} = await client.models.PersonalityType.create({
                     acronym: personalityType,
+                    // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
                     weight: parseInt(weight, 10),
+                    // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
                     careerId: careerData.id,
                 });
 
