@@ -68,7 +68,6 @@ export default function Maco() {
     const [messages, setMessages] = useState([]);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [threadId, setThreadId] = useState("");
-    const [chat, setChat] = useState({id: ""});
 
     // automatically scroll to bottom of chat
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -82,53 +81,19 @@ export default function Maco() {
         scrollToBottom();
     }, [messages]);
 
-    // // create a new threadID when chat component created
-    // useEffect(() => {
-    //     const createThread = async () => {
-    //         const res = await fetch(`/api/assistants/threads`, {
-    //             method: "POST",
-    //         });
-    //         const data = await res.json();
-    //         setThreadId(data.threadId);
-    //     };
-    //
-    //     createThread();
-    // }, []);
-
-
     // create a new threadID when chat component created
     useEffect(() => {
-        const getChats = async () => {
-            const { data: chats } = await client.models.Chat.list();
-            setThreadId(chats[chats.length-1].threadId);
-            setChat({id: chats[chats.length-1].id});
-        }
-        const getMessages = async () => {
-            const { data: messages } = await client.models.Message.list();
-            console.log("Messages: ", messages);
-            let arr = [];
-            messages.map((message) => {
-                arr.push({role: message.role, text: message.content});
+        const createThread = async () => {
+            const res = await fetch(`/api/assistants/threads`, {
+                method: "POST",
             });
-            setMessages(arr);
-        }
-        getMessages()
-        getChats();
+            const data = await res.json();
+            setThreadId(data.threadId);
+        };
+
+        createThread();
     }, []);
 
-    // useEffect(() => {
-    //     if(!threadId || threadId === "") {
-    //         return;
-    //     }
-    //     const createChatInDataBase = async () => {
-    //         const { errors, data: newChat } = await client.models.Chat.create({
-    //             threadId: threadId,
-    //         })
-    //         setChat({id: newChat.id});
-    //         console.log("New Chat: ", newChat);
-    //     };
-    //     createChatInDataBase();
-    // }, [threadId]);
 
     const sendMessage = async (text) => {
         const response = await fetch(
@@ -223,8 +188,6 @@ export default function Maco() {
 
     // handleRunCompleted - re-enable the input form
     const handleRunCompleted = () => {
-        handleAddMessageToDB({role: "assistant", text: messages[messages.length-1]?.text});
-        console.log(messages)
         setInputDisabled(false);
     };
 
@@ -288,15 +251,6 @@ export default function Maco() {
 
     }
 
-    const handleAddMessageToDB = async (newMessage: { role: string; text: string }) => {
-        const { data: dbMessage } = await client.models.Message.create({
-            chatId: chat.id,
-            content: newMessage.text,
-            role: newMessage.role
-        });
-        console.log("New Message: ", dbMessage);
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!userInput.trim()) return;
@@ -306,7 +260,6 @@ export default function Maco() {
             ...prevMessages,
             newMessage,
         ]);
-        handleAddMessageToDB(newMessage);
         setUserInput("");
         setInputDisabled(true);
         scrollToBottom();
