@@ -18,7 +18,6 @@ const schema = a.schema({
             content: a.string(),
             role: a.string(),
             chat: a.belongsTo('Chat', 'chatId'),
-            owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
         })
         .authorization(allow => [allow.owner()]),
 
@@ -28,17 +27,35 @@ const schema = a.schema({
             weight: a.integer().default(1),
             careerId: a.id(),
             career: a.belongsTo('Career', 'careerId'),
-            owner: a.string()
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    UniversityCareer: a
+        .model({
+            universityId: a.id().required(),
+            careerId: a.id().required(),
+            university: a.belongsTo('University', 'universityId'),
+            career: a.belongsTo('Career', 'careerId'),
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    University: a
+        .model({
+            name: a.string(),
+            location: a.string(),
+            careers: a.hasMany('UniversityCareer', 'universityId'),
         })
         .authorization(allow => [allow.authenticated()]),
 
     Career: a
         .model({
             name: a.string(),
+            // commonName: a.hasMany('CareerName', 'careerId'),
             personalityTypes: a.hasMany('PersonalityType', 'careerId'),
-            owner: a.string()
+            universities: a.hasMany('UniversityCareer', 'careerId'),
         })
         .authorization(allow => [allow.authenticated()]),
+
 });
 
 export type Schema = ClientSchema<typeof schema>;

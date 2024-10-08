@@ -27,8 +27,6 @@ export default function CurrentCareersTable() {
     }
 
     const handleCreateCareer = () => {
-        fetchCareers();
-        fetchPersonalityTypesData()
         setCreateCareerModalOpen(false);
     }
 
@@ -38,8 +36,6 @@ export default function CurrentCareersTable() {
             console.error('Error deleting Career:', careerErrors);
             return;
         }
-        fetchCareers();
-        fetchPersonalityTypesData()
         setDeleteCareerModalOpen(false);
     }
 
