@@ -49,13 +49,18 @@ const schema = a.schema({
 
     Career: a
         .model({
-            name: a.string(),
-            // commonName: a.hasMany('CareerName', 'careerId'),
+            nameAtUniversity: a.string(),
+            commonName: a.hasOne('CareerCommonName','careerId'),
             personalityTypes: a.hasMany('PersonalityType', 'careerId'),
             universities: a.hasMany('UniversityCareer', 'careerId'),
         })
         .authorization(allow => [allow.authenticated()]),
 
+    CareerCommonName: a
+        .model({
+            careerId: a.id(),
+        })
+        .authorization(allow => [allow.authenticated()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
