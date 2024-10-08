@@ -1,5 +1,4 @@
 "use client"
-
 import React, {useState} from 'react'
 import {Dialog, DialogBackdrop, DialogPanel, DialogTitle} from '@headlessui/react'
 import {BriefcaseIcon} from '@heroicons/react/24/outline'
@@ -13,20 +12,10 @@ const client = generateClient<Schema>();
 interface CreateCareerModalProps {
     setOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     open?: boolean,
-    handleCreateCareer?: () => void,
-    handleDeleteCareer?: (careerId) => Promise<void>,
-    handleDeletePersonalityType?: (personalityTypeId) => Promise<void>,
-    handleUpdateCareer?: (careerId, careerName) => Promise<void>
+    handleCreateCareer?: () => void
 }
 
-export default function CreateCareerModal({
-                                              setOpen,
-                                              open,
-                                              handleCreateCareer,
-                                              handleDeleteCareer,
-                                              handleDeletePersonalityType,
-                                              handleUpdateCareer
-                                          }: CreateCareerModalProps) {
+export default function CreateCareerModal({setOpen, open, handleCreateCareer}: CreateCareerModalProps) {
     const [careerName, setCareerName] = useState('');
     const [personalityTypesData, setPersonalityTypesData] = useState([]);
 
@@ -61,11 +50,11 @@ export default function CreateCareerModal({
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setOpen(false);
         try {
             // Create a new Career
             const {data: careerData, errors: careerErrors} = await client.models.Career.create({
-                // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
+                // @ts-ignore TODO: fix type mismatch issue
                 name: careerName,
             });
 
@@ -77,13 +66,13 @@ export default function CreateCareerModal({
 
             // Create associated PersonalityTypes
             const createPromises = personalityTypesData.map(async ({personalityType, weight}) => {
-                const {errors: ptErrors} = await client.models.PersonalityType.create({
+                let newPersonality = {
                     acronym: personalityType,
-                    // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
-                    weight: parseInt(weight, 10),
-                    // @ts-ignore TODO: figurw out why there is a type mismatch with the schema
+                    weight: weight,
                     careerId: careerData.id,
-                });
+                }
+                // @ts-ignore TODO: fix type mismatch issue
+                const {errors: ptErrors} = await client.models.PersonalityType.create(newPersonality);
 
                 if (ptErrors) {
                     console.error('Error creating PersonalityType:', ptErrors);
@@ -96,7 +85,6 @@ export default function CreateCareerModal({
             setCareerName('');
             setPersonalityTypesData([]);
             handleCreateCareer();
-            setOpen(false);
         } catch (error) {
             console.error('Error during submission:', error);
             alert('An unexpected error occurred.');
@@ -106,7 +94,7 @@ export default function CreateCareerModal({
     return (
         <Dialog
             open={open}
-            onClose={()=>{
+            onClose={() => {
                 setOpen(false);
                 setPersonalityTypesData([]);
                 setCareerName('');
@@ -138,7 +126,6 @@ export default function CreateCareerModal({
                                 setCareerName={setCareerName}
                                 personalityTypesData={personalityTypesData}
                                 setPersonalityTypesData={setPersonalityTypesData}
-                                handlePersonalityTypeChange={handlePersonalityTypeChange}
                                 personalityTypeOptions={personalityTypeOptions}
                                 removePersonalityType={removePersonalityType}
                                 addPersonalityType={addPersonalityType}
@@ -155,7 +142,6 @@ export default function CreateCareerModal({
 
 interface FormProps {
     personalityTypesData?: any[],
-    handlePersonalityTypeChange?: (index, field, value) => void,
     personalityTypeOptions?: string[],
     removePersonalityType?: (index) => void,
     addPersonalityType?: (type: string) => void,
@@ -167,7 +153,6 @@ interface FormProps {
 
 function Form({
                   personalityTypesData,
-                  handlePersonalityTypeChange,
                   personalityTypeOptions,
                   removePersonalityType,
                   addPersonalityType,
@@ -330,7 +315,7 @@ function Form({
                 </button>
                 <button
                     type="button"
-                    data-autofocus
+                    // data-autofocus="true"
                     onClick={() => {
                         setOpen(false);
                         setPersonalityTypesData([]);

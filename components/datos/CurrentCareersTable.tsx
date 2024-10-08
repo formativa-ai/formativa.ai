@@ -11,12 +11,11 @@ const client = generateClient<Schema>();
 
 
 export default function CurrentCareersTable() {
-    const [careersData, setCareersData] = useState([]);
-    const [personalityTypesData, setPersonalityTypesData] = useState([]);
+    const [careersData, setCareersData] = useState<Schema["Career"]["type"][]>([]);
+    const [personalityTypesData, setPersonalityTypesData] = useState<Schema["PersonalityType"]["type"][]>([]);
     const [createCareerModalOpen, setCreateCareerModalOpen] = useState(false);
-    const [editCareerModalOpen, setEditCareerModalOpen] = useState(false);
     const [deleteCareerModalOpen, setDeleteCareerModalOpen] = useState(false);
-    const [selectedCareer, setSelectedCareer] = useState(null);
+    const [selectedCareer, setSelectedCareer] = useState<Schema["Career"]["type"]>();
 
     const fetchCareers = async () => {
         const {data: careers, errors: careersErrors} = await client.models.Career.list();
@@ -49,12 +48,31 @@ export default function CurrentCareersTable() {
         fetchCareers()
     }, []);
 
+    useEffect(() => {
+        const sub = client.models.Career.observeQuery().subscribe({
+            next: ({ items }) => {
+                setCareersData([...items]);
+            },
+        });
+
+        return () => sub.unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        const sub = client.models.PersonalityType.observeQuery().subscribe({
+            next: ({ items }) => {
+                setPersonalityTypesData([...items]);
+            },
+        });
+
+        return () => sub.unsubscribe();
+    }, []);
+
     return(
         <div>
             <ActualTable
                 careersData={careersData}
                 personalityTypesData={personalityTypesData}
-                setEditCareerModalOpen={setEditCareerModalOpen}
                 setCreateCareerModalOpen={setCreateCareerModalOpen}
                 setDeleteCareerModalOpen={setDeleteCareerModalOpen}
                 setSelectedCareer={setSelectedCareer}

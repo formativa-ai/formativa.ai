@@ -15,7 +15,6 @@ interface ActualTableProps {
     careersData?: any[],
     personalityTypesData?: any[],
     setCreateCareerModalOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
-    setEditCareerModalOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     setDeleteCareerModalOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     setSelectedCareer?: (value: unknown) => void
 }
@@ -24,7 +23,6 @@ export default function ActualTable({
                                         careersData,
                                         personalityTypesData,
                                         setCreateCareerModalOpen,
-                                        setEditCareerModalOpen,
                                         setDeleteCareerModalOpen,
                                         setSelectedCareer
                                     }: ActualTableProps) {
