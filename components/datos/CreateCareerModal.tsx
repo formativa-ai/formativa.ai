@@ -53,7 +53,7 @@ export default function CreateCareerModal({setOpen, open, handleCreateCareer}: C
         setOpen(false);
         try {
             // Create a new Career
-            const {data: careerData, errors: careerErrors} = await client.models.Career.create({
+            const {data: careerData, errors: careerErrors} = await client.models.CareerPersonalityUniversity.create({
                 // @ts-ignore TODO: fix type mismatch issue
                 name: careerName,
             });

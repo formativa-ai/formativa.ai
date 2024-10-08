@@ -26,7 +26,7 @@ const schema = a.schema({
             acronym: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
             weight: a.integer().default(1),
             careerId: a.id(),
-            career: a.belongsTo('Career', 'careerId'),
+            career: a.belongsTo('CareerPersonalityUniversity', 'careerId'),
         })
         .authorization(allow => [allow.authenticated()]),
 
@@ -35,7 +35,7 @@ const schema = a.schema({
             universityId: a.id().required(),
             careerId: a.id().required(),
             university: a.belongsTo('University', 'universityId'),
-            career: a.belongsTo('Career', 'careerId'),
+            career: a.belongsTo('CareerPersonalityUniversity', 'careerId'),
         })
         .authorization(allow => [allow.authenticated()]),
 
@@ -47,19 +47,19 @@ const schema = a.schema({
         })
         .authorization(allow => [allow.authenticated()]),
 
-    Career: a
+    CareerPersonalityUniversity: a
         .model({
             nameAtUniversity: a.string(),
             commonNameId: a.id(),
-            commonName: a.belongsTo('CareerCommonName','commonNameId'),
+            name: a.belongsTo('Career','commonNameId'),
             personalityTypes: a.hasMany('PersonalityType', 'careerId'),
             universities: a.hasMany('UniversityCareer', 'careerId'),
         })
         .authorization(allow => [allow.authenticated()]),
 
-    CareerCommonName: a
+    Career: a
         .model({
-            careerEntries: a.hasMany('Career','commonNameId'),
+            careerEntries: a.hasMany('CareerPersonalityUniversity','commonNameId'),
             name: a.string()
         })
         .authorization(allow => [allow.authenticated()]),

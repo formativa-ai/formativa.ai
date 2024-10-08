@@ -11,14 +11,14 @@ const client = generateClient<Schema>();
 
 
 export default function CurrentCareersTable() {
-    const [careersData, setCareersData] = useState<Schema["Career"]["type"][]>([]);
+    const [careersData, setCareersData] = useState<Schema["CareerPersonalityUniversity"]["type"][]>([]);
     const [personalityTypesData, setPersonalityTypesData] = useState<Schema["PersonalityType"]["type"][]>([]);
     const [createCareerModalOpen, setCreateCareerModalOpen] = useState(false);
     const [deleteCareerModalOpen, setDeleteCareerModalOpen] = useState(false);
-    const [selectedCareer, setSelectedCareer] = useState<Schema["Career"]["type"]>();
+    const [selectedCareer, setSelectedCareer] = useState<Schema["CareerPersonalityUniversity"]["type"]>();
 
     const fetchCareers = async () => {
-        const {data: careers, errors: careersErrors} = await client.models.Career.list();
+        const {data: careers, errors: careersErrors} = await client.models.CareerPersonalityUniversity.list();
         setCareersData(careers);
     }
     const fetchPersonalityTypesData = async () => {
@@ -31,7 +31,7 @@ export default function CurrentCareersTable() {
     }
 
     const handleDeleteCareer = async () => {
-        const {errors: careerErrors} = await client.models.Career.delete({id: selectedCareer.id});
+        const {errors: careerErrors} = await client.models.CareerPersonalityUniversity.delete({id: selectedCareer.id});
         if (careerErrors) {
             console.error('Error deleting Career:', careerErrors);
             return;
@@ -45,7 +45,7 @@ export default function CurrentCareersTable() {
     }, []);
 
     useEffect(() => {
-        const sub = client.models.Career.observeQuery().subscribe({
+        const sub = client.models.CareerPersonalityUniversity.observeQuery().subscribe({
             next: ({ items }) => {
                 setCareersData([...items]);
             },
