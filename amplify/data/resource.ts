@@ -59,6 +59,7 @@ const schema = a.schema({
     CareerCommonName: a
         .model({
             careerId: a.id(),
+            name: a.string()
         })
         .authorization(allow => [allow.authenticated()]),
 });
