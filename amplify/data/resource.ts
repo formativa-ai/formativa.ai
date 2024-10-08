@@ -50,7 +50,8 @@ const schema = a.schema({
     Career: a
         .model({
             nameAtUniversity: a.string(),
-            commonName: a.hasOne('CareerCommonName','careerId'),
+            commonNameId: a.id(),
+            commonName: a.belongsTo('CareerCommonName','commonNameId'),
             personalityTypes: a.hasMany('PersonalityType', 'careerId'),
             universities: a.hasMany('UniversityCareer', 'careerId'),
         })
@@ -58,7 +59,7 @@ const schema = a.schema({
 
     CareerCommonName: a
         .model({
-            careerId: a.id(),
+            careerEntries: a.hasMany('Career','commonNameId'),
             name: a.string()
         })
         .authorization(allow => [allow.authenticated()]),
