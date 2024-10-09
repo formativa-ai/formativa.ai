@@ -24,18 +24,35 @@ const schema = a.schema({
     PersonalityType: a
         .model({
             acronym: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
-            weight: a.integer().default(1),
-            careerId: a.id(),
-            career: a.belongsTo('CareerPersonalityUniversity', 'careerId'),
+            careers: a.hasMany('CareerPersonalityType', 'personalityTypeId')
         })
         .authorization(allow => [allow.authenticated()]),
 
-    UniversityCareer: a
+    CareerPersonalityType: a
         .model({
-            universityId: a.id().required(),
-            careerId: a.id().required(),
+            personalityTypeId: a.id(),
+            careerId: a.id(),
+            weight: a.integer().default(10),
+            personalityType: a.belongsTo('PersonalityType','personalityTypeId'),
+            career: a.belongsTo('Career','careerId')
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    Career: a
+        .model({
+            careerEntries: a.hasMany('UniversityCareersOffered','careerId'),
+            personalityTypes: a.hasMany('CareerPersonalityType','careerId'),
+            name: a.string()
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    UniversityCareersOffered: a
+        .model({
+            name: a.string(),
             university: a.belongsTo('University', 'universityId'),
-            career: a.belongsTo('CareerPersonalityUniversity', 'careerId'),
+            universityId: a.id(),
+            careerId: a.id(),
+            career: a.belongsTo('Career','careerId')
         })
         .authorization(allow => [allow.authenticated()]),
 
@@ -43,24 +60,7 @@ const schema = a.schema({
         .model({
             name: a.string(),
             location: a.string(),
-            careers: a.hasMany('UniversityCareer', 'universityId'),
-        })
-        .authorization(allow => [allow.authenticated()]),
-
-    CareerPersonalityUniversity: a
-        .model({
-            nameAtUniversity: a.string(),
-            commonNameId: a.id(),
-            name: a.belongsTo('Career','commonNameId'),
-            personalityTypes: a.hasMany('PersonalityType', 'careerId'),
-            universities: a.hasMany('UniversityCareer', 'careerId'),
-        })
-        .authorization(allow => [allow.authenticated()]),
-
-    Career: a
-        .model({
-            careerEntries: a.hasMany('CareerPersonalityUniversity','commonNameId'),
-            name: a.string()
+            careersOffered: a.hasMany('UniversityCareersOffered','universityId'),
         })
         .authorization(allow => [allow.authenticated()]),
 });
