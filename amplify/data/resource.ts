@@ -21,6 +21,23 @@ const schema = a.schema({
         })
         .authorization(allow => [allow.owner()]),
 
+    RIASEC: a
+        .model({
+            acronym: a.enum(['Investigative','Enterprising','Conventional','Artistic','Social','Realist']),
+            careers: a.hasMany('CareerRIASEC', 'RIASECId')
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    CareerRIASEC: a
+        .model({
+            RIASECId: a.id().required(),
+            careerId: a.id().required(),
+            weight: a.integer().default(10),
+            riasec: a.belongsTo('RIASEC','RIASECId'),
+            career: a.belongsTo('Career','careerId')
+        })
+        .authorization(allow => [allow.authenticated()]),
+
     PersonalityType: a
         .model({
             acronym: a.enum(['INTJ' , 'INTP' , 'ENTJ' , 'ENTP' , 'INFJ' , 'INFP' , 'ENFJ' , 'ENFP' , 'ISTJ' , 'ISFJ' , 'ESTJ' , 'ESFJ' , 'ISTP' , 'ISFP' , 'ESTP' , 'ESFP']),
@@ -30,8 +47,8 @@ const schema = a.schema({
 
     CareerPersonalityType: a
         .model({
-            personalityTypeId: a.id(),
-            careerId: a.id(),
+            personalityTypeId: a.id().required(),
+            careerId: a.id().required(),
             weight: a.integer().default(10),
             personalityType: a.belongsTo('PersonalityType','personalityTypeId'),
             career: a.belongsTo('Career','careerId')
@@ -42,6 +59,7 @@ const schema = a.schema({
         .model({
             careerEntries: a.hasMany('UniversityCareersOffered','careerId'),
             personalityTypes: a.hasMany('CareerPersonalityType','careerId'),
+            riasecs: a.hasMany('CareerRIASEC','careerId'),
             name: a.string()
         })
         .authorization(allow => [allow.authenticated()]),
@@ -50,8 +68,8 @@ const schema = a.schema({
         .model({
             name: a.string(),
             university: a.belongsTo('University', 'universityId'),
-            universityId: a.id(),
-            careerId: a.id(),
+            universityId: a.id().required(),
+            careerId: a.id().required(),
             career: a.belongsTo('Career','careerId')
         })
         .authorization(allow => [allow.authenticated()]),

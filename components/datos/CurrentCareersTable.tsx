@@ -11,15 +11,15 @@ const client = generateClient<Schema>();
 
 
 export default function CurrentCareersTable() {
-    const [careersData, setCareersData] = useState<Schema["CareerPersonalityUniversity"]["type"][]>([]);
+    // const [careersData, setCareersData] = useState<Schema["CareerPersonalityUniversity"]["type"][]>([]);
     const [personalityTypesData, setPersonalityTypesData] = useState<Schema["PersonalityType"]["type"][]>([]);
     const [createCareerModalOpen, setCreateCareerModalOpen] = useState(false);
     const [deleteCareerModalOpen, setDeleteCareerModalOpen] = useState(false);
-    const [selectedCareer, setSelectedCareer] = useState<Schema["CareerPersonalityUniversity"]["type"]>();
+    // const [selectedCareer, setSelectedCareer] = useState<Schema["CareerPersonalityUniversity"]["type"]>();
 
     const fetchCareers = async () => {
-        const {data: careers, errors: careersErrors} = await client.models.CareerPersonalityUniversity.list();
-        setCareersData(careers);
+        // const {data: careers, errors: careersErrors} = await client.models.CareerPersonalityUniversity.list();
+        // setCareersData(careers);
     }
     const fetchPersonalityTypesData = async () => {
         const {data: personalityTypes, errors: personalityTypesErrors} = await client.models.PersonalityType.list();
@@ -30,29 +30,29 @@ export default function CurrentCareersTable() {
         setCreateCareerModalOpen(false);
     }
 
-    const handleDeleteCareer = async () => {
-        const {errors: careerErrors} = await client.models.CareerPersonalityUniversity.delete({id: selectedCareer.id});
-        if (careerErrors) {
-            console.error('Error deleting Career:', careerErrors);
-            return;
-        }
-        setDeleteCareerModalOpen(false);
-    }
+    // const handleDeleteCareer = async () => {
+    //     const {errors: careerErrors} = await client.models.CareerPersonalityUniversity.delete({id: selectedCareer.id});
+    //     if (careerErrors) {
+    //         console.error('Error deleting Career:', careerErrors);
+    //         return;
+    //     }
+    //     setDeleteCareerModalOpen(false);
+    // }
 
     useEffect(() => {
         fetchPersonalityTypesData()
         fetchCareers()
     }, []);
 
-    useEffect(() => {
-        const sub = client.models.CareerPersonalityUniversity.observeQuery().subscribe({
-            next: ({ items }) => {
-                setCareersData([...items]);
-            },
-        });
-
-        return () => sub.unsubscribe();
-    }, []);
+    // useEffect(() => {
+    //     const sub = client.models.CareerPersonalityUniversity.observeQuery().subscribe({
+    //         next: ({ items }) => {
+    //             setCareersData([...items]);
+    //         },
+    //     });
+    //
+    //     return () => sub.unsubscribe();
+    // }, []);
 
     useEffect(() => {
         const sub = client.models.PersonalityType.observeQuery().subscribe({
@@ -67,11 +67,11 @@ export default function CurrentCareersTable() {
     return(
         <div>
             <ActualTable
-                careersData={careersData}
+                // careersData={careersData}
                 personalityTypesData={personalityTypesData}
                 setCreateCareerModalOpen={setCreateCareerModalOpen}
                 setDeleteCareerModalOpen={setDeleteCareerModalOpen}
-                setSelectedCareer={setSelectedCareer}
+                // setSelectedCareer={setSelectedCareer}
             />
             <CreateCareerModal
                 setOpen={setCreateCareerModalOpen}
@@ -79,7 +79,7 @@ export default function CurrentCareersTable() {
                 handleCreateCareer={handleCreateCareer}
             />
             <DeleteCareerModal
-                handleDeleteCareer={handleDeleteCareer}
+                // handleDeleteCareer={handleDeleteCareer}
                 setOpen={setDeleteCareerModalOpen}
                 open={deleteCareerModalOpen}
             />

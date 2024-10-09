@@ -12,19 +12,19 @@ function classNames(...classes) {
 }
 
 interface ActualTableProps {
-    careersData?: any[],
+    // careersData?: any[],
     personalityTypesData?: any[],
     setCreateCareerModalOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     setDeleteCareerModalOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
-    setSelectedCareer?: (value: unknown) => void
+    // setSelectedCareer?: (value: unknown) => void
 }
 
 export default function ActualTable({
-                                        careersData,
+                                        // careersData,
                                         personalityTypesData,
                                         setCreateCareerModalOpen,
                                         setDeleteCareerModalOpen,
-                                        setSelectedCareer
+                                        // setSelectedCareer
                                     }: ActualTableProps) {
     return (
         <div className="bg-gray-900">
@@ -75,43 +75,43 @@ export default function ActualTable({
                                         </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-800">
-                                        {careersData.map((career) => (
-                                            <tr key={career.id}>
-                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                                                    {career.name}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                                                    {personalityTypesData
-                                                        .filter((personalityType) => personalityType.careerId === career.id)
-                                                        .map((personalityType) => {
-                                                            return (
-                                                                <Badge
-                                                                    badgeType="personalityType"
-                                                                    key={personalityType.id}
-                                                                    content={personalityType.acronym}
-                                                                />
-                                                            )
-                                                        })}
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">**Aqui
-                                                    van las universidades**
-                                                </td>
-                                                {/*<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.role}</td>*/}
-                                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                                    <button
-                                                        onClick={() => {
-                                                            setSelectedCareer(career)
-                                                            setDeleteCareerModalOpen(true)
-                                                        }}
-                                                        type="button"
-                                                        className="mr-2 inline-flex rounded-md p-1.5 text-indigo-400 hover:bg-gray-800 focus:outline-none focus:ring-2"
-                                                    >
-                                                        <span className="sr-only">Dismiss</span>
-                                                        <XMarkIcon aria-hidden="true" className="h-4 w-4"/>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                        {/*{careersData.map((career) => (*/}
+                                        {/*    <tr key={career.id}>*/}
+                                        {/*        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">*/}
+                                        {/*            {career.name}*/}
+                                        {/*        </td>*/}
+                                        {/*        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">*/}
+                                        {/*            {personalityTypesData*/}
+                                        {/*                .filter((personalityType) => personalityType.careerId === career.id)*/}
+                                        {/*                .map((personalityType) => {*/}
+                                        {/*                    return (*/}
+                                        {/*                        <Badge*/}
+                                        {/*                            badgeType="personalityType"*/}
+                                        {/*                            key={personalityType.id}*/}
+                                        {/*                            content={personalityType.acronym}*/}
+                                        {/*                        />*/}
+                                        {/*                    )*/}
+                                        {/*                })}*/}
+                                        {/*        </td>*/}
+                                        {/*        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">**Aqui*/}
+                                        {/*            van las universidades***/}
+                                        {/*        </td>*/}
+                                        {/*        /!*<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.role}</td>*!/*/}
+                                        {/*        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">*/}
+                                        {/*            <button*/}
+                                        {/*                onClick={() => {*/}
+                                        {/*                    // setSelectedCareer(career)*/}
+                                        {/*                    setDeleteCareerModalOpen(true)*/}
+                                        {/*                }}*/}
+                                        {/*                type="button"*/}
+                                        {/*                className="mr-2 inline-flex rounded-md p-1.5 text-indigo-400 hover:bg-gray-800 focus:outline-none focus:ring-2"*/}
+                                        {/*            >*/}
+                                        {/*                <span className="sr-only">Dismiss</span>*/}
+                                        {/*                <XMarkIcon aria-hidden="true" className="h-4 w-4"/>*/}
+                                        {/*            </button>*/}
+                                        {/*        </td>*/}
+                                        {/*    </tr>*/}
+                                        {/*))}*/}
                                         </tbody>
                                     </table>
                                 </div>

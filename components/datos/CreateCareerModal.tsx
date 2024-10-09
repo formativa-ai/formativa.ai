@@ -53,33 +53,33 @@ export default function CreateCareerModal({setOpen, open, handleCreateCareer}: C
         setOpen(false);
         try {
             // Create a new Career
-            const {data: careerData, errors: careerErrors} = await client.models.CareerPersonalityUniversity.create({
-                // @ts-ignore TODO: fix type mismatch issue
-                name: careerName,
-            });
+            // const {data: careerData, errors: careerErrors} = await client.models.CareerPersonalityUniversity.create({
+            //     // @ts-ignore TODO: fix type mismatch issue
+            //     name: careerName,
+            // });
 
-            if (careerErrors) {
-                console.error('Error creating Career:', careerErrors);
-                alert('An error occurred while creating the Career.');
-                return;
-            }
+            // if (careerErrors) {
+            //     console.error('Error creating Career:', careerErrors);
+            //     alert('An error occurred while creating the Career.');
+            //     return;
+            // }
 
             // Create associated PersonalityTypes
-            const createPromises = personalityTypesData.map(async ({personalityType, weight}) => {
-                let newPersonality = {
-                    acronym: personalityType,
-                    weight: weight,
-                    careerId: careerData.id,
-                }
-                // @ts-ignore TODO: fix type mismatch issue
-                const {errors: ptErrors} = await client.models.PersonalityType.create(newPersonality);
+            // const createPromises = personalityTypesData.map(async ({personalityType, weight}) => {
+            //     let newPersonality = {
+            //         acronym: personalityType,
+            //         weight: weight,
+            //         careerId: careerData.id,
+            //     }
+            //     // @ts-ignore TODO: fix type mismatch issue
+            //     const {errors: ptErrors} = await client.models.PersonalityType.create(newPersonality);
+            //
+            //     if (ptErrors) {
+            //         console.error('Error creating PersonalityType:', ptErrors);
+            //     }
+            // });
 
-                if (ptErrors) {
-                    console.error('Error creating PersonalityType:', ptErrors);
-                }
-            });
-
-            await Promise.all(createPromises);
+            // await Promise.all(createPromises);
 
             // Reset form fields
             setCareerName('');

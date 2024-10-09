@@ -8,13 +8,13 @@ import {ExclamationTriangleIcon} from '@heroicons/react/24/outline'
 interface CreateCareerModalProps {
     setOpen?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     open?: boolean,
-    handleDeleteCareer?: (careerId) => Promise<void>
+    // handleDeleteCareer?: (careerId) => Promise<void>
 }
 
 export default function DeleteCareerModal({
                                               setOpen,
                                               open,
-                                              handleDeleteCareer
+                                              // handleDeleteCareer
                                           }: CreateCareerModalProps) {
     return (
         <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -51,7 +51,7 @@ export default function DeleteCareerModal({
                         <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                             <button
                                 type="button"
-                                onClick={handleDeleteCareer}
+                                // onClick={handleDeleteCareer}
                                 className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                             >
                                 Estoy Seguro
