@@ -81,6 +81,12 @@ const schema = a.schema({
             careersOffered: a.hasMany('UniversityCareersOffered','universityId'),
         })
         .authorization(allow => [allow.authenticated()]),
+
+    City: a
+        .model({
+            name: a.string(),
+        })
+        .authorization(allow => [allow.authenticated()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
