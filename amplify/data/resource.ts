@@ -6,13 +6,13 @@ const schema = a.schema({
     Chat: a
         .model({
             threadId: a.string().required(),
-            messages: a.hasMany('Message', 'chatId'),
+            messages: a.hasMany('ChatMessage', 'chatId'),
             owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
         })
         .authorization(allow => [allow.owner()]),
 
     // Message object belongs to a Chat identified by chatId
-    Message: a
+    ChatMessage: a
         .model({
             chatId: a.id().required(),
             content: a.string(),
@@ -83,6 +83,19 @@ const schema = a.schema({
         .authorization(allow => [allow.authenticated()]),
 
     City: a
+        .model({
+            name: a.string(),
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+
+    State: a
+        .model({
+            name: a.string(),
+        })
+        .authorization(allow => [allow.authenticated()]),
+
+    Country: a
         .model({
             name: a.string(),
         })
